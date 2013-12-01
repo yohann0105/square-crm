@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+	<TAG ID="1" VERSION="1" TAG_NOM="categorie1" TAG_DESCRIPTION="description_categorie1" ID_PARENT="null" />
+	<TAG ID="2" VERSION="1" TAG_NOM="categorie2" TAG_DESCRIPTION="description_categorie2" ID_PARENT="null" />
+	<TAG ID="3" VERSION="1" TAG_NOM="cat1_rubrique1" TAG_DESCRIPTION="description_cat1_rubrique1" ID_PARENT="1" />
+	<TAG ID="4" VERSION="1" TAG_NOM="cat1_rubrique2" TAG_DESCRIPTION="description_cat1_rubrique2" ID_PARENT="1" />
+	<TAG ID="5" VERSION="1" TAG_NOM="cat2_rubrique1" TAG_DESCRIPTION="description_cat2_rubrique1" ID_PARENT="2" />
+	<TAG ID="6" VERSION="1" TAG_NOM="cat2_rubrique2" TAG_DESCRIPTION="description_cat2_rubrique2" ID_PARENT="2" />
+	
+	<DOCUMENT ID="1" VERSION="1" DOCUMENT_NOM="123456-document1" DOCUMENT_URL="" DOCUMENT_DATE_NUM="2012-08-08" DOCUMENT_DATE_REC="2012-08-08" DOCUMENT_SENS="" DOCUMENT_NUMERO_CLIENT="1234" />
+	<DOCUMENT ID="2" VERSION="1" DOCUMENT_NOM="234565-document2" DOCUMENT_URL="" DOCUMENT_DATE_NUM="2012-08-08" DOCUMENT_DATE_REC="2012-08-08" DOCUMENT_SENS="" DOCUMENT_NUMERO_CLIENT="1234" />
+	<DOCUMENT ID="3" VERSION="1" DOCUMENT_NOM="112233-document3" DOCUMENT_URL="" DOCUMENT_DATE_NUM="2012-08-08" DOCUMENT_DATE_REC="2012-08-08" DOCUMENT_SENS="" DOCUMENT_NUMERO_CLIENT="4444" />
+	<DOCUMENT ID="4" VERSION="1" DOCUMENT_NOM="test" DOCUMENT_URL="" DOCUMENT_DATE_NUM="2012-08-08" DOCUMENT_DATE_REC="2012-08-08" DOCUMENT_SENS="" DOCUMENT_NUMERO_CLIENT="1234" />
+	
+	<TYPER typer_id_document="1" typer_id_tag="1"/>
+	<TYPER typer_id_document="2" typer_id_tag="2"/>
+	<TYPER typer_id_document="3" typer_id_tag="3"/>
+	<TYPER typer_id_document="4" typer_id_tag="4"/>
+	
+</dataset>

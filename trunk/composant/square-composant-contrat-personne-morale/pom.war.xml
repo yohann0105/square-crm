@@ -1,0 +1,102 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>square</groupId>
+	<artifactId>square-composant-contrat-personne-morale</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+
+	<parent>
+		<groupId>scub-foundation.base.superpom</groupId>
+		<artifactId>scub-foundation-superpom-client-gwt</artifactId>
+		<version>3.5.1</version>
+	</parent>
+
+	<build>
+		<directory>target</directory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<outputDirectory>target/classes</outputDirectory>
+
+		<plugins>
+			<!-- PLUGIN SPEEDUP GWT -->
+			<plugin>
+				<groupId>scub-foundation.base.plugins</groupId>
+				<artifactId>maven-scub-foundation-gwt-speedup-plugin</artifactId>
+				<configuration>
+					<pathModuleConfigFile>${project.build.sourceDirectory}/com.square.composant.contrat.personne.morale.square</pathModuleConfigFile>
+					<pathFilePropertiesSpeedUp>conf/${env}/filters/filters.properties</pathFilePropertiesSpeedUp>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- PLUGIN GWT -->
+			<plugin>
+				<groupId>scub-foundation.base.plugins</groupId>
+				<artifactId>maven-scub-foundation-gwt-plugin</artifactId>
+				<configuration>
+					<logLevel>DEBUG</logLevel>
+					<url>${project.build.finalName}/index.html</url>
+					<module>com.square.composant.contrat.personne.morale.square.GwtModule</module>
+					<modules><param>com.square.composant.contrat.personne.morale.square.GwtModule</param></modules>
+					<warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+					<noserver>true</noserver>
+					<port>9000</port>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- PLUGIN WAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>${project.build.directory}/${project.build.finalName}/gwtClient</webappDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>scub-foundation.base.framework</groupId>
+			<artifactId>scub-foundation-framework-client-gwt-module</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>square</groupId>
+			<artifactId>square-composants-graphiques-lib</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>square</groupId>
+			<artifactId>square-adherent-core-model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>smatis</groupId>
+			<artifactId>smatis-grilles-prestation-noyau-model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-visualization</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+	</dependencies>
+</project>

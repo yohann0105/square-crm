@@ -1,0 +1,1 @@
+ALTER SEQUENCE sequence_devis RESTART WITH 100;

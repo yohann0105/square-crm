@@ -1,0 +1,125 @@
+.composantFusion {
+	background-color: #e8ec95;
+}
+
+.composantFusion .contenuPageFusion {
+	border: 2px solid #06559f;
+	border-top: none;
+	background-color: #9ed3f5;
+}
+
+.composantFusion fieldset {
+	border: 1px solid grey;
+	background-color: #E3F3FC;
+}
+
+/********************************************************************************/
+/*	BARRE D'ONGLETS																*/
+/********************************************************************************/
+.composantFusion .gwt-DecoratedTabBar .gwt-TabBarFirst-wrapper,
+.composantFusion .gwt-DecoratedTabBar .gwt-TabBarRest-wrapper {
+	border-bottom: 2px solid #06559f;
+}
+
+.composantFusion .gwt-DecoratedTabBar .tabMiddleLeft {
+	background: url(themes/default/images/onglet_bleu_gauche.png) no-repeat 0 0;
+}
+
+.composantFusion .gwt-DecoratedTabBar .tabMiddleRight {
+	background: url(themes/default/images/onglet_bleu_droite.png) no-repeat 0 0;
+}
+
+.composantFusion .gwt-DecoratedTabBar .tabMiddleCenter {
+	background: #0075bb url(themes/default/images/onglet_bleu_fond.png) repeat-x 0 0;
+}
+
+.composantFusion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft {
+	background: url(themes/default/images/onglet_bleu_selected_gauche.png) no-repeat 0 0;
+}
+
+.composantFusion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+	background: url(themes/default/images/onglet_bleu_selected_droite.png) no-repeat 0 0;
+}
+
+.composantFusion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+	background: #9ed3f5 url(themes/default/images/onglet_bleu_selected_fond.png) repeat-x 0 0;
+}
+
+/********************************************************************************/
+/*	SELECTION DES DOUBLONS POUR LA FUSION										*/
+/********************************************************************************/
+.composantFusion .selectionDoublons {}
+
+.composantFusion .selectionDoublons .remotePagingTable-results {
+}
+
+.composantFusion .selectionDoublons .remotePagingTable-results .oddRow td, .composantFusion .selectionDoublons .remotePagingTable-results .evenRow td {
+	cursor: default;
+	padding: 2px 5px;
+}
+
+/********************************************************************************/
+/*	COMPOSANT POUR LE BLOC DES CHAMPS DES PERSONNES								*/
+/********************************************************************************/
+.composantFusion .blocSource {
+	background-color: #ffd9d9;
+}
+
+.composantFusion .blocCible {
+	background-color: #b3ffb3;
+}
+
+.composantFusion .contenuBloc {
+}
+
+.composantFusion .numeroClient {
+	color: red;
+}
+
+.composantFusion .dateCreation {
+	color: red;
+}
+
+/********************************************************************************/
+/*	TABLEAU																		*/
+/********************************************************************************/
+
+.composantFusion .tableau {
+	background-color: #fff;
+	border-collapse: collapse;
+}
+
+	.composantFusion .tableau td {
+		border: 1px solid #AAA;
+		padding: 2px 5px;
+	}
+
+	.composantFusion .tableau .titreColonne {
+		padding: 5px;
+		background: url(themes/default/images/hborder.png) repeat-x 0px -27px;
+		color: #444;
+		font-weight: bold;
+		text-align: center;
+		white-space: nowrap;
+	}
+	
+	.composantFusion .tableau .cellClair {
+		background-color: #fff;
+		height: 24px;
+	}
+
+	.composantFusion .tableau .cellSombre {
+		background-color: #eee;
+		height: 24px;
+	}
+
+/********************************************************************************/
+/*	PAGE DE FUSION																*/
+/********************************************************************************/
+.composantFusion .gwt-Image {
+	cursor: pointer;
+}
+
+.composantFusion .btnInactif {
+	cursor: not-allowed;
+}

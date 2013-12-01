@@ -1,0 +1,47 @@
+.composantCotisations {
+	background-color: #9ed3f5;
+}
+
+.composantCotisations fieldset {
+	border: 1px solid grey;
+	background-color: #E3F3FC;
+}
+
+.composantCotisations .moteurRecherche {
+}
+
+.composantCotisations .moteurRecherche .libelleMoteurRecherche {
+	font-weight: bold;
+}
+
+.composantCotisations .enteteCotisation {
+}
+
+.composantCotisations .enteteCotisation .contenuEntete {
+	background-color: #E3F3FC;
+}
+
+.composantCotisations .lienPagination {
+	cursor: pointer;
+}
+
+.composantCotisations .lienPaginationSelected {
+	font-weight: bold;
+	cursor: normal !important;
+}
+
+.composantCotisations .ligneEncaissement .gwt-Label {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.composantCotisations .titreSimulation {
+	color: #444444;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.composantCotisations .conteneurEnteteSimulation {
+	background-color: #FFA8A8;
+	border: 1px solid #FF7575;
+}

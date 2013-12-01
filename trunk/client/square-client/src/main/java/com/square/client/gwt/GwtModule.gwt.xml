@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="gwtClient">
+
+	<!-- Inherit the core Scub Foundation Web Toolkit stuff. -->
+	<inherits name="org.scub.foundation.framework.gwt.module.ScubFoundationModule"/>
+	<inherits name="com.square.composants.graphiques.lib.ComposantsGraphiquesModule"/>
+	<inherits name="com.square.composant.tarificateur.square.ComposantTarificateurModule"/>
+	<inherits name="com.square.composant.contrat.square.ComposantContratModule"/>
+	<inherits name="com.square.composant.espace.client.square.ComposantEspaceClientModule"/>
+	<inherits name="com.square.composant.emails.square.ComposantEmailsModule"/>
+	<inherits name="com.square.composant.fusion.square.ComposantFusionModule"/>
+	<inherits name="com.square.composant.ged.square.ComposantGedSquareModule"/>
+	<inherits name="com.square.composant.envoi.email.square.ComposantEnvoiEmailsModule"/>
+	<inherits name="com.square.composant.contrat.personne.morale.square.ComposantContratPersonneMoraleModule"/>
+	<inherits name="com.square.composant.prestations.square.ComposantPrestationsModule"/>
+	<inherits name="com.square.composant.cotisations.ComposantCotisationsModule"/>
+	<inherits name="com.square.composant.aide.gwt.ComposantAideModule"/>
+	<inherits name="com.google.gwt.i18n.I18N"/>
+	<inherits name="com.google.gwt.visualization.Visualization"/>
+	<inherits name="com.google.gwt.user.Debug"/>
+	<inherits name="com.google.gwt.http.HTTP"/>
+	
+	<inherits name="com.bradrydzewski.gwt.calendar.Calendar"/>
+    <inherits name="com.bradrydzewski.gwt.calendar.theme.google.Google"/>
+
+	<set-property-fallback name="locale" value="fr"/>
+	
+	<!-- Bug Chrome sur le focus. Palliatif, en attendant la prochaine version de GWT -->
+	<replace-with class="com.google.gwt.user.client.ui.impl.FocusImpl">
+      <when-type-is class="com.google.gwt.user.client.ui.impl.FocusImpl"/>
+      <when-property-is name="user.agent" value="safari"/>
+    </replace-with>
+	
+
+	<entry-point class="com.square.client.gwt.client.ClientEntryPointGwt"/>
+
+	<!-- Internationalization support. -->
+<extend-property name="locale" values="fr"/><extend-property name="locale" values="en"/><set-property name="user.agent" value="gecko1_8"/></module>

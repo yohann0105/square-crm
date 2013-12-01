@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CONTEXTE APPLICATION  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    * - Vous devez definir ici l'ensemble de vos service GWT
+    *   ex : <bean id="MessageServiceGwt" class="org.scub.foundation.example.gwt.server.service.MessageServiceGwtImpl" autowire="byName"/>
+    *
+    * - Dozer est un framework de mapping objet (recurcive, bidirectionelle...) vous pouvez utiliser le framework pour vos "mapping" d'objet celui-ci gére beaucoup
+    *   de chose implicitement pour des besoins plus spécifiques utiliser le fichier dozer-bean-mappings.xml et la documentation sur le site  http://dozer.sourceforge.net
+	* 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<!-- rajouter ici l'ensemble de vos service gwt -->
+	<bean id="personnePhysiqueServiceGwt" class="com.square.client.gwt.server.service.PersonnePhysiqueServiceGwtImpl" autowire="byName"/>
+	<bean id="dimensionServiceGwt" class="com.square.client.gwt.server.service.DimensionServiceGwtImpl" autowire="byName"/>
+	<bean id="constantesServiceGwt" class="com.square.client.gwt.server.service.ConstantesServiceGwtImpl" autowire="byName"/>
+	<bean id="personneServiceGwt" class="com.square.client.gwt.server.service.PersonneServiceGwtImpl" autowire="byName"/>
+	<bean id="personneMoraleServiceGwt" class="com.square.client.gwt.server.service.PersonneMoraleServiceGwtImpl" autowire="byName"/>
+	<bean id="campagneServiceGwt" class="com.square.client.gwt.server.service.CampagneServiceGwtImpl" autowire="byName"/>
+	<bean id="actionServiceGwt" class="com.square.client.gwt.server.service.ActionServiceGwtImpl" autowire="byName"/>
+	<bean id="agendaServiceGwt" class="com.square.client.gwt.server.service.AgendaServiceGwtImpl" autowire="byName"/>
+	<bean id="opportuniteServiceGwt" class="com.square.client.gwt.server.service.OpportuniteServiceGwtImpl" autowire="byName"/>
+	<bean id="ressourceServiceGwt" class="com.square.client.gwt.server.service.RessourceServiceGwtImpl" autowire="byName"/>
+	<bean id="utilServiceGwt" class="com.square.client.gwt.server.service.UtilServiceGwtImpl" autowire="byName"/>
+	<!-- Bean pour le composant tarificateur -->
+	<bean id="produitServiceGwt" class="com.square.composant.tarificateur.square.server.service.ProduitServiceGwtImpl" autowire="byName" />
+	<bean id="constantesTarificateurServiceGwt" class="com.square.composant.tarificateur.square.server.service.ConstantesServiceGwtImpl" autowire="byName" />
+	<bean id="tarificateurServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurServiceGwtImpl" autowire="byName" />
+	<bean id="selecteurProduitServiceGwt" class="com.square.composant.tarificateur.square.server.service.SelecteurProduitServiceGwtImpl" autowire="byName" />
+	<!--<bean id="tarificateurTransformationAiaServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurTransformationAiaServiceGwtImpl" autowire="byName" />-->
+	<bean id="tarificateurEditiqueServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurEditiqueServiceGwtImpl" autowire="byName">
+	   <property name="repertoirePiecesJointes" value="${fichier.temporaire.piece.jointe}"/>
+	</bean>
+	<bean id="tarificateurPersonneServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurPersonneServiceGwtImpl" autowire="byName" />
+	<bean id="tarificateurDimensionServiceGwt" class="com.square.composant.tarificateur.square.server.service.DimensionServiceGwtImpl" autowire="byName" />
+	<bean id="emailComposantEnvoiServiceGWT" class="com.square.composant.envoi.email.square.server.service.ComposantEnvoiMailServiceGWTImpl" autowire="byName" />
+	<!-- Bean pour le composant contrat -->
+	<bean id="contratServiceGwt" class="com.square.composant.contrat.square.server.service.ContratServiceGwtImpl" autowire="byName"/>
+	<bean id="constantesContratServiceGwt" class="com.square.composant.contrat.square.server.service.ConstantesServiceGwtImpl" autowire="byName"/>
+	<!-- Bean pour le composant espace adherent -->
+	<bean id="adherentEspaceAdherentServiceGwt" class="com.square.composant.espace.client.square.server.service.AdherentServiceGwtImpl" autowire="byName"/>
+	<bean id="espaceClientInternetServiceGwt" class="com.square.composant.espace.client.square.server.service.EspaceClientInternetServiceGwtImpl" autowire="byName"/>
+	<bean id="constantesEspaceAdherentServiceGwt" class="com.square.composant.espace.client.square.server.service.ConstantesServiceGwtImpl" autowire="byName"/>
+	<!-- Bean pour le composant emails -->
+	<bean id="emailsServiceGwt" class="com.square.composant.emails.square.server.service.EmailServiceGWTImpl" autowire="byName"/>
+	<bean id="constantesEmailsServiceGwt" class="com.square.composant.emails.square.server.service.ConstantesServiceGWTImpl" autowire="byName"/>
+	<!-- Bean pour le composant de téléphonie 
+	<bean id="acpServiceRpc" class="com.smatis.telephonie.acp.client.gwt.server.service.AcpServiceRpcImpl" autowire="byName"/>
+	<bean id="utilisateurServiceRpc" class="com.smatis.telephonie.acp.client.gwt.server.service.UtilisateurServiceRpcImpl" autowire="byName"/>
+	<bean id="constantesAcpServiceRpc" class="com.smatis.telephonie.acp.client.gwt.server.service.ConstantesAcpServiceRpcImpl" autowire="byName">
+		<property name="delaisAffichageCallBack" value="${delaisAffichageCallBack}"/>
+	</bean>-->
+	<!-- Bean pour le composant de fusion -->
+	<bean id="fusionServiceGwt" class="com.square.composant.fusion.square.server.service.FusionServiceGwtImpl" autowire="byName"/>
+	<bean id="constantesFusionMappingServiceGwt" class="com.square.composant.fusion.square.server.service.ConstantesMappingServiceGwtImpl" autowire="byName"/>
+	<!-- beans pour la GED -->
+	<bean id="documentServiceGwt" class="com.square.composant.ged.square.server.service.DocumentsServiceGwtImpl" autowire="byName"/>
+	<!-- Bean pour le composant contrat des personnes morales -->
+	<bean id="contratPersonneMoraleServiceGwt" class="com.square.composant.contrat.personne.morale.square.server.service.ContratServiceGwtImpl" autowire="byName"/>
+	<bean id="constantesContratPersonneMoraleServiceGwt" class="com.square.composant.contrat.personne.morale.square.server.service.ConstantesServiceGwtImpl" autowire="byName"/>
+	<!-- Bean pour le composant prestations -->
+	<bean id="prestationServiceGwt" class="com.square.composant.prestations.square.server.service.PrestationServiceGwtImpl" autowire="byName"/>
+	<bean id="constantesPrestationServiceGwt" class="com.square.composant.prestations.square.server.service.ConstantesPrestationServiceGwtImpl" autowire="byName"/>
+	<!-- Bean pour le composant cotisations -->
+	<bean id="cotisationsServiceGwt" class="com.square.composant.cotisations.server.service.CotisationsServiceGwtImpl" autowire="byName"/>
+	<bean id="aideServiceGwt" class="com.square.composant.aide.gwt.server.service.AideServiceGwtImpl" autowire="byName"/>
+	<!-- Configuration Dozer ne pas editer la structure du bean -->	
+	<bean id="mapperDozerBean" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		<property name="mappingFiles">
+			<list>		  
+		    	<value>dozer-bean-mappings.xml</value>
+				<value>dozer-bean-mappings-composantCotisations.xml</value>
+				<value>dozer-bean-mappings-composantTarificateur.xml</value>
+				<value>dozer-bean-mappings-composantEmails.xml</value>
+				<value>dozer-bean-mappings-composantFusion.xml</value>
+				<value>dozer-bean-mappings-composantContratPersonneMorale.xml</value>
+		    </list>
+		</property>
+	</bean>
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP AFTER THROWING ADVICE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    * 
+    * Cette Aop transforme les exceptions du noyau en exception GWT.
+	* - vous pouvez editer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+	
+	<!-- AOP pour la gestion des exceptions de types contrainte d'integrite -->
+	<bean id="controleIntegriteThrowingAdvice" class="com.square.client.gwt.server.service.aop.ControleIntegriteThrowingAdvice" autowire="byName"/>
+	<aop:config>
+		<aop:aspect id="controleIntegriteThrowingAspect" ref="controleIntegriteThrowingAdvice">
+			<aop:after-throwing method="afterThrowing" throwing="ex" pointcut="execution(* com.square.core.service.interfaces..*.*(..))"/>
+			<aop:after-throwing method="afterThrowing" throwing="ex" pointcut="execution(* com.square.tarificateur.noyau.service.interfaces..*.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="afterThrowingAdvice" class="org.scub.foundation.framework.client.gwt.aop.AfterThrowingAdvice"/>
+	<aop:config>
+		<aop:aspect id="afterThrowingAspect" ref="afterThrowingAdvice">
+			<aop:after-throwing method="afterThrowing" throwing="ex" pointcut="execution(* com..*.service.interfaces..*.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="personnePhysiqueFormatAdvice" class="com.square.client.gwt.server.util.PersonnePhysiqueFormatAop" autowire="byName"/>
+	<aop:config>
+		<aop:aspect id="personnePhysiqueFormatAop" ref="personnePhysiqueFormatAdvice">
+			<aop:after-returning method="formatPp" returning="retVal" pointcut="execution(* com.square.client.gwt.server.service.PersonnePhysiqueServiceGwtImpl*.*(..))"/>
+			<aop:after-returning method="formatPp" returning="retVal" pointcut="execution(* com.square.client.gwt.server.service.PersonneServiceGwtImpl*.*(..))"/>
+			<aop:after-returning method="formatPp" returning="retVal" pointcut="execution(* com.square.composant.tarificateur.square.server.service.TarificateurServiceGwtImpl*.*(..))"/>
+			<aop:after-returning method="formatPp" returning="retVal" pointcut="execution(* com.square.composant.tarificateur.square.server.service.getInfosAdhesion*.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="personneMoraleFormatAdvice" class="com.square.client.gwt.server.util.PersonneMoraleFormatAop" autowire="byName"/>
+	<aop:config>
+		<aop:aspect id="personneMorlaeFormatAop" ref="personneMoraleFormatAdvice">
+			<aop:after-returning method="formatPm" returning="retVal" pointcut="execution(* com.square.client.gwt.server.service.PersonneMoraleServiceGwtImpl*.*(..))"/>
+			<aop:after-returning method="formatPm" returning="retVal" pointcut="execution(* com.square.client.gwt.server.service.PersonneServiceGwtImpl*.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  CONTEXTE APPLICATION  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    * - Vous devez definir ici l'ensemble des mapping entre les url et les services GWT
+	* 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+<beans>
+	<bean id="urlMapping" class="org.gwtwidgets.server.spring.GWTHandler">
+		<property name="mappings">
+			<map>
+				<!-- Exemple de configuration voir projet exemple pour plus d'informations-->
+				<entry key="/contratService" value-ref="contratServiceGwt"/>
+				<entry key="/constantesContratService" value-ref="constantesContratServiceGwt"/>
+			</map>
+		</property>				
+	</bean>
+</beans>

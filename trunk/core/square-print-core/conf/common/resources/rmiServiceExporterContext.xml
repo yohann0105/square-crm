@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES DISTANT AUX SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+    *   - EXEMPLE : EXPORT VIA RMI -
+    *
+	*	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	*		<property name="serviceName" value="${pom.artifactId}/MessageService"/>
+	*		<property name="service" ref="messageService"/>
+	*		<property name="serviceInterface" value="org.scub.foundation.applicationblanche.noyau.service.interfaces.MessageService"/>
+	*		<property name="registryPort" value="1099"/>
+	*	</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   -->
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/grillePrestationMappingService"/>
+		<property name="service" ref="grillePrestationMappingService"/>
+		<property name="serviceInterface" value="com.square.print.core.service.interfaces.GrillePrestationMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/grillePrestationEditiqueService"/>
+		<property name="service" ref="grillePrestationEditiqueService"/>
+		<property name="serviceInterface" value="com.square.print.core.service.interfaces.GrillePrestationEditiqueService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/editiqueService"/>
+		<property name="service" ref="editiqueService"/>
+		<property name="serviceInterface" value="com.square.print.core.service.interfaces.EditiqueService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/editiqueMappingService"/>
+		<property name="service" ref="editiqueMappingService"/>
+		<property name="serviceInterface" value="com.square.print.core.service.interfaces.EditiqueMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+</beans>

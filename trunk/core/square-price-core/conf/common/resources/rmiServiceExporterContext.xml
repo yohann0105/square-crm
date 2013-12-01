@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES DISTANT AUX SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+    *   - EXEMPLE : EXPORT VIA RMI -
+    *
+	*	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	*		<property name="serviceName" value="${pom.artifactId}/MessageService"/>
+	*		<property name="service" ref="messageService"/>
+	*		<property name="serviceInterface" value="org.scub.foundation.applicationblanche.noyau.service.interfaces.MessageService"/>
+	*		<property name="registryPort" value="1099"/>
+	*	</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/tarifService"/>
+		<property name="service" ref="tarifService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.TarifService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/tarificateurMappingService"/>
+		<property name="service" ref="tarificateurMappingService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.TarificateurMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/regleService"/>
+		<property name="service" ref="regleService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.RegleService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/regleMappingService"/>
+		<property name="service" ref="regleMappingService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.RegleMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/produitService"/>
+		<property name="service" ref="produitService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.ProduitService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+</beans>

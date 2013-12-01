@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP TEST DAO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  Mock-AOP qui permet de tester les DAO directement. Ne pas éditer la structure du bean
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  --> 
+	
+	<tx:advice id="serviceTestTxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="serviceTestTxPointcut" expression="execution(* com.square.tarificateur.noyau.dao.interfaces..*.*(..))"/>
+		<aop:advisor advice-ref="serviceTestTxAdvice" pointcut-ref="serviceTestTxPointcut"/>
+ 	</aop:config> 
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * MOCK SERVICE EXTERNE SPECIFIQUE ENV TEST  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *
+    *	- Vous pouvez définir ici les Mocks simulant les services externes à l'application ces services doivent bien sur hériter de l'interface des services distants.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<!-- Déclarez ici les mocks simulacre des services externes de l'application  -->
+	<bean id="tarificateurMappingService" class="com.square.tarificateur.noyau.service.test.mock.TarificateurMappingServiceImpl" autowire="byName"/>
+	<bean id="produitService" class="com.square.tarificateur.noyau.service.test.mock.ProduitServiceImpl" autowire="byName"/>
+	<bean id="tarifService" class="com.square.tarificateur.noyau.service.test.mock.TarifServiceImpl" autowire="byName"/>
+	<bean id="regleMappingService" class="com.square.tarificateur.noyau.service.test.mock.RegleMappingServiceImpl" autowire="byName"/>
+	<bean id="regleService" class="com.square.tarificateur.noyau.service.test.mock.RegleServiceImpl" autowire="byName"/>
+	<bean id="dimensionService" class="com.square.tarificateur.noyau.service.test.mock.DimensionServiceImpl" autowire="byName"/>
+	<bean id="ressourceService" class="com.square.tarificateur.noyau.service.test.mock.RessourceServiceImpl" autowire="byName"/>
+	<!-- Services importés du noyau édtique -->
+	<bean id="editiqueService" class="com.square.tarificateur.noyau.service.test.mock.EditiqueServiceImpl" autowire="byName"/>
+	<bean id="editiqueMappingService" class="com.square.tarificateur.noyau.service.test.mock.EditiqueMappingServiceImpl" autowire="byName"/>
+	<!-- Services importés du noyau d'envoi de mail -->
+	<bean id="mailService" class="com.square.tarificateur.noyau.service.test.mock.MailServiceImpl" autowire="byName"/>
+	<bean id="envoiEmailMappingService" class="com.square.tarificateur.noyau.service.test.mock.EnvoiEmailMappingServiceImpl" autowire="byName"/>
+	<!-- Services importés du noyau utilisateur -->
+	<bean id="utilisateurService" class="com.square.tarificateur.noyau.service.test.mock.UtilisateurServiceImpl" autowire="byName"/>
+	<bean id="agenceService" class="com.square.tarificateur.noyau.service.test.mock.AgenceServiceImpl" autowire="byName"/>
+	<bean id="utilisateurMappingService" class="com.square.tarificateur.noyau.service.test.mock.UtilisateurMappingServiceImpl" autowire="byName"/>
+	<bean id="aiaService" class="com.square.tarificateur.noyau.service.test.mock.AiaServicePourTestDtoImpl" autowire="byName"/>
+	<bean id="squareMappingService" class="com.square.tarificateur.noyau.service.test.mock.SquareMappingServiceImpl" autowire="byName"/>
+	<bean id="opportuniteServiceSquare" class="com.square.tarificateur.noyau.service.test.mock.OpportuniteServiceImpl" />
+	<bean id="personnePhysiqueService" class="com.square.tarificateur.noyau.service.test.mock.PersonnePhysiqueServiceImpl" />
+	<bean id="personneService" class="com.square.tarificateur.noyau.service.test.mock.PersonneService" />
+	<bean id="actionService" class="com.square.tarificateur.noyau.service.test.mock.ActionServiceImpl" />
+	<!-- services adhérent -->
+	<bean id="contratService" class="com.square.tarificateur.noyau.service.test.mock.ContratServiceImpl" autowire="byName"/>
+	<bean id="adherentService" class="com.square.tarificateur.noyau.service.test.mock.AdherentServiceImpl" autowire="byName"/>
+	<bean id="adherentMappingService" class="com.square.tarificateur.noyau.service.test.mock.AdherentMappingServiceImpl" />
+	<bean id="synchroAppJmsSender" class="com.square.tarificateur.noyau.service.test.mock.SynchroAppJmsSenderImpl" />
+	<bean id="gedMappingService" class="com.square.tarificateur.noyau.service.test.mock.GedMappingServiceImpl" />
+	<bean id="gedService" class="com.square.tarificateur.noyau.service.test.mock.GedServiceImpl" />
+</beans>

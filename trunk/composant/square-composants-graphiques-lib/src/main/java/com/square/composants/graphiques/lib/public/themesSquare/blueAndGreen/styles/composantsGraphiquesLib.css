@@ -1,0 +1,192 @@
+/************** General **************/
+fieldset {border: 1px solid grey; font-weight: bold; font-size: 1.4em}
+@if user.agent ie6 ie8 ie9 {
+	/* couleur de fond ne depasse pas du titre */
+	fieldset {position: relative; padding: 10px; margin-top: 10px}
+	legend {position: absolute; top: -10px}
+	/* enlever les paddings sous IE */
+	.gwt-Button {width: 5px; overflow: visible;}
+}
+
+/************** DialogBox **************/
+.gwt-DialogBox .dialogTopCenter {background: url(themesSquare/blueAndGreen/images/border/hborder.png) repeat-x 0px 0; padding-top:5px;}
+.gwt-DialogBox .dialogBottomCenter {background: url(themesSquare/blueAndGreen/images/border/hborder.png) repeat-x 0px -16px;}
+.gwt-DialogBox .dialogMiddleLeft {background: url(themesSquare/blueAndGreen/images/border/vborder.png) repeat-y -11px 0px;}
+.gwt-DialogBox .dialogMiddleRight {background: url(themesSquare/blueAndGreen/images/border/vborder.png) repeat-y -16px 0px;}
+.gwt-DialogBox .dialogTopLeft {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -11px 0px;}
+.gwt-DialogBox .dialogTopRight {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -16px 0px;}
+.gwt-DialogBox .dialogBottomLeft {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -11px -55px;}
+.gwt-DialogBox .dialogBottomRight {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -16px -55px;}
+.gwt-DialogBox .dialogTopLeftInner {width: 5px; height: 5px; zoom: 1;}
+.gwt-DialogBox .dialogTopRightInner {width: 8px; height: 5px; zoom: 1;}
+.gwt-DialogBox .dialogBottomLeftInner {width: 5px; height: 8px; zoom: 1;}
+.gwt-DialogBox .dialogBottomRightInner {width: 5px; height: 8px; zoom: 1;}
+.gwt-DialogBox .Caption {border-top:none}
+@if user.agent ie6 ie8 ie9 {
+	.gwt-DialogBox .dialogTopLeftInner, .gwt-DialogBox .dialogTopRightInner, .gwt-DialogBox .dialogBottomLeftInner, .gwt-DialogBox .dialogBottomRightInner {overflow: hidden;}
+}
+
+/************** DecoratedTabBar **************/
+.gwt-DecoratedTabBar .gwt-TabBarRest {background: none;}
+.gwt-DecoratedTabBar .gwt-TabBarItem {height: 39px; border: none; padding: 0; border-collapse: collapse; background: transparent; font-weight: bold; color: #013879;}
+.gwt-DecoratedTabBar .gwt-TabBarItem .gwt-Label,
+.gwt-DecoratedTabBar .gwt-TabBarItem .gwt-HTML {font-weight: bold; color: #013879;}
+.gwt-DecoratedTabBar .tabMiddleLeft, .gwt-DecoratedTabBar .tabMiddleRight {height: 39px;}
+.gwt-DecoratedTabBar .tabMiddleLeftInner, .gwt-DecoratedTabBar .tabMiddleRightInner {width: 19px;}
+.gwt-DecoratedTabBar .tabMiddleLeft {background: url(themesSquare/blueAndGreen/images/onglets/onglet_vert_gauche.png) no-repeat 0 0;}
+.gwt-DecoratedTabBar .tabMiddleRight {background: url(themesSquare/blueAndGreen/images/onglets/onglet_vert_droite.png) no-repeat 0 0;}
+.gwt-DecoratedTabBar .tabMiddleCenter {cursor: pointer; color: black; font-weight: bold; text-align: center; padding: 4px 0 4px 0; background: #c6d300 url(themesSquare/blueAndGreen/images/onglets/onglet_vert_fond.jpg) repeat-x 0 0;}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected {background: transparent;}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft {background: url(themesSquare/blueAndGreen/images/onglets/onglet_vert_selected_gauche.png) no-repeat 0 0;}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {background: url(themesSquare/blueAndGreen/images/onglets/onglet_vert_selected_droite.png) no-repeat 0 0;}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {background: #e8ec95 url(themesSquare/blueAndGreen/images/onglets/onglet_vert_selected_fond.jpg) repeat-x 0 0;}
+
+/************** SuggestListBoxSinglePopup **************/
+.gwt-SuggestListBoxSinglePopup {margin-top: 2px; margin-left: -8px;}
+.gwt-SuggestListBoxSinglePopup .popupContent {max-height: 320px; overflow-y: auto; overflow-x: hidden; padding-right: 18px;}
+@if user.agent ie6 ie8 ie9 {
+	.gwt-SuggestListBoxSinglePopup {margin-top: 0px;}
+	.gwt-SuggestListBoxSinglePopup .popupContent {height: literal("expression( Math.min(parseInt(this.offsetHeight), 320)"); overflow-y: auto; overflow-x: hidden; padding-right: 18px;}
+}
+.gwt-SuggestListBoxSinglePopup .popupMiddleCenter {padding: 2px;}
+.gwt-SuggestListBoxSinglePopup .popupTopCenter {background: url(themesSquare/blueAndGreen/images/border/hborder.png) repeat-x 0px -24px;}
+.gwt-SuggestListBoxSinglePopup .popupBottomCenter {background: url(themesSquare/blueAndGreen/images/border/hborder.png) repeat-x 0px -29px;}
+.gwt-SuggestListBoxSinglePopup .popupMiddleLeft {background: url(themesSquare/blueAndGreen/images/border/vborder.png) repeat-y -24px 0px;}
+.gwt-SuggestListBoxSinglePopup .popupMiddleRight {background: url(themesSquare/blueAndGreen/images/border/vborder.png) repeat-y -29px 0px;}
+.gwt-SuggestListBoxSinglePopup .popupTopLeft {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -24px 0px;}
+.gwt-SuggestListBoxSinglePopup .popupTopRight {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -29px 0px;}
+.gwt-SuggestListBoxSinglePopup .popupBottomLeft {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -24px -55px;}
+.gwt-SuggestListBoxSinglePopup .popupBottomRight {background: url(themesSquare/blueAndGreen/images/border/corner.png) no-repeat -29px -55px;}
+.gwt-SuggestListBoxSinglePopup .popupTopLeft, .gwt-SuggestListBoxSinglePopup .popupTopLeftInner,
+.gwt-SuggestListBoxSinglePopup .popupTopCenter, .gwt-SuggestListBoxSinglePopup .popupTopCenterInner,
+.gwt-SuggestListBoxSinglePopup .popupTopRight, .gwt-SuggestListBoxSinglePopup .popupTopRightInner { height:2px; }
+.gwt-SuggestListBoxSinglePopup .gwt-ListGrid {min-width: 115px;}
+.gwt-SuggestListBoxSinglePopup .gwt-ListGridField-selected {background: #e8ec95; background: #c9d200;}
+.gwt-SuggestListBoxSinglePopup .gwt-ListGridField-hover {background: #e8ec95; background: #c9d200;}
+.gwt-SuggestListBoxSinglePopup .gwt-ListGrid .gwt-ListGridCell {border: none; height: 14px}
+
+/************** SuggestListBoxMultiple **************/
+.gwt-SuggestListBoxMultiple .gwt-ListGrid {background-color: transparent}
+.gwt-SuggestListBoxMultiple .gwt-ListGrid .gwt-ListGridCell {border: none}
+
+/************** DecoratedButton **************/
+.decoratedButton, .decoratedButton-Disabled {border-collapse: collapse;}
+.decoratedButton-MiddleLeft, .decoratedButton-MiddleLeft-Disabled {background: url(themesSquare/blueAndGreen/images/formulaire/bouton_vert_gauche.png) no-repeat 0 0; width: 9px; height: 24px;}
+.decoratedButton-MiddleCenter, .decoratedButton-MiddleCenter-Disabled {background: url(themesSquare/blueAndGreen/images/formulaire/bouton_vert_fond.png) repeat-x 0 0; height: 24px;}
+.decoratedButton-MiddleRight, .decoratedButton-MiddleRight-Disabled {background: url(themesSquare/blueAndGreen/images/formulaire/bouton_vert_droite.png) no-repeat 0 0; width: 9px; height: 24px;}
+.decoratedButton .gwt-Button, .decoratedButton-Disabled .gwt-Button,
+.decoratedButton .gwt-Button:hover, .decoratedButton-Disabled .gwt-Button:hover {border: none; background: none;}
+
+/************** DecoratedCalendrierDateBox **************/
+.decoratedCalendrierDateBox {border-collapse: collapse;}
+.decoratedCalendrierDateBox-MiddleLeft {background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_gauche.png) no-repeat 0 0; width: 10px; height: 25px;}
+.decoratedCalendrierDateBox-MiddleRight {background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_droite.png) no-repeat 0 0; width: 10px; height: 25px;}
+.decoratedCalendrierDateBox-MiddleCenter, .decoratedCalendrierDateBox-MiddleCenter-Disabled {border: none; background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_fond.jpg) repeat-x 0 0; height: 25px; margin: 0px;}
+.decoratedCalendrierDateBox .calendrierDateBox-Image {margin-left: 5px;}
+.decoratedCalendrierDateBox .gwt-DateBox, .decoratedCalendrierDateBox-Disabled .gwt-DateBox {border: none; background: none; width: 65px !important;}
+
+/************** DecoratedSuggestListBox & DecoratedSuggestListBoxComposite **************/
+.decoratedSuggestListBox, .decoratedSuggestListBoxComposite,
+.decoratedSuggestListBoxSingle, .decoratedSuggestListBox-Disabled, .decoratedSuggestListBoxComposite-Disabled,
+.decoratedSuggestListBoxSingle-Disabled {border-collapse: collapse;}
+.decoratedSuggestListBox-MiddleLeft, .decoratedSuggestListBoxComposite-MiddleLeft, .decoratedSuggestListBoxSingle-MiddleLeft,
+.decoratedSuggestListBox-MiddleLeft-Disabled, .decoratedSuggestListBoxComposite-MiddleLeft-Disabled,
+.decoratedSuggestListBoxSingle-MiddleLeft-Disabled {background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_gauche.png) no-repeat 0 0; width: 10px; height: 25px;}
+.decoratedSuggestListBox-MiddleCenter, .decoratedSuggestListBoxComposite-MiddleCenter , .decoratedSuggestListBoxSingle-MiddleCenter,
+.decoratedSuggestListBox-MiddleCenter-Disabled, .decoratedSuggestListBoxComposite-MiddleCenter-Disabled,
+.decoratedSuggestListBoxSingle-MiddleCenter-Disabled {border: none; background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_fond.jpg) repeat-x 0 0; height: 25px; margin: 0px;}
+.decoratedSuggestListBox .extendedSuggestBox-Button, .decoratedSuggestListBoxComposite .gwt-SuggestListBoxSingleButton,
+.decoratedSuggestListBoxSingle .gwt-SuggestListBoxSingleButton,
+.decoratedSuggestListBox-Disabled .extendedSuggestBox-Button, .decoratedSuggestListBoxComposite-Disabled .gwt-SuggestListBoxSingleButton,
+.decoratedSuggestListBoxSingle-Disabled .gwt-SuggestListBoxSingleButton {margin-left: 0;}
+.decoratedSuggestListBoxComposite .gwt-SuggestListBoxCompositeButton,
+.decoratedSuggestListBoxComposite-Disabled .gwt-SuggestListBoxCompositeButton {margin-left: 3px;}
+.decoratedSuggestListBox .gwt-SuggestBox, .decoratedSuggestListBoxComposite .gwt-TextBox, .decoratedSuggestListBoxSingle .gwt-TextBox,
+.decoratedSuggestListBox-Disabled .gwt-SuggestBox, .decoratedSuggestListBoxComposite-Disabled .gwt-TextBox, .decoratedSuggestListBoxSingle-Disabled .gwt-TextBox {border: none; background: none; padding: 7px 0 0 0;}
+@if user.agent ie6 ie8 ie9 {
+	.gwt-SuggestListBoxSingle .gwt-TextBox {height:22px;}
+	.gwt-SuggestListBoxSingleButton gwt-SuggestListBoxSingleButton-up {margin-bottom:1px}
+}
+	
+/************** DecoratedSuggestListBoxComposite **************/
+.decoratedSuggestListBoxComposite .gwt-TextBox, .decoratedSuggestListBoxComposite-Disabled .gwt-TextBox {width: 138px;}
+
+/************** DecoratedSuggestListBoxSingle **************/
+.decoratedSuggestListBoxSingle .gwt-TextBox, .decoratedSuggestListBoxSingle-Disabled .gwt-TextBox {width: 169px;}
+
+/************** DecoratedTextBox **************/
+.decoratedTextBox, .decoratedTextBox-Disabled {border-collapse: collapse;}
+.decoratedTextBox-MiddleLeft, .decoratedTextBox-MiddleLeft-Disabled {background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_gauche.png) no-repeat 0 0; width: 10px; height: 25px;}
+.decoratedTextBox-MiddleRight, .decoratedTextBox-MiddleRight-Disabled {background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_droite.png) no-repeat 0 0; width: 10px; height: 25px;}
+.decoratedTextBox-MiddleCenter, .decoratedTextBox-MiddleCenter-Disabled {border: none; background: url(themesSquare/blueAndGreen/images/formulaire/box_vert_fond.jpg) repeat-x 0 0; height: 25px; margin: 0px;}
+.decoratedTextBox .gwt-TextBox, .decoratedTextBox-Disabled .gwt-TextBox {width: 185px; border: none; background: none;}
+.decoratedTextBox input {outline: none !important; background-color: none !important;}
+.decoratedTextBox input:focus{outline: none !important; background-color: none !important;}
+
+/************** BocSyntheseDepliant **************/
+.blocSyntheseDepliant .header {border: 1px solid #999; background-color: #eee;}
+.blocSyntheseDepliant .header, .blocSyntheseDepliant .header a, .blocSyntheseDepliant .header td {text-decoration: none; color: black;}
+.blocSyntheseDepliant .header img {cursor: pointer; cursor: hand;}
+.blocSyntheseDepliant .content {border: 1px solid #999; border-top: none;}
+.blocSyntheseDepliant .header .enteteChamp {}
+
+/************** ALERT POPUP **************/
+.decoratedInfoPopup {z-index: 2; opacity:0.9;}
+.decoratedInfoPopup .messageInfoPopup {font-weight: bold; font-size: 16px; color: #444444; padding: 5px;}
+.decoratedInfoPopup .dialogMiddleCenter {padding: 3px; background-color: #B6FF9E;}
+.decoratedInfoPopup .dialogTopCenter {background: url(themesSquare/blueAndGreen/images/border/hborderInfo.png) repeat-x 0px 0px;}
+.decoratedInfoPopup .dialogBottomCenter {background: url(themesSquare/blueAndGreen/images/border/hborderInfo.png) repeat-x 0px -16px;}
+.decoratedInfoPopup .dialogMiddleLeft {background: url(themesSquare/blueAndGreen/images/border/vborderInfo.png) repeat-y -11px 0px;}
+.decoratedInfoPopup .dialogMiddleRight {background: url(themesSquare/blueAndGreen/images/border/vborderInfo.png) repeat-y -16px 0px;}
+.decoratedInfoPopup .dialogTopLeft {background: url(themesSquare/blueAndGreen/images/border/cornerInfo.png) no-repeat -11px 0px;}
+.decoratedInfoPopup .dialogTopRight {background: url(themesSquare/blueAndGreen/images/border/cornerInfo.png) no-repeat -16px 0px;}
+.decoratedInfoPopup .dialogBottomLeft {background: url(themesSquare/blueAndGreen/images/border/cornerInfo.png) no-repeat -11px -55px;}
+.decoratedInfoPopup .dialogBottomRight {background: url(themesSquare/blueAndGreen/images/border/cornerInfo.png) no-repeat -16px -55px;}
+
+/************** LOADING POPUP **************/
+.loadingPopup {z-index: 2; opacity:0.9;}
+.loadingPopup .loadingMessagePopup {background-image: url(themesSquare/blueAndGreen/images/loading.gif); font-weight: bold; font-size: 16px; color: #444444;}
+.loadingPopup .Caption {display: none;}
+.loadingPopup .dialogMiddleCenter {padding: 3px; background-color: #FFF3A8;}
+.loadingPopup .dialogTopCenter {background: url(themesSquare/blueAndGreen/images/border/hborderLoading.png) repeat-x 0px 0px; padding-top:0}
+.loadingPopup .dialogBottomCenter {background: url(themesSquare/blueAndGreen/images/border/hborderLoading.png) repeat-x 0px -16px;}
+.loadingPopup .dialogMiddleLeft {background: url(themesSquare/blueAndGreen/images/border/vborderLoading.png) repeat-y -11px 0px;}
+.loadingPopup .dialogMiddleRight {background: url(themesSquare/blueAndGreen/images/border/vborderLoading.png) repeat-y -16px 0px;}
+.loadingPopup .dialogTopLeft {background: url(themesSquare/blueAndGreen/images/border/cornerLoading.png) no-repeat -11px 0px;}
+.loadingPopup .dialogTopRight {background: url(themesSquare/blueAndGreen/images/border/cornerLoading.png) no-repeat -16px 0px;}
+.loadingPopup .dialogBottomLeft {background: url(themesSquare/blueAndGreen/images/border/cornerLoading.png) no-repeat -11px -55px;}
+.loadingPopup .dialogBottomRight {background: url(themesSquare/blueAndGreen/images/border/cornerLoading.png) no-repeat -16px -55px;}
+
+/************** ERROR POPUP **************/
+.errorPopup {z-index: 2; opacity:0.9;}
+.errorPopup .messagePopup {font-weight: bold; font-size: 16px; color: #444444; padding: 5px;}
+.errorPopup .Caption {display:none;}
+.errorPopup .dialogMiddleCenter {padding: 3px; background-color: #FFA8A8;}
+.errorPopup .dialogTopCenter {background: url(themesSquare/blueAndGreen/images/border/hborderError.png) repeat-x 0px 0px;}
+.errorPopup .dialogBottomCenter {background: url(themesSquare/blueAndGreen/images/border/hborderError.png) repeat-x 0px -16px;}
+.errorPopup .dialogMiddleLeft {background: url(themesSquare/blueAndGreen/images/border/vborderError.png) repeat-y -11px 0px;}
+.errorPopup .dialogMiddleRight {background: url(themesSquare/blueAndGreen/images/border/vborderError.png) repeat-y -16px 0px;}
+.errorPopup .dialogTopLeft {background: url(themesSquare/blueAndGreen/images/border/cornerError.png) no-repeat -11px 0px;}
+.errorPopup .dialogTopRight {background: url(themesSquare/blueAndGreen/images/border/cornerError.png) no-repeat -16px 0px;}
+.errorPopup .dialogBottomLeft {background: url(themesSquare/blueAndGreen/images/border/cornerError.png) no-repeat -11px -55px;}
+.errorPopup .dialogBottomRight {background: url(themesSquare/blueAndGreen/images/border/cornerError.png) no-repeat -16px -55px;}
+
+/************** WARNING POPUP **************/
+.decoratedWarningPopup {z-index: 2; opacity:0.9;}
+.decoratedWarningPopup .messageWarningPopup {font-weight: bold; font-size: 16px; color: #444444; padding: 5px;}
+.decoratedWarningPopup .dialogMiddleCenter {padding: 3px; background-color: #FECE8F;}
+.decoratedWarningPopup .dialogTopCenter {background: url(themesSquare/blueAndGreen/images/border/hborderWarning.png) repeat-x 0px 0px;}
+.decoratedWarningPopup .dialogBottomCenter {background: url(themesSquare/blueAndGreen/images/border/hborderWarning.png) repeat-x 0px -16px;}
+.decoratedWarningPopup .dialogMiddleLeft {background: url(themesSquare/blueAndGreen/images/border/vborderWarning.png) repeat-y -11px 0px;}
+.decoratedWarningPopup .dialogMiddleRight {background: url(themesSquare/blueAndGreen/images/border/vborderWarning.png) repeat-y -16px 0px;}
+.decoratedWarningPopup .dialogTopLeft {background: url(themesSquare/blueAndGreen/images/border/cornerWarning.png) no-repeat -11px 0px;}
+.decoratedWarningPopup .dialogTopRight {background: url(themesSquare/blueAndGreen/images/border/cornerWarning.png) no-repeat -16px 0px;}
+.decoratedWarningPopup .dialogBottomLeft {background: url(themesSquare/blueAndGreen/images/border/cornerWarning.png) no-repeat -11px -55px;}
+.decoratedWarningPopup .dialogBottomRight {background: url(themesSquare/blueAndGreen/images/border/cornerWarning.png) no-repeat -16px -55px;}
+
+/************** DECKBAR **************/
+.deskBar {position: fixed; bottom: 0; right: 0; background: url(themesSquare/blueAndGreen/images/deskBar.png) repeat 0 0; padding: 3px;}
+@if user.agent ie6 ie8 ie9 {
+	.deskBar {position : absolute; top:literal("expression(body.scrollTop + document.body.clientHeight - 44 + \"px\")");}
+}
+.deskBar .deskItem {white-space: nowrap; margin: 1px; padding: 8px 10px; background: url(themesSquare/blueAndGreen/images/formulaire/bouton_action_vert_fond.png) repeat-x 0px -3px; border: 1px outset #afb703; font-weight: bold;}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<mapping type="one-way" date-format="dd/MM/yyyy HH:mm">
+		<class-a>com.square.mail.core.dto.gestionmails.EmailDto</class-a>
+		<class-b>com.square.composant.emails.square.client.model.EmailModel</class-b>
+	</mapping>
+
+</mappings>

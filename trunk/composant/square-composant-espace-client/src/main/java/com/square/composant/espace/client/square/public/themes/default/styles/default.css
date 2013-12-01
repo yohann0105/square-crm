@@ -1,0 +1,43 @@
+.composantEspaceClient {
+	background-color: #9ed3f5;
+}
+
+.composantEspaceClient fieldset {
+	border: 1px solid grey;
+	background-color: #E3F3FC;
+}
+
+.composantEspaceClient .blocSyntheseDepliant .header {
+	background-color: #9ed3f5;
+	border: 1px solid #999;
+}
+
+.composantEspaceClient .blocSyntheseDepliant .content {
+	border: 1px solid #999;
+	border-top: none;
+}
+
+.composantEspaceClient .tableauOptions {
+	border-collapse: collapse;
+}
+
+.composantEspaceClient .tableauOptions td {
+	border: 1px solid #AAA;
+	background-color: #fff;
+}
+
+.composantEspaceClient .tableauOptions td.celluleSansBordure {
+	border: none;
+	background-color: transparent;
+}
+
+.composantEspaceClient .tableauOptions td.celluleEnteteColonne {
+	background: url(themes/default/images/hborder.png) repeat-x 0px -27px;
+	color: #444;
+	font-weight: bold;
+}
+
+.composantEspaceClient .tableauOptions td.celluleEnteteLigne {
+	color: #444;
+	font-weight: bold;
+}

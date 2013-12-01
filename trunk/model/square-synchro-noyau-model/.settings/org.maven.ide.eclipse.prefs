@@ -1,0 +1,9 @@
+#Wed Jul 28 23:21:10 CEST 2010
+activeProfiles=dev
+eclipse.preferences.version=1
+fullBuildGoals=process-resources
+includeModules=false
+resolveWorkspaceProjects=false
+resourceFilterGoals=process-resources
+skipCompilerPlugin=true
+version=1

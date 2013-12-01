@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CONTEXTE APPLICATION  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    * - Vous devez definir ici l'ensemble de vos service GWT
+    *   ex : <bean id="MessageServiceGwt" class="org.scub.foundation.example.gwt.server.service.MessageServiceGwtImpl" autowire="byName"/>
+    *
+    * - Dozer est un framework de mapping objet (recurcive, bidirectionelle...) vous pouvez utiliser le framework pour vos "mapping" d'objet celui-ci gére beaucoup
+    *   de chose implicitement pour des besoins plus spécifiques utiliser le fichier dozer-bean-mappings.xml et la documentation sur le site  http://dozer.sourceforge.net
+	* 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	<!-- rajouter ici l'ensemble de vos service gwt -->
+	<bean id="produitServiceGwt" class="com.square.composant.tarificateur.square.server.service.ProduitServiceGwtImpl" autowire="byName" />
+	<bean id="constantesTarificateurServiceGwt" class="com.square.composant.tarificateur.square.server.service.ConstantesServiceGwtImpl" autowire="byName" />
+	<bean id="tarificateurServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurServiceGwtImpl" autowire="byName" />
+	<bean id="tarificateurPersonneServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurPersonneServiceGwtImpl" autowire="byName" />
+	<bean id="selecteurProduitServiceGwt" class="com.square.composant.tarificateur.square.server.service.SelecteurProduitServiceGwtImpl" autowire="byName" />
+	<bean id="tarificateurTransformationAiaServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurTransformationAiaServiceGwtImpl" autowire="byName" />
+	<bean id="tarificateurEditiqueServiceGwt" class="com.square.composant.tarificateur.square.server.service.TarificateurEditiqueServiceGwtImpl" autowire="byName">
+	   <property name="repertoirePiecesJointes" value="${fichier.temporaire.piece.jointe}"/>
+	</bean>
+	<bean id="tarificateurDimensionServiceGwt" class="com.square.composant.tarificateur.square.server.service.DimensionServiceGwtImpl" autowire="byName" />
+	<bean id="emailComposantEnvoiServiceGWT" class="com.square.composant.envoi.email.square.server.service.ComposantEnvoiMailServiceGWTImpl" autowire="byName" />
+	
+	<!-- Configuration Dozer ne pas editer la structure du bean -->	
+	<bean id="mapperDozerBean" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		<property name="mappingFiles">
+			<list>		  
+		    	<value>dozer-bean-mappings.xml</value>
+		    </list>
+		</property>
+	</bean>
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP AFTER THROWING ADVICE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    * 
+    * Cette Aop transforme les exceptions du noyau en exception GWT.
+	* - vous pouvez editer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+	
+	<!-- AOP pour la gestion des exceptions de types contrainte d'integrite -->
+	<bean id="controleIntegriteThrowingAdvice" class="com.square.composant.tarificateur.square.server.aop.ControleIntegriteThrowingAdvice" autowire="byName"/>
+	<aop:config>
+		<aop:aspect id="controleIntegriteThrowingAspect" ref="controleIntegriteThrowingAdvice">
+			<aop:after-throwing method="afterThrowing" throwing="ex" pointcut="execution(* com..*.service.interfaces..*.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

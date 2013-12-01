@@ -1,0 +1,49 @@
+.composantPrestations {
+	background-color: #9ed3f5;
+}
+
+.composantPrestations fieldset {
+	border: 1px solid grey;
+	background-color: #E3F3FC;
+}
+
+.composantPrestations .moteurRecherche {
+}
+
+.composantPrestations .moteurRecherche .libelleMoteurRecherche {
+	font-weight: bold;
+}
+
+.composantPrestations .entetePrestation {
+}
+
+.composantPrestations .entetePrestation .contenuEntete {
+	background-color: #E3F3FC;
+}
+
+.composantPrestations .lienPagination {
+	cursor: pointer;
+}
+
+.composantPrestations .lienPaginationSelected {
+	font-weight: bold;
+	cursor: normal !important;
+}
+
+.composantPrestations .titreLignesDecomptes {
+	cursor: pointer;
+}
+
+.composantPrestations .triAsc {
+	background-image: url(images/asc.gif);
+	background-position: right;
+	background-repeat: no-repeat;
+	padding-right: 10px
+}
+
+.composantPrestations .triDesc {
+	background-image: url(images/desc.gif);
+	background-position: right;
+	background-repeat: no-repeat;
+	padding-right: 10px
+}

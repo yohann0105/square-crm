@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  CONTEXTE APPLICATION  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    * - Vous devez definir ici l'ensemble des mapping entre les url et les services GWT
+	* 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+<beans>
+	<bean id="urlMapping" class="org.gwtwidgets.server.spring.GWTHandler">
+		<property name="mappings">
+			<map>
+				<!-- Exemple de configuration voir projet exemple pour plus d'informations-->
+				<entry key="/personnePhysiqueService" value-ref="personnePhysiqueServiceGwt"/>
+				<entry key="/dimensionService" value-ref="dimensionServiceGwt"/>
+				<entry key="/constantesService" value-ref="constantesServiceGwt"/>
+				<entry key="/personneService" value-ref="personneServiceGwt"/>
+				<entry key="/personneMoraleService" value-ref="personneMoraleServiceGwt"/>
+				<entry key="/campagneService" value-ref="campagneServiceGwt"/>
+				<entry key="/actionService" value-ref="actionServiceGwt"/>
+				<entry key="/agendaService" value-ref="agendaServiceGwt"/>
+				<entry key="/opportuniteService" value-ref="opportuniteServiceGwt"/>
+				<entry key="/ressourceService" value-ref="ressourceServiceGwt"/>
+				<entry key="/utilService" value-ref="utilServiceGwt"/>
+				<!-- Servlet composant tarificateur -->
+				<entry key="/produitService" value-ref="produitServiceGwt"/>
+				<entry key="/constantesTarificateurService" value-ref="constantesTarificateurServiceGwt"/>
+				<entry key="/tarificateurService" value-ref="tarificateurServiceGwt"/>
+				<entry key="/selecteurProduitService" value-ref="selecteurProduitServiceGwt"/>
+				<!--<entry key="/tarificateurTransformationAiaService" value-ref="tarificateurTransformationAiaServiceGwt"/>-->
+				<entry key="/tarificateurEditiqueService" value-ref="tarificateurEditiqueServiceGwt"/>
+				<entry key="/tarificateurDimensionService" value-ref="tarificateurDimensionServiceGwt"/>
+				<entry key="/tarificateurPersonneService" value-ref="tarificateurPersonneServiceGwt"/>
+				<entry key="/emailComposantEnvoiService" value-ref="emailComposantEnvoiServiceGWT"/>
+				<!-- Servlet composant Contrat -->
+				<entry key="/contratService" value-ref="contratServiceGwt"/>
+				<entry key="/constantesContratService" value-ref="constantesContratServiceGwt"/>
+				<!-- urls composant Espace Adhérent -->
+				<entry key="/adherentEspaceAdherentService" value-ref="adherentEspaceAdherentServiceGwt"/>
+				<entry key="/espaceClientInternetService" value-ref="espaceClientInternetServiceGwt"/>
+				<entry key="/constantesEspaceAdherentService" value-ref="constantesEspaceAdherentServiceGwt"/>
+				<!-- urls composant Emails -->
+				<entry key="/emailsService" value-ref="emailsServiceGwt"/>
+				<entry key="/constantesEmailsService" value-ref="constantesEmailsServiceGwt"/>
+				<!-- Composant Téléphonie 
+				<entry key="/acpService" value-ref="acpServiceRpc"/>
+				<entry key="/utilisateurAcpService" value-ref="utilisateurServiceRpc"/>
+				<entry key="/constantesAcpService" value-ref="constantesAcpServiceRpc"/>-->
+				<!-- Composant Fusion -->
+				<entry key="/fusionService" value-ref="fusionServiceGwt"/>
+				<entry key="/constantesMappingService" value-ref="constantesFusionMappingServiceGwt"/>
+				<!-- Services Composant aide -->
+				<entry key="/aideService" value-ref="aideServiceGwt"/>
+				<!-- Services Composant GED -->
+				<entry key="/documentsService" value-ref="documentServiceGwt"/>
+				<!-- Services AIA -->
+				<!--<entry key="/aiaService" value-ref="aiaServiceGwt"/>-->
+				<!-- Composant contrat personne morale -->
+				<entry key="/contratPersonneMoraleService" value-ref="contratPersonneMoraleServiceGwt"/>
+				<entry key="/constantesContratPersonneMoraleService" value-ref="constantesContratPersonneMoraleServiceGwt"/>
+				<!-- Composant prestations -->
+				<entry key="/prestationService" value-ref="prestationServiceGwt"/>
+				<entry key="/constantesPrestationService" value-ref="constantesPrestationServiceGwt"/>
+				<!-- Composant des cotisations -->
+				<entry key="/cotisationsService" value-ref="cotisationsServiceGwt"/>
+			</map>
+		</property>				
+	</bean>
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MESSAGE SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+	* Gestion des messages de l'application.
+	* - le bean staticInfoDetails peut être configuré voir javadoc ou vous pouvez utilisez
+	*    une autre classe pour gérer vous même la récupération des informations du Locale de l'application.
+	* - Vous pouvez rajouter d'autres fichiers à la liste des bundles du bean messageSource selon les besoins de votre applications. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="messageFusionApiSourceUtil" class="org.scub.foundation.framework.core.messagesource.MessageSourceUtil">
+    	<property name="messageSource" ref="messageFusionApiSource"/>
+    	<property name="messageSourceDetails" ref="messageFusionApiSourceDetails"/>
+    </bean>
+    
+    <bean id="messageFusionApiSourceDetails" class="org.scub.foundation.framework.core.messagesource.StaticMessageSourceDetails"/>
+       
+	<bean id="messageFusionApiSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+	          <!-- Vous pouvez ajouter autant de fichier en fonction des besoins de votre application -->
+			  <value>classpath:messageFusion</value>
+			  <value>classpath:messageFusionError</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Configuration Dozer ne pas editer la structure du bean -->	
+	<bean id="mapperDozerBeanFusion" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		  <property name="mappingFiles">
+		    <list>		  
+		      <value>square-fusion-bean-mappings.xml</value>
+		    </list>
+		  </property>
+	</bean>
+    
+</beans>

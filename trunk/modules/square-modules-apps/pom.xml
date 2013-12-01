@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>square</groupId>
+	<artifactId>square-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>SQUARE</name>
+	<version>1.0-SNAPSHOT</version>
+
+	<build>
+		<plugins>
+		   <plugin>
+               	<groupId>scub-foundation.base.plugins</groupId>
+               	<artifactId>maven-scub-foundation-projectinfos-plugin</artifactId>
+            </plugin>
+		    <plugin>
+               	<groupId>scub-foundation.base.plugins</groupId>
+               	<artifactId>maven-scub-foundation-jonas-plugin</artifactId>
+	        </plugin>
+	        <plugin>
+				<groupId>scub-foundation.base.plugins</groupId>
+				<artifactId>maven-scub-foundation-gwt-speedup-plugin</artifactId>
+				</plugin>
+        </plugins>    
+	</build>
+	
+	<modules>
+		<module>../core/square-user-core</module>
+		<module>../core/square-tarificateur-noyau</module>
+		<module>../core/square-synchro-noyau</module>
+		<module>../core/square-print-core</module>
+		<module>../core/square-price-core</module>
+		<module>../core/square-noyauLog-core</module>
+		<module>../core/square-notificateur-core</module>
+		<module>../core/square-mail-core</module>
+		<module>../core/square-core</module>
+		<module>../core/square-adherent-core</module>
+		<module>../core/square-document-core</module>
+		<module>../client/square-client</module>
+	</modules>
+</project>

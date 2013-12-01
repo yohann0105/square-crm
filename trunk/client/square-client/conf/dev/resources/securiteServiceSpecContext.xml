@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd"> 
+
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	
+	<bean id="authenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+	  <property name="userDetailsService"><ref bean="userDetailsService"/></property>
+	</bean>
+
+	<!-- datasource pour la vérification des autorisations de l'utilisateur courant -->
+	<bean id="userDetailsService" class="org.springframework.security.userdetails.memory.InMemoryDaoImpl">	
+		<property name="userMap">
+			<value>
+				user=user,ROLE_SQUARE, ROLE_SQUARE_CAMPAGNE, ROLE_SQUARE_COMPTA, ROLE_SQUARE_ANIMATEUR, ROLE_SQUARE_ADMIN
+			</value>
+		</property>
+	</bean>
+  
+  	<!-- Point d'entrée de l'authentification (affiche un formulaire JSP) -->
+	<bean id="authenticationEntryPoint" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+		<property name="loginFormUrl">
+			<value>/login.jsp</value>
+		</property>
+		<property name="forceHttps" value="false" />
+	</bean>
+	
+	
+	<bean id="authenticationProcessingFilter" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilter">
+		<property name="filterProcessesUrl">
+			<value>/j_spring_security_check</value>
+		</property>
+		<property name="authenticationFailureUrl">
+			<value>/login.jsp?erreurIdentification=true</value>
+		</property>
+		<property name="defaultTargetUrl" value="/" />
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+	
+	<bean id="logoutFilter" class="org.springframework.security.ui.logout.LogoutFilter">
+      <constructor-arg value="/login.jsp"/> <!-- URL redirected to after logout -->
+      <constructor-arg>
+         <list>
+              <bean class="org.springframework.security.ui.logout.SecurityContextLogoutHandler"/>
+         </list>
+      </constructor-arg>
+   </bean>
+
+ </beans>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- A tweaked version of the default Tomcat web.xml to remove everything except the stuff we want to use -->
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/classes/applicationContext.xml
+			/WEB-INF/classes/securiteServiceContext.xml
+			/WEB-INF/classes/rmiServiceImporterContext.xml
+			/WEB-INF/classes/securiteServiceSpecContext.xml
+			/WEB-INF/classes/rmiServiceImporterSpecContext.xml
+		</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>handler</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>handler</servlet-name>
+		<url-pattern>/handler/*</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<filter>
+		<filter-name>filterChainProxy</filter-name>
+		<filter-class>
+			org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	  <filter-name>filterChainProxy</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<error-page>
+		<error-code>403</error-code>
+		<location>/erreurs/403.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/erreurs/404.jsp</location>
+	</error-page>
+	
+	<session-config>
+		<session-timeout>240</session-timeout>
+	</session-config>
+	
+	<!-- Tests d'upload 
+	<context-param>
+	    <param-name>maxSize</param-name>
+	    <param-value>3145728</param-value>
+	  </context-param>-->
+	  <context-param>
+	    <!-- Useful in development mode to slow down the uploads in fast networks.
+	         Put the number of milliseconds to sleep in each block received in the server.
+	         false or 0, means don't use slow uploads  -->
+	    <param-name>slowUploads</param-name>
+	    <param-value>20</param-value>
+	  </context-param>
+	
+	  <servlet>
+	    <servlet-name>uploadServlet</servlet-name>
+	    <!-- This is the default servlet, it puts files in session -->
+	    <servlet-class>gwtupload.server.UploadServlet</servlet-class>
+	  </servlet>
+	  <servlet-mapping>
+	    <servlet-name>uploadServlet</servlet-name>
+	    <url-pattern>*.gupld</url-pattern>
+	  </servlet-mapping>
+
+	<servlet>
+		<servlet-name>downloadFile</servlet-name>
+		<servlet-class>com.square.composant.ged.square.server.servlet.DownloadFile</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadFile</servlet-name>
+		<url-pattern>/servlet/downloadFile</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

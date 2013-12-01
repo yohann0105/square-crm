@@ -1,0 +1,26 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>square</groupId>
+	<artifactId>square-document-core</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<parent>
+		<groupId>scub-foundation.base.superpom</groupId>
+		<artifactId>scub-foundation-superpom-core</artifactId>
+		<version>3.5</version>
+	</parent>
+	<build>
+		<directory>target</directory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<outputDirectory>target/classes</outputDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>square</groupId>
+			<artifactId>square-document-core-model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>

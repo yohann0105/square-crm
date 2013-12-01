@@ -1,0 +1,18 @@
+fieldset {
+	border: 1px solid grey;
+	background-color: #FFFFE0;
+}
+
+.panelQuotas {
+}
+
+.panelQuotas .gwt-TextBox {
+ 	width: 70px;
+}
+
+.popupModifQuotas {
+}
+
+.popupModifQuotas .gwt-TextBox {
+ 	width: 70px;
+}

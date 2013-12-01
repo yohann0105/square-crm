@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<mapping>
+		<class-a>com.square.composants.graphiques.lib.client.composants.model.RapportModel</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.RapportDto</class-b>
+		<field>
+			<a>rapports</a>
+			<b>rapports</b>
+			<a-hint>com.square.composants.graphiques.lib.client.composants.model.SousRapportModel</a-hint>
+			<b-hint>com.square.tarificateur.noyau.dto.SousRapportDto</b-hint>
+		</field>
+	</mapping>
+
+	<!-- Mapping du composant tarificateur -->
+	<mapping>
+		<class-a>com.square.price.core.dto.GammeProduitCriteresDto</class-a>
+		<class-b>com.square.composant.tarificateur.square.client.model.GammesProduitsCriteresModel</class-b>
+		<field>
+			<a>domaine.identifiantCategorie</a>
+			<b>idCategorieGamme</b>
+		</field>
+		<field>
+			<a>domaine.identifiantReseau</a>
+			<b>idReseauGamme</b>
+		</field>
+		<field>
+			<a>domaine.identifiantVetuste</a>
+			<b>idVetusteGamme</b>
+		</field>
+		<field>
+			<a>libelleGammeProduit</a>
+			<b>libelleGamme</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.core.model.dto.CaisseDto</class-a>
+		<class-b>com.square.composant.tarificateur.square.client.model.CaisseSimpleModel</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>id</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>com.square.composant.tarificateur.square.client.model.personne.AssureSocialModel</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.PersonneDto</class-b>
+		<field>
+			<a>civilite.identifiant</a>
+			<b>eidCivilite</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>com.square.composant.tarificateur.square.client.model.personne.InfoSanteModel</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.InfoSanteDto</class-b>
+		<field>
+			<a>caisse.id</a>
+			<b>eidCaisse</b>
+		</field>
+		<field>
+			<a>regime.identifiant</a>
+			<b>eidRegime</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>com.square.composant.tarificateur.square.client.model.adhesion.InfosAdhesionModel</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.InfosAdhesionDto</class-b>
+		<field>
+			<a>infosPaiement.moyenPaiement.identifiant</a>
+			<b>infosPaiement.idMoyenPaiement</b>
+		</field>
+		<field>
+			<a>infosPaiement.periodicitePaiement.identifiant</a>
+			<b>infosPaiement.idPeriodicitePaiement</b>
+		</field>
+		<field>
+			<a>infosPaiement.jourPaiement.identifiant</a>
+			<b>infosPaiement.idJourPaiement</b>
+		</field>
+	</mapping>
+
+</mappings>
