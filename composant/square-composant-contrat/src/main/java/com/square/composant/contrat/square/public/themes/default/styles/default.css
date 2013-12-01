@@ -1,0 +1,88 @@
+.composantContrat {
+	background-color: #9ed3f5;
+}
+
+.composantContrat fieldset {
+	border: 1px solid grey;
+	background-color: #E3F3FC;
+}
+
+/************** Tableau **************/
+.composantContrat .tableau {
+	border-collapse: collapse;
+}
+
+.composantContrat .tableau td {
+	border: 1px solid #AAA;
+	background-color: #fff;
+}
+
+.composantContrat .tableau .ligneEnteteColonne td {
+	background: url(themes/default/images/hborder.png) repeat-x 0px -27px;
+	color: #444;
+	font-weight: bold;
+}
+
+.composantContrat .tableau td td, .composantContrat .tableau .ligneEnteteColonne td td {
+	border: none;
+	background: transparent;
+}
+
+.composantContrat .tableau td.celluleEnteteLigne {
+	color: #444;
+	font-weight: bold;
+	background-color: #efefef;
+}
+
+/************** Gestion des couleurs des statuts de contrat **************/
+.composantContrat .blocSyntheseDepliantContratResilie {
+	background-color: #FF7070;
+}
+
+.composantContrat .blocSyntheseDepliantContratEnCours {
+	background-color: #668CFF;
+}
+
+.composantContrat .statutContratResilie {
+	font-weight: bold;
+	color: #FF7070;
+}
+
+.composantContrat .statutContratEnCours {
+	font-weight: bold;
+	color: #668CFF;
+}
+
+/** Panel d'une garantie. */
+.composantContrat .panelGarantieContrat {
+	background-color: #eeeeee !important;
+	font-size: 14px;
+	color: #444;
+}
+
+/** Image cliquable PDF. */
+.composantContrat .imagePdfCliquable {
+	cursor: pointer;
+}
+
+/** Récapitulatif des garanties. */
+.composantContrat .celluleRecapitulatifGarantie {
+	background-color: #ffffff !important;
+}
+
+.composantContrat .celluleRecapitulatifGarantieNonEnCours {
+	background-color: #ff7070 !important;
+}
+
+/** Couleurs de fond des garanties. */
+.composantContrat .couleurFondGarantieEnCours {
+	background-color: #668CFF !important;
+}
+
+.composantContrat .couleurFondGarantieResiliee {
+	background-color: #FF7070 !important;
+}
+
+.composantContrat .couleurFondGarantieFutur {
+	background-color: #DDDDDD !important;
+}

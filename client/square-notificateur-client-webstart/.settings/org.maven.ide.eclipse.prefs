@@ -1,0 +1,8 @@
+activeProfiles=dev
+									eclipse.preferences.version=1
+									fullBuildGoals=clean
+									includeModules=false
+									resolveWorkspaceProjects=false
+									resourceFilterGoals=
+									skipCompilerPlugin=true
+									version=1

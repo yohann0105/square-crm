@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.xsd">	
+	
+	<sec:authentication-provider>
+		<sec:jdbc-user-service 
+    		data-source-ref="dataSource"
+    		users-by-username-query="SELECT u.login as login, u.password as password, u.actif as enabled from utilisateurs u where login=?"
+    		authorities-by-username-query="SELECT u.login,r.nom as role FROM utilisateurs u JOIN utilisateur_role ru ON ru.id_utilisateur=u.id JOIN roles r ON r.id=ru.id_role WHERE u.login=?"
+    	/>
+	</sec:authentication-provider>
+	
+</beans>

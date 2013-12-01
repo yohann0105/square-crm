@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- AOP DE SYNCHRONISATION à décommenter si test sur synchro
+	<import resource="classpath*:smatisSynchroTarificateurContext.xml"/> -->
+
+	<!-- Imports des services Square -->
+	<bean id="dimensionService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/dimensionService"/>
+		<property name="serviceInterface" value="com.square.core.service.interfaces.DimensionService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+	<bean id="personneService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/personneService"/>
+		<property name="serviceInterface" value="com.square.core.service.interfaces.PersonneService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+	<bean id="actionService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/actionService"/>
+		<property name="serviceInterface" value="com.square.core.service.interfaces.ActionService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<bean id="ressourceService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/ressourceService"/>
+		<property name="serviceInterface" value="com.square.core.service.interfaces.RessourceService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<!-- Imports des services du tarificateur -->
+	<bean id="produitService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-price-core/produitService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.ProduitService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<bean id="tarificateurMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-price-core/tarificateurMappingService"/>
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.TarificateurMappingService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<bean id="tarifService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-price-core/tarifService" />
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.TarifService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+	<bean id="regleService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-price-core/regleService" />
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.RegleService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+	<bean id="regleMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-price-core/regleMappingService" />
+		<property name="serviceInterface" value="com.square.price.core.service.interfaces.RegleMappingService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<!-- Services importés du noyau édtique -->
+	<bean id="editiqueService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-print-core/editiqueService"/>
+		<property name="serviceInterface" value="com.square.print.core.service.interfaces.EditiqueService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<bean id="editiqueMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-print-core/editiqueMappingService"/>
+		<property name="serviceInterface" value="com.square.print.core.service.interfaces.EditiqueMappingService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<!-- Services importés du noyau d'envoi de mail -->
+	<bean id="mailService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-mail-core/mailService" />
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.email.MailService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+	<bean id="envoiEmailMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-mail-core/envoiEmailMappingService" />
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.email.EnvoiEmailMappingService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<!-- Services importés du noyau utilisateur -->
+	<bean id="utilisateurService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-user-core/utilisateurService" />
+		<property name="serviceInterface" value="com.square.user.core.service.interfaces.UtilisateurService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+	<bean id="agenceService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-user-core/agenceService" />
+		<property name="serviceInterface" value="com.square.user.core.service.interfaces.AgenceService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+	<bean id="utilisateurMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-user-core/utilisateurMappingService" />
+		<property name="serviceInterface" value="com.square.user.core.service.interfaces.UtilisateurMappingService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<bean id="squareMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/squareMappingService" />
+		<property name="serviceInterface" value="com.square.core.service.interfaces.SquareMappingService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<bean id="opportuniteServiceSquare" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/opportuniteService" />
+		<property name="serviceInterface" value="com.square.core.service.interfaces.OpportuniteService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<bean id="personnePhysiqueService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-core/personnePhysiqueService" />
+		<property name="serviceInterface" value="com.square.core.service.interfaces.PersonnePhysiqueService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<bean id="contratService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/contratService" />
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.ContratService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<bean id="adherentService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/adherentService" />
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<bean id="adherentMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/adherentMappingService" />
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentMappingService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+	
+	<!-- Services GED -->
+	<bean id="gedService" class="com.square.tarificateur.noyau.service.mock.GedServiceMockImpl" autowire="byName" />
+	<bean id="gedServiceReal" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-document-core/gedService" />
+		<property name="serviceInterface" value="com.square.document.core.service.interfaces.GedService" />
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>		
+	</bean>
+	
+	<bean id="gedMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-document-core/gedMappingService" />
+		<property name="serviceInterface" value="com.square.document.core.service.interfaces.GedMappingService" />
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	</bean>
+
+	<bean id="synchroAppJmsSender" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-synchro-noyau/synchroAppJmsSender" />
+		<property name="serviceInterface" value="com.square.synchro.app.noyau.services.interfaces.SynchroAppJmsSender" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+</beans>

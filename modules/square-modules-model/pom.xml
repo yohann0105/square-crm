@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>square</groupId>
+	<artifactId>square-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>SQUARE</name>
+	<version>1.0-SNAPSHOT</version>
+
+	<build>
+		<plugins>
+		   <plugin>
+               	<groupId>scub-foundation.base.plugins</groupId>
+               	<artifactId>maven-scub-foundation-projectinfos-plugin</artifactId>
+            </plugin>
+		    <plugin>
+               	<groupId>scub-foundation.base.plugins</groupId>
+               	<artifactId>maven-scub-foundation-jonas-plugin</artifactId>
+	        </plugin>
+        </plugins>    
+	</build>
+	
+	<modules>
+		<module>../../model/square-user-core-model</module>
+		<module>../../model/square-tarificateur-noyau-model</module>
+		<module>../../model/square-synchro-noyau-model</module>
+		<module>../../model/square-print-core-model</module>
+		<module>../../model/square-price-core-model</module>
+		<module>../../model/square-noyauLog-model</module>
+		<module>../../model/square-notificateur-core-model</module>
+		<module>../../model/square-mail-core-model</module>
+		<module>../../model/square-document-core-model</module>
+		<module>../../model/square-core-model</module>
+		<module>../../model/square-adherent-core-model</module>
+		<module>../../util/square-synchro-aop</module>
+		<module>../../plugin/square-notificateur-plugin</module>
+		<module>../../util/square-fusion-api</module>
+		<module>../../composant/square-composants-graphiques-lib</module>
+		<module>../../composant/square-composant-tarificateur</module>
+		<module>../../composant/square-composant-prestations</module>
+		<module>../../composant/square-composant-ged</module>
+		<module>../../composant/square-composant-fusion</module>
+		<module>../../composant/square-composant-espace-client</module>
+		<module>../../composant/square-composant-envoi-email</module>
+		<module>../../composant/square-composant-emails</module>
+		<module>../../composant/square-composant-cotisations</module>
+		<module>../../composant/square-composant-contrat-personne-morale</module>
+		<module>../../composant/square-composant-contrat</module>
+		<module>../../composant/square-composant-aide</module>
+	</modules>
+</project>

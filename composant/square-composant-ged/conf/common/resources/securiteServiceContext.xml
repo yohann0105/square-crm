@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter">
+	<property name="rolePrefix" value="${rolePrefix}"/>
+</bean>
+	
+<bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
+	<property name="providers">
+		<list>
+			<ref bean="authenticationProvider" />
+			<ref local="anonymousAuthenticationProvider"/>
+		</list>
+	</property>
+</bean>
+
+<bean id="accessDecisionManager" class="org.acegisecurity.vote.AffirmativeBased">
+	<property name="decisionVoters">
+		<list>
+			<ref bean="roleVoter" />
+		</list>
+	</property>
+</bean>
+
+
+<!-- Filtre de vérification & sauvegarde des informations de connexion dans la session du client (navigateur) -->
+<bean id="httpSessionContextIntegrationFilter" class="org.acegisecurity.context.HttpSessionContextIntegrationFilter" />
+
+<!-- Utilitaire de propagation du contexte d'authentification via RMI -->
+<bean id="remoteInvocationFactory" class="org.acegisecurity.context.rmi.ContextPropagatingRemoteInvocationFactory" />
+
+<!-- Filtre de sécurisation des resources par rôle -->
+<bean id="filterInvocationInterceptor" class="org.acegisecurity.intercept.web.FilterSecurityInterceptor">
+	<property name="authenticationManager" ref="authenticationManager" />
+	<property name="accessDecisionManager" ref="accessDecisionManager" />
+	<property name="objectDefinitionSource">
+		<value>
+			CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+			PATTERN_TYPE_APACHE_ANT 
+			/login.jsp=${role.anonymous}, ${role.gestionnaire}, ${role.superviseur}, ${role.administrateur}
+			/**=${role.gestionnaire}, ${role.superviseur}, ${role.administrateur}
+		</value>
+	</property>
+</bean>
+
+<!--  Filtre pour utilisateurs anonymes -->
+<bean id="anonymousProcessingFilter" class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
+  <property name="key" value="${pom.artifactId}AnonymousRandomDummyKey"/>
+  <property name="userAttribute" value="anonymous, ${role.anonymous}"/>
+</bean>
+
+<!--  Provider d'authentification anonyme -->
+<bean id="anonymousAuthenticationProvider" class="org.acegisecurity.providers.anonymous.AnonymousAuthenticationProvider">
+  <property name="key" value="${pom.artifactId}AnonymousRandomDummyKey"/>
+</bean>
+
+<!-- Filtre de redirection vers l'authentification en cas d'exception liée à la sécurité -->
+<bean id="exceptionTranslationFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">
+	<property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
+	<property name="accessDeniedHandler">
+		<bean class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
+			<property name="errorPage" value="/erreurs/403.jsp" />
+		</bean>
+	</property>
+	<property name="authenticationTrustResolver">
+		<bean class="org.scub.foundation.framework.base.securite.acegi.AuthenticationTrustResolverAnonymousRunAsApp"/>
+	</property>	
+</bean>
+
+<!-- Filtre gestion de securite pour les appels de service gwt -->
+<bean id="exceptionTranslationFilterGwt" class="org.scub.foundation.framework.client.filter.ExceptionTranslationFilterGwt"/>
+
+</beans>

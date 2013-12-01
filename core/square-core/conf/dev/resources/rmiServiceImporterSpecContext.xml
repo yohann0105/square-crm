@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!--Import des AOP de synchro Square à décommenter si test sur synchro-->
+	<import resource="classpath*:synchroSquareContext.xml"/>
+
+	<!-- Déclarez ici l'import des services RMI spécifiques à l'environement de dev -->
+	<bean id="habilitationSquarePlugin" class="com.square.core.mock.HabilitationSquarePluginMock" autowire="byName"/>
+
+	<bean id="agendaTiersSquarePlugin" class="com.square.core.mock.AgendaTiersSquarePluginMock" autowire="byName"/> 
+	
+	<bean id="numeroClientSquarePlugin" class="com.square.core.mock.NumeroUniqueSquarePluginMock" autowire="byName"/> 
+	
+	<bean id="campagneSequenceUtil" class="com.square.core.util.sequence.CampagneSequenceUtilImpl" autowire="byName"/> 
+
+	<bean id="adherentService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/adherentService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="adherentMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/adherentMappingService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentMappingService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="contratService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/contratService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.ContratService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="espaceClientInternetService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/espaceClientInternetService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.EspaceClientInternetService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+	    <property name="cacheStub" value="false"/>
+	</bean>
+	
+	<bean id="tarificateurPersonneService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-tarificateur-noyau/tarificateurPersonneService"/>
+		<property name="serviceInterface" value="com.square.tarificateur.noyau.service.interfaces.TarificateurPersonneService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="tarificateurService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-tarificateur-noyau/tarificateurService"/>
+		<property name="serviceInterface" value="com.square.tarificateur.noyau.service.interfaces.TarificateurService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+	
+	<bean id="fusionPersonneService" class="com.square.fusion.api.service.implementations.FusionPersonneServiceImpl" autowire="byName"/>
+	
+	<bean id="synchroAppJmsSender" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-synchro-noyau/synchroAppJmsSender" />
+		<property name="serviceInterface" value="com.square.synchro.app.noyau.services.interfaces.SynchroAppJmsSender" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+	<!-- Services GED -->
+	<!--<bean id="gedService" class="com.square.core.mock.GedServiceMockImpl" autowire="byName" />-->
+	<bean id="gedServiceReal" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-document-core/gedService" />
+		<property name="serviceInterface" value="com.square.document.core.service.interfaces.GedService" />
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="cacheStub" value="false"/>
+	    <property name="lookupStubOnStartup" value="false"/>		
+	</bean>
+
+	<bean id="notificateurSquarePlugin" class="com.square.core.model.plugin.Implemenatation.NotificateurSquarePluginImpl">
+		<property name="messageService">
+			<bean id="messageService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+				<property name="serviceUrl" value="rmi://localhost:1099/square-notificateur-core/messageService"/>
+				<property name="serviceInterface" value="com.square.notificateur.core.service.interfaces.MessageService" />
+				<property name="refreshStubOnConnectFailure" value="true"/>
+				<property name="lookupStubOnStartup" value="false"/>
+			</bean>		
+		</property>
+	</bean>
+
+	<bean id="logService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-noyauLog-core/logService" />
+		<property name="serviceInterface" value="com.square.logs.service.interfaces.LogService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+		<property name="cacheStub" value="false" />
+	</bean>
+
+</beans>

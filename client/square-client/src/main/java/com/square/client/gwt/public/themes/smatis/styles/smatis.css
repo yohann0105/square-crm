@@ -1,0 +1,206 @@
+/********************************************************************************/
+/*CONTENEURS*/
+/********************************************************************************/
+#slotPrincipal {width: 100%; padding: 10px 0}
+.container {border: 5px solid #87b3ff}
+
+/************** General **************/
+body {background-color: #013879}
+fieldset {border: 1px solid grey; background-color: #FFFFE0}
+textarea {resize: none}
+
+/************** Tableau paginé **************/
+.remotePagingTable-results .remotePagingTable-emptyLine {height: 450px}
+
+/************** Titre **************/
+.conteneurTitre {font-size: 2em; font-weight: bold; text-align: center}
+.conteneurTitre .partie1 {color: #fff}
+.conteneurTitre .partie2 {color: #bcce00}
+
+/************** Tab Panel **************/
+.tabPanel .gwt-TabPanelBottom, .personnePhysiqueGestionTabPanel .gwt-TabPanelBottom {height: 100%}
+.tabPanel .contenuOnglet {background-color: #e8ec95; border-left: 2px solid #a3af05; border-bottom: 2px solid #a3af05}
+
+/************** ConteneurPanelDroite **************/
+.conteneurGlobalPanelDroite {padding-top: 38px}
+.conteneurPanelDroite {background-position: right bottom; background-color: #c9d200; margin-top: 2px}
+@if user.agent ie6 ie8 ie9 {
+	.conteneurPanelDroite .blocPanelDroite .decoratedButton .gwt-Button {background : url(themes/smatis/images/bloc_vert_bas_droite.png) no-repeat}
+} @else {
+	@sprite .conteneurPanelDroite .blocPanelDroite .decoratedButton .gwt-Button {gwt-image: "blocVertBasDroite"; background-position: right bottom; background-color: #c9d200; margin-top: 2px}
+}
+@sprite .panelDroite {gwt-image: "blocVertFondHaut"}
+@sprite .panelDroite .titrePanelDroite {gwt-image: "flecheBleue"; background-position: 0 3px; padding-left: 15px; font-weight: bold; color: #003878; font-size: 14px; width: auto; height: auto}
+.panelDroite .blocPanelDroite {background-color: #fff; border: 3px solid #afb703}
+@sprite .panelDroite .blocPanelDroite .decoratedButton-MiddleLeft {gwt-image: "boutonActionVertGauche"; width: 10px; height: 43px}
+@sprite .panelDroite .blocPanelDroite .decoratedButton-MiddleCenter {gwt-image: "boutonActionVertFond"; height: 43px}
+@sprite .panelDroite .blocPanelDroite .decoratedButton-MiddleRight {gwt-image: "boutonActionVertDroite"; width: 10px; height: 43px}
+.panelDroite .blocPanelDroite .decoratedButton .gwt-Button {font-weight: bold; height: 28px; padding-left: 30px; width: 190px}
+@if user.agent ie6 ie8 ie9 {
+	.panelDroite .blocPanelDroite .decoratedButton .gwt-Button {background : url("themes/smatis/images/icones/plus.png") no-repeat}
+} @else {
+	@sprite .panelDroite .blocPanelDroite .decoratedButton .gwt-Button {gwt-image: "iconePlus"; font-weight: bold; height: 28px; padding-left: 30px; width: 190px}
+}
+
+/************** DialogBox **************/
+.gwt-DialogBox .dialogTopCenter {background: url(themes/smatis/images/hborder.png) repeat-x 0px 0;}
+.gwt-DialogBox .dialogBottomCenter {background: url(themes/smatis/images/hborder.png) repeat-x 0px -16px;}
+.gwt-DialogBox .dialogMiddleLeft {background: url(themes/smatis/images/vborder.png) repeat-y -11px 0px;}
+.gwt-DialogBox .dialogMiddleRight {background: url(themes/smatis/images/vborder.png) repeat-y -16px 0px;}
+.gwt-DialogBox .dialogTopLeft {background: url(themes/smatis/images/corner.png) no-repeat -11px 0px;}
+.gwt-DialogBox .dialogTopRight {background: url(themes/smatis/images/corner.png) no-repeat -16px 0px;}
+.gwt-DialogBox .dialogBottomLeft {background: url(themes/smatis/images/corner.png) no-repeat -11px -55px;}
+.gwt-DialogBox .dialogBottomRight {background: url(themes/smatis/images/corner.png) no-repeat -16px -55px;}
+
+/************ Moteur de recherches **************/
+.personnePhysiqueMoteurRecherche, .personneMoraleMoteurRecherche, .campagneMoteurRecherche,
+.actionsMoteurRecherche, .campagneGestion, .agenda {}
+.personnePhysiqueMoteurRecherche .decoratedTextBox .gwt-TextBox, .personnePhysiqueMoteurRecherche .decoratedTextBox-Disabled .gwt-TextBox,
+.personneMoraleMoteurRecherche .decoratedTextBox .gwt-TextBox, .personneMoraleMoteurRecherche .decoratedTextBox-Disabled .gwt-TextBox,
+.ressourceMoteurRecherche .decoratedTextBox .gwt-TextBox {width: 144px}
+.personnePhysiqueMoteurRecherche .decoratedSuggestListBoxSingle .gwt-TextBox, .personnePhysiqueMoteurRecherche .decoratedSuggestListBoxSingle-Disabled .gwt-TextBox,
+.personneMoraleMoteurRecherche .decoratedSuggestListBoxSingle .gwt-TextBox, .personneMoraleMoteurRecherche .decoratedSuggestListBoxSingle-Disabled .gwt-TextBox,
+.ressourceMoteurRecherche .decoratedSuggestListBoxSingle .gwt-TextBox {width: 126px}
+.personnePhysiqueMoteurRecherche .decoratedSuggestListBoxComposite .gwt-TextBox, .personnePhysiqueMoteurRecherche .decoratedSuggestListBoxComposite-Disabled .gwt-TextBox,
+.personneMoraleMoteurRecherche .decoratedSuggestListBoxComposite .gwt-TextBox, .personneMoraleMoteurRecherche .decoratedSuggestListBoxComposite-Disabled .gwt-TextBox, 
+.ressourceMoteurRecherche .decoratedSuggestListBoxComposite .gwt-TextBox {width: 100px}
+.actionsMoteurRecherche .decoratedSuggestListBoxSingle .gwt-TextBox {width: 160px}
+.actionsMoteurRecherche .decoratedSuggestListBoxComposite .gwt-TextBox {width: 124px}
+
+/************** PersonnePhysiqueGestion && PersonneMoraleGestion **************/
+.personnePhysiqueGestion .gwt-DecoratedTabBar .gwt-TabBarItem,
+.personneMoraleGestion .gwt-DecoratedTabBar .gwt-TabBarItem {height: 29px}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleLeft,
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleRight,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleLeft,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleRight {height: 29px}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleLeftInner,
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleRightInner,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleLeftInner,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleRightInner {width: 20px}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleLeft,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleLeft {background: url(themes/smatis/images/onglets/onglet_bleu_gauche.png) no-repeat 0 0}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleRight,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleRight {background: url(themes/smatis/images/onglets/onglet_bleu_droite.png) no-repeat 0 0}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .tabMiddleCenter,
+.personneMoraleGestion .gwt-DecoratedTabBar .tabMiddleCenter {background: #0075bb url(themes/smatis/images/onglets/onglet_bleu_fond.png) repeat-x 0 0; color: #fff}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.personneMoraleGestion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft {background: url(themes/smatis/images/onglets/onglet_bleu_selected_gauche.png) no-repeat 0 0}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight,
+.personneMoraleGestion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {background: url(themes/smatis/images/onglets/onglet_bleu_selected_droite.png) no-repeat 0 0}
+.personnePhysiqueGestion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter,
+.personneMoraleGestion .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {background: #9ed3f5 url(themes/smatis/images/onglets/onglet_bleu_selected_fond.png) repeat-x 0 0; color: #013879}
+.personnePhysiqueGestion .personnePhysiqueGestionTabPanel,
+.personneMoraleGestion .personneMoraleGestionTabPanel {padding-top: 30px; padding-right: 10px}
+@if user.agent ie6 ie8 ie9 {
+	.personnePhysiqueGestion .personnePhysiqueGestionTabPanel,
+	.personneMoraleGestion .personneMoraleGestionTabPanel {padding-top: 0px;}
+}
+.personnePhysiqueGestion .personnePhysiqueGestionTabPanel fieldset, 
+.personneMoraleGestion .personneMoraleGestionTabPanel fieldset {border: 1px solid grey; background-color: #E3F3FC}
+
+/************** PersonnePhysiqueGestionSynthese && PersonneMoraleGestionSynthese **************/
+.personnePhysiqueGestion .personnePhysiqueGestionSynthese,
+.personneMoraleGestion .personneMoraleGestionSynthese {border: 2px solid #a3af05; border-top: none; border-right: none; background-color: #e8ec95}
+@if user.agent ie6 ie8 ie9 {
+	.personnePhysiqueGestion .personnePhysiqueGestionSynthese,
+	.personneMoraleGestion .personneMoraleGestionSynthese {margin-bottom :30px}
+}
+.personnePhysiqueGestion .personnePhysiqueGestionSynthese .header,
+.personneMoraleGestion .personneMoraleGestionSynthese .header {border: none; background-color: transparent}
+.personnePhysiqueGestion .personnePhysiqueGestionSynthese .content,
+.personneMoraleGestion .personneMoraleGestionSynthese .content {border: none; background-color: transparent}
+.personnePhysiqueGestion .personnePhysiqueGestionSynthese .titreFichePersonne .gwt-Label,
+.personneMoraleGestion .personneMoraleGestionSynthese .titreFichePersonne .gwt-Label {font-size: 16px; font-weight: bold; color: #013879}
+
+/************** RemotePagingTable **************/
+.remotePagingTable-pagination {height: 25px}
+
+/************** Label cliquable **************/
+.lienSquare {color: #3300CC; text-decoration: underline; cursor: pointer}
+
+/************** Gestion des couleurs des blocs d'opportunités **************/
+.blocSyntheseDepliantOpportuniteRefusee {background-color: #FF7070}
+.blocSyntheseDepliantOpportuniteNonRenseigne {background-color: #668CFF}
+.blocSyntheseDepliantOpportuniteTransformee {background-color: #47D147}
+.blocSyntheseDepliantOpportuniteAcceptee {background-color: #47D147}
+.blocSyntheseDepliantOpportuniteCorbeille {background-color: #B3B3B3}
+.blocSyntheseDepliantOpportuniteEnAttente {background-color: #668CFF}
+.blocSyntheseDepliant .tripletPersonne {font-size: 16px; color: #013879}
+
+/**************************** Gestion des couleurs du bloc adresse replié ***********/
+.enteteAdresse {background-color:#ADD8E6}
+.enteteAdresse .gwt-Label {background-color:#ADD8E6; font-size: 16px; margin-right: 10px}
+
+/**** Ajustement des TexBox création PP **********/
+.textBoxCreerPersonne .gwt-TextBox {width: 110px}
+.textBoxNature .gwt-TextBox {width: 105px}
+
+/*************** Contenu d'une action de personne *************************/
+.personneBlocAction {border: 1px solid grey; background-color: #E3F3FC}
+.personneInfosAction {background: #e8ec95}
+.personneInfosAction fieldset {border: 1px solid grey !important; background-color: #FFFFE0 !important}
+.personneInfosAction .historiqueAction {border: 1px solid #bbb; background-color: #dedede; color: #444}
+.titreEnteteBlocsActions {font-weight: bold; font-size: 18px}
+
+/************** Gestion des couleurs des blocs d'action **************/
+.blocSyntheseDepliantActionTerminer {border: 2px solid #FF8A8A}
+.blocSyntheseDepliantActionTerminer .blocSyntheseDepliantActionTerminerHeader {background-color: #ffbbbb}
+.blocSyntheseDepliantActionTerminer .blocSyntheseDepliantActionTerminerHeader .gwt-HTML,
+.blocSyntheseDepliantActionTerminer .blocSyntheseDepliantActionTerminerHeader .gwt-Label,
+.blocSyntheseDepliantActionAnnuler .blocSyntheseDepliantActionAnnulerHeader .gwt-HTML,
+.blocSyntheseDepliantActionAnnuler .blocSyntheseDepliantActionAnnulerHeader .gwt-Label {font-size: 13px}
+.blocSyntheseDepliantActionAnnuler {border: 2px solid grey}
+.blocSyntheseDepliantActionAnnuler .blocSyntheseDepliantActionAnnulerHeader {background-color: #CCCCCC}
+.blocSyntheseDepliantActionEnCours {border: 2px solid #99cc33}
+.blocSyntheseDepliantActionEnCours .blocSyntheseDepliantActionEnCoursHeader {background-color: #ddffaa}
+
+/************** Gestion des couleurs des blocs d'action avec effect zoom (pastel) **************/
+/* ATTENTION A NE PAS METTRE D'ESPACE ENTRE blocSyntheseDepliantActionPastel et .blocSynthese... */
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionTerminer {border: 2px solid #f1bec3}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionTerminer .blocSyntheseDepliantActionTerminerHeader {background-color: #f1d7dc}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionTerminer .blocSyntheseDepliantActionTerminerHeader .gwt-HTML,
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionTerminer .blocSyntheseDepliantActionTerminerHeader .gwt-Label {color: #666 !important}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionAnnuler {border: 2px solid #b1b9be}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionAnnuler .blocSyntheseDepliantActionAnnulerHeader {background-color: #d7dfe4}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionAnnuler .blocSyntheseDepliantActionAnnulerHeader .gwt-HTML,
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionAnnuler .blocSyntheseDepliantActionAnnulerHeader .gwt-Label {color: #666 !important}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionEnCours {border: 2px solid #bedf98}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionEnCours .blocSyntheseDepliantActionEnCoursHeader {background-color: #e0f9d3}
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionEnCours .blocSyntheseDepliantActionEnCoursHeader .gwt-HTML,
+.blocSyntheseDepliantActionPastel.blocSyntheseDepliantActionEnCours .blocSyntheseDepliantActionEnCoursHeader .gwt-Label {color: #666 !important}
+
+/**** Ajustement des TexBox création PP **********/
+.textBoxCreerPersonne .gwt-TextBox{width: 110px}
+.agendaPushButton {background-color: transparent; cursor: pointer}
+
+/*************** Image de la téléphonie sur les fiches des personnes *************************/
+.imgTelephoneActif {cursor: pointer}
+
+/************** BlocArrondiBleu **************/
+.blocArrondiBleuContenu {border-left: 2px solid #06559f; border-right: 2px solid #06559f; background-color: #9ed3f5}
+.blocArrondiBleuFooterLeft {border-left: 2px solid #06559f; border-bottom: 2px solid #06559f; background-color: #9ed3f5}
+@sprite .blocArrondiBleuFooterRight {border: none; gwt-image: "blocBleuBasDroite"; background-position: 0 0; background-color: #9ed3f5}
+
+/************** Bloc boutons **************/
+.blocBoutons .decoratedButton {margin-left: 10px}
+
+/************** Fiche coordonnées **************/
+.personneCoordonnees .listeNatureTelephone .gwt-TextBox {width: 115px}
+.personneCoordonnees .champTelephone .gwt-TextBox {width: 110px}
+
+/*************** Image pour le drapeau des numéros de téléphone *************************/
+.imgDrapeau {cursor: pointer}
+.imageDrapeauRecherche {border: none}
+
+/*************** Fiche Personne / Onglet Relations *************************/
+.personneRelations .lienFichePersonne {cursor: pointer}
+
+/************** Popups **************/
+.popupAjoutRelation .dialogMiddleCenter, .popupFusion .dialogMiddleCenter,
+.popupCreationPersonnePhysique .dialogMiddleCenter, .popupCreationPersonneDoublon .dialogMiddleCenter,
+.popupModificationPersonneDoublon .dialogMiddleCenter, .popupSuppressionPersonnePhysique .dialogMiddleCenter,
+.popupCreationCampagne .dialogMiddleCenter, .popupCreationOpportunite .dialogMiddleCenter,
+.popupCreationAction .dialogMiddleCenter, .popupAjoutAdresse .dialogMiddleCenter,
+.popupSelectionPays .dialogMiddleCenter, .popupCreationForceeOpp .dialogMiddleCenter,
+.gwt-SuggestListBoxMultiple .dialogMiddleCenter {background-color: #e8ec95}

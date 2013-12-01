@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="com.square.composant.tarificateur.square">
+
+	<!-- Inherit the core Scub Foundation Web Toolkit stuff. -->
+	<inherits name="org.scub.foundation.framework.gwt.module.ScubFoundationModule"/>
+	<inherits name="com.google.gwt.i18n.I18N"/>
+
+	<!-- Specify the app entry point class.
+	<entry-point class='com.square.composant.tarificateur.square.client.ComposantTarificateurModule'/> -->
+
+</module>

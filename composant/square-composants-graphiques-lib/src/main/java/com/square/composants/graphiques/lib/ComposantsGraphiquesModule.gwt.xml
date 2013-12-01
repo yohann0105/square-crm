@@ -1,0 +1,10 @@
+<module>
+
+	<!-- Inherit the core Scub Foundation Web Toolkit stuff. -->
+	<inherits name="org.scub.foundation.framework.gwt.module.ScubFoundationModule"/>
+	<inherits name="com.square.composant.aide.gwt.ComposantAideModule"/>
+
+	<!-- Specify the app entry point class. -->
+	<entry-point class='com.square.composants.graphiques.lib.client.ComposantsGraphiquesModule'/>
+
+</module>

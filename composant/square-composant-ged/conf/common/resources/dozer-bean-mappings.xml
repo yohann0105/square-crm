@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<mapping type="one-way">
+		<class-a>com.square.document.core.dto.DocumentDto</class-a>
+		<class-b>com.square.composant.ged.square.client.model.DocumentModel</class-b>
+		<field-exclude>
+			<a>idPersonne</a>
+			<b>idPersonne</b>
+		</field-exclude>
+	</mapping>
+
+</mappings>

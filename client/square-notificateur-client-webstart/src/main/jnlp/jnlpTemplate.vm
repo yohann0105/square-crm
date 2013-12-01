@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Java Webstart JNLP Velocity Template for use with Webstart Maven Plugin -->
+<jnlp
+  spec="1.5+"
+  codebase="$$codebase"
+  context="$$context" 
+  href="$$name"
+  >
+  <information>
+    <title>Notificateur Square</title>
+    <vendor>Square</vendor>
+    <homepage href="http://square-crm.com"/>
+    <description>Notificateur Square</description>
+    <icon href="notificateur.png"/>
+    <!--<offline-allowed/>-->
+    <shortcut online="true">
+        <desktop/> <!-- create shortcut on desktop -->
+        <menu submenu="Square"/> <!-- create shortcut in startmenu -->
+    </shortcut>
+  </information>
+  <security>
+    <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="1.6+" initial-heap-size="64m" max-heap-size="128m" /> <!-- define required Java runtime version -->
+      $dependencies
+  </resources>
+  <application-desc main-class="$mainClass"/>
+</jnlp>

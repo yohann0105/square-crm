@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+	
+	<!-- Mapping des infos de contrats -->
+	<mapping>
+		<class-a>com.square.adherent.noyau.dto.adherent.contrat.InfosContratsDto</class-a>
+		<class-b>com.square.composant.contrat.square.client.model.InfosContratsModel</class-b>
+		<field-exclude>
+			<a>listeGarantiesContrat</a>
+			<b>listeGarantiesContrat</b>
+		</field-exclude>
+		<field-exclude>
+			<a>listeRatiosPrestationCotisation</a>
+			<b>listeRatiosPrestationCotisation</b>
+		</field-exclude>
+	</mapping>
+	
+	<!-- Mapping des garanties simples -->
+	<mapping>
+		<class-a>com.square.adherent.noyau.dto.adherent.contrat.GarantieSimpleDto</class-a>
+		<class-b>com.square.composant.contrat.square.client.model.GarantieSimpleModel</class-b>
+		<field-exclude>
+			<a>listeInfosGarantiesBeneficiaires</a>
+			<b>listeInfosGarantiesBeneficiaires</b>
+		</field-exclude>
+	</mapping>
+	
+	<!-- Mapping des contrats -->
+	<mapping>
+		<class-a>com.square.adherent.noyau.dto.adherent.contrat.ContratDto</class-a>
+		<class-b>com.square.composant.contrat.square.client.model.ContratModel</class-b>
+		<field-exclude>
+			<a>recapitulatifGarantiesContrat</a>
+			<b>recapitulatifGarantiesContrat</b>
+		</field-exclude>
+		<field-exclude>
+			<a>listeGaranties</a>
+			<b>listeGaranties</b>
+		</field-exclude>
+	</mapping>
+	
+	<!-- Mapping des garanties -->
+	<mapping>
+		<class-a>com.square.adherent.noyau.dto.adherent.contrat.GarantieDto</class-a>
+		<class-b>com.square.composant.contrat.square.client.model.GarantieModel</class-b>
+		<field-exclude>
+			<a>listeAjustements</a>
+			<b>listeAjustements</b>
+		</field-exclude>
+	</mapping>
+                   
+</mappings>

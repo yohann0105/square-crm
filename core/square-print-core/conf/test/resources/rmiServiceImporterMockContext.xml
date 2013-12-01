@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP TEST DAO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  Mock-AOP qui permet de tester les DAO directement. Ne pas éditer la structure du bean
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  --> 
+	
+	<tx:advice id="serviceTestTxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="serviceTestTxPointcut" expression="execution(* ..*.noyau.dao.interfaces..*.*(..))"/>
+		<aop:advisor advice-ref="serviceTestTxAdvice" pointcut-ref="serviceTestTxPointcut"/>
+ 	</aop:config> 
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * MOCK SERVICE EXTERNE SPECIFIQUE ENV TEST  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *
+    *	- Vous pouvez définir ici les Mocks simulant les services externes à l'application ces services doivent bien sur hériter de l'interface des services distants.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+</beans>

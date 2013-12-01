@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="printMappingConfiguration" abstract="true">
+		<property name="constanteIdModeleDevisBulletinAdhesion" value="1"/>
+		<property name="constanteIdModeleLettreRadiation" value="2"/>
+		<property name="constanteIdModeleLettreRadiationLoiChatel" value="3"/>
+		<property name="constanteIdModeleLettreAnnulation" value="4"/>
+		
+		<property name="mapModelesDevis">
+			<map>
+				<entry key="1"  value="Bulletin d'adhésion individuel"/>
+				<entry key="2" value="Lettre de radiation"/>
+				<entry key="3" value="Lettre de radiation par loi Chatel"/>
+				<entry key="4" value="Lettre de radiation par loi Chatel"/>
+			</map>
+		</property>
+		
+		<!-- Map des fichiers statiques -->
+		<property name="mapFichiersStatiques">
+			<map>
+				<entry key="2" value="statique/radiation.pdf"/>
+				<entry key="3" value="statique/radiationLoiChatel.pdf"/>
+				<entry key="4" value="statique/annulation.pdf"/>
+			</map>
+		</property>
+	</bean>
+</beans>

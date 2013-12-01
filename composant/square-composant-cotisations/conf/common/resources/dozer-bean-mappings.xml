@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<mapping>
+		<class-a>com.square.adherent.noyau.dto.adherent.contrat.ContratSimpleDto</class-a>
+		<class-b>org.scub.foundation.framework.gwt.module.client.dto.IdentifiantLibelleGwt</class-b>
+		<field>
+			<a>numeroContrat</a>
+			<b>libelle</b>
+		</field>
+	</mapping>
+
+</mappings>

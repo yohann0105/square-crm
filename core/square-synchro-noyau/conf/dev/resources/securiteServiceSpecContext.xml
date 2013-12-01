@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE SPECIFIQUE ENV DEV & TEST * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    *	- Ce fichier définit la configuration de la sécurité spécifique à l'environnement de développement.
+    *   - Ce fichier définit par défaut une authentification des utilisateurs en mémoire.
+    *   - Pour ajouter de nouveaux utilisateurs, ajouter une ligne :
+    *         <sec:user name="nom_utilisateur" password="mot_de_passe_utilisateur" authorities="role1_utilisateur,role2_utilisateur,..." />
+    *         Les rôles des utilisateurs sont séparés par des virgules.
+    *
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+</beans>

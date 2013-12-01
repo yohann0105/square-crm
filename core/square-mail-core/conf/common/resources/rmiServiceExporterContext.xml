@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES DISTANT AUX SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+    *   - EXEMPLE : EXPORT VIA RMI -
+    *
+	*	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	*		<property name="serviceName" value="${pom.artifactId}/MessageService"/>
+	*		<property name="service" ref="messageService"/>
+	*		<property name="serviceInterface" value="org.scub.foundation.applicationblanche.noyau.service.interfaces.MessageService"/>
+	*		<property name="registryPort" value="1099"/>
+	*	</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/modeleEmailService"/>
+		<property name="service" ref="modeleEmailService"/>
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.gestionmails.ModeleEmailService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/emailService"/>
+		<property name="service" ref="emailService"/>
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.gestionmails.EmailService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/emailMappingService"/>
+		<property name="service" ref="emailMappingService"/>
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.gestionmails.EmailMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/mailService"/>
+		<property name="service" ref="mailService"/>
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.email.MailService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/envoiEmailMappingService"/>
+		<property name="service" ref="envoiEmailMappingService"/>
+		<property name="serviceInterface" value="com.square.mail.core.service.interfaces.email.EnvoiEmailMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+</beans>

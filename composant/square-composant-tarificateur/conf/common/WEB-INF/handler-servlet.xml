@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  CONTEXTE APPLICATION  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    * - Vous devez definir ici l'ensemble des mapping entre les url et les services GWT
+	* 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+<beans>
+	<bean id="urlMapping" class="org.gwtwidgets.server.spring.GWTHandler">
+		<property name="mappings">
+			<map>
+				<!-- Exemple de configuration voir projet exemple pour plus d'informations-->
+				<entry key="/produitService" value-ref="produitServiceGwt"/>
+				<entry key="/constantesTarificateurService" value-ref="constantesTarificateurServiceGwt"/>
+				<entry key="/tarificateurService" value-ref="tarificateurServiceGwt"/>
+				<entry key="/tarificateurPersonneService" value-ref="tarificateurPersonneServiceGwt"/>
+				<entry key="/selecteurProduitService" value-ref="selecteurProduitServiceGwt"/>
+				<entry key="/tarificateurTransformationAiaService" value-ref="tarificateurTransformationAiaServiceGwt"/>
+				<entry key="/tarificateurEditiqueService" value-ref="tarificateurEditiqueServiceGwt"/>
+				<entry key="/tarificateurDimensionService" value-ref="tarificateurDimensionServiceGwt"/>
+				<entry key="/emailComposantEnvoiService" value-ref="emailComposantEnvoiServiceGWT"/>
+			</map>
+		</property>				
+	</bean>
+</beans>

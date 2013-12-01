@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd">
+
+	<bean id="roleVoter" class="org.springframework.security.vote.RoleVoter">
+		<property name="rolePrefix" value="ROLE_"/>
+	</bean>
+	
+	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref bean="authenticationProvider" />
+				<ref local="anonymousAuthenticationProvider"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Filtre de vérification & sauvegarde des informations de connexion dans la session du client (navigateur) -->
+	<bean id="httpSessionContextIntegrationFilter" class="org.springframework.security.context.HttpSessionContextIntegrationFilter" />
+	
+	<!-- Utilitaire de propagation du contexte d'authentification via RMI -->
+	<bean id="remoteInvocationFactory" class="org.springframework.security.context.rmi.ContextPropagatingRemoteInvocationFactory" />
+	
+	<!-- Filtre de sécurisation des resources par rôle -->
+	<bean id="filterInvocationInterceptor" class="org.springframework.security.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="objectDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT 
+				/login.jsp*=ROLE_ANONYMOUS,ROLE_SQUARE,ROLE_SQUARE_ADMIN
+				/images/*=ROLE_ANONYMOUS,ROLE_SQUARE,ROLE_SQUARE_ADMIN
+				/*.css=ROLE_ANONYMOUS,ROLE_SQUARE,ROLE_SQUARE_ADMIN
+				/**=ROLE_SQUARE,ROLE_SQUARE_ADMIN
+			</value>
+		</property>
+	</bean>
+	
+	<!--  Filtre pour utilisateurs anonymes -->
+	<bean id="anonymousProcessingFilter" class="org.springframework.security.providers.anonymous.AnonymousProcessingFilter">
+	  <property name="key" value="${pom.artifactId}AnonymousRandomDummyKey"/>
+	  <property name="userAttribute" value="anonymous, ROLE_ANONYMOUS"/>
+	</bean>
+	
+	<!--  Provider d'authentification anonyme -->
+	<bean id="anonymousAuthenticationProvider" class="org.springframework.security.providers.anonymous.AnonymousAuthenticationProvider">
+	  <property name="key" value="${pom.artifactId}AnonymousRandomDummyKey"/>
+	</bean>
+	
+	<!-- Filtre de redirection vers l'authentification en cas d'exception liée à la sécurité -->
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
+		<property name="accessDeniedHandler">
+			<bean class="org.springframework.security.ui.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/erreurs/403.jsp" />
+			</bean>
+		</property>
+		<property name="authenticationTrustResolver">
+			<bean class="org.scub.foundation.framework.base.securite.AuthenticationTrustResolverAnonymousRunAsApp"/>
+		</property>	
+	</bean>
+
+	
+	<!-- Filtre gestion de securite pour les appels de service gwt -->
+	<bean id="exceptionTranslationFilterGwt" class="org.scub.foundation.framework.client.filter.ExceptionTranslationFilterGwt"/>
+	
+	<!-- Intercepteur sécurité, il définit la liste des filtres a appliquer en fonction des urls catchées. -->
+	<bean id="filterChainProxy" class="org.springframework.security.util.FilterChainProxy">
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+				/handler/*=httpSessionContextIntegrationFilter, authenticationProcessingFilter, exceptionTranslationFilterGwt,filterInvocationInterceptor
+				/**=httpSessionContextIntegrationFilter,logoutFilter, authenticationProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor
+			</value>
+		</property>
+	</bean>	
+</beans>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<JoramAdmin>
+
+<AdminModule>
+   <connect host="localhost"
+             port="16010"
+             name="root"
+             password="root"/>
+</AdminModule>
+  
+<InitialContext>
+    <property name="java.naming.factory.initial"
+              value="fr.dyade.aaa.jndi2.client.NamingContextFactory"/>
+    <property name="java.naming.factory.host" value="localhost"/>
+    <property name="java.naming.factory.port" value="16400"/>
+</InitialContext>
+
+<User name="anonymous"
+      password="anonymous"
+      serverId="0"/>
+  
+<ConnectionFactory className="org.objectweb.joram.client.jms.tcp.XATopicTcpConnectionFactory">
+   <tcp host="localhost"
+         port="16010"/>
+   <jndi name="xatcf"/>
+</ConnectionFactory>
+
+<DMQueue name="synchro_app_dmq">
+  <freeReader/>
+  <freeWriter/>
+  <jndi name="synchro_app_dmq"/>
+</DMQueue>
+
+<Topic name="synchro_app_topic" dmq="synchro_app_dmq" threshold="1">
+  <freeReader/>
+  <freeWriter/>
+  <jndi name="synchro_app_topic"/>
+</Topic>
+
+</JoramAdmin>

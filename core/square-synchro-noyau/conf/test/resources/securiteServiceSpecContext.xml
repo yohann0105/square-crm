@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE SPECIFIQUE ENV TEST * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    *	- Vous pouvez definir ici les provider spécifique à l'environement de dev, par defaut le systéme utilise une authentification en memoire.
+    *
+    *   - Pour l'authentification locale et le changement de role pour appel de service externe en Run_As vous pouvez 
+    *	  ajouter AutoAuthentificationRemoteInvocationFactory spécifique à l'environement de dev.
+    *	  Preconisez l'utilisation de variable que vous pouvez definir dans le fichier conf/dev/filters/filters.properties.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	
+	<bean id="authenticationDao" class="org.acegisecurity.userdetails.memory.InMemoryDaoImpl">	
+		<property name="userMap">
+			<value>
+				${pom.artifactId}_user=${pom.artifactId}_user,${pom.artifactId}_user
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="authenticationProvider" class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService"><ref bean="authenticationDao"/></property>
+	</bean>
+	
+	<!-- Utilitaire de propagation du contexte d'authentification via RMI -->
+	<bean id="remoteInvocationFactory" class="org.acegisecurity.context.rmi.ContextPropagatingRemoteInvocationFactory" />
+
+</beans>
