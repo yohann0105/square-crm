@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+    	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MESSAGE SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+	* Gestion des messages de l'application.
+	* - le bean staticInfoDetails peut être configuré voir javadoc ou vous pouvez utilisez
+	*    une autre classe pour gérer vous même la récupération des informations du Locale de l'application.
+	* - Vous pouvez rajouter d'autres fichiers à la liste des bundles du bean messageSource selon les besoins de votre applications. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="messageSourceUtil" class="org.scub.foundation.framework.core.messagesource.MessageSourceUtil">
+    	<property name="messageSource" ref="messageSource"/>
+    	<property name="messageSourceDetails" ref="messageSourceDetails"/>
+    </bean>
+    
+    <bean id="messageSourceDetails" class="org.scub.foundation.framework.core.messagesource.StaticMessageSourceDetails">
+    	<property name="language" value="en"></property>
+    </bean>
+       
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+	          <!-- Vous pouvez ajouter autant de fichier en fonction des besoins de votre application -->
+			  <value>classpath:message</value>
+			  <value>classpath:messageError</value>
+			</list>
+		</property>
+	</bean>	
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CONFIGURATION DOZER * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas éditer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+   
+   	<!-- Configuration Dozer ne pas editer la structure du bean -->	
+	<bean id="mapperDozerBean" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		  <property name="mappingFiles">
+		    <list>		  
+		      <value>dozer-bean-mappings.xml</value>
+		    </list>
+		  </property>
+	</bean>
+
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * DATA-SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas éditer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName"	value="${database.connection.driver_class}"/>
+        <property name="url"				value="${database.connection.url}"/>
+        <property name="username"			value="${database.connection.username}"/>
+        <property name="password" 			value="${database.connection.password}"/>
+    </bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *SESSION-FACTORY * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	*  - Vous devez dans cette partie ajouter l'ensemble des classes persistantes.
+	*  - Ne pas éditer la structure du bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+  		<property name="dataSource"><ref bean="dataSource"/></property>
+		<property name="annotatedClasses">
+		<list>
+				<value>com.square.adherent.noyau.model.data.contrat.AjustementTarif</value>
+				<value>com.square.adherent.noyau.model.data.contrat.Contrat</value>
+				<value>com.square.adherent.noyau.model.data.contrat.Garantie</value>
+				<value>com.square.adherent.noyau.model.data.contrat.GarantieBareme</value>
+				<value>com.square.adherent.noyau.model.data.contrat.SyntheseContrat</value>
+				<value>com.square.adherent.noyau.model.data.contrat.Ratio</value>
+				<value>com.square.adherent.noyau.model.data.contrat.Franchise</value>
+				<value>com.square.adherent.noyau.model.data.espace.client.EspaceClientInternet</value>
+				<value>com.square.adherent.noyau.model.data.espace.client.Option</value>
+				<value>com.square.adherent.noyau.model.data.magazine.AdherentMagazine</value>
+				<value>com.square.adherent.noyau.model.data.magazine.Magazine</value>
+				<value>com.square.adherent.noyau.model.dimension.EspaceClientInternetNature</value>
+				<value>com.square.adherent.noyau.model.dimension.ContratCompoFamiliale</value>
+				<value>com.square.adherent.noyau.model.dimension.ContratFrequencePaiement</value>
+				<value>com.square.adherent.noyau.model.dimension.ContratMoyenPaiement</value>
+				<value>com.square.adherent.noyau.model.dimension.ContratStatut</value>
+				<value>com.square.adherent.noyau.model.dimension.GarantieRole</value>
+				<value>com.square.adherent.noyau.model.dimension.GarantieStatut</value>
+				<value>com.square.adherent.noyau.model.dimension.OptionType</value>
+				<value>com.square.adherent.noyau.model.dimension.ContratNature</value>
+				<value>com.square.adherent.noyau.model.dimension.Segment</value>
+				<value>com.square.adherent.noyau.model.dimension.TypePayeur</value>
+				<value>com.square.adherent.noyau.model.dimension.TarifType</value>
+				<value>com.square.adherent.noyau.model.data.prestation.Decompte</value>
+				<value>com.square.adherent.noyau.model.data.prestation.Banque</value>
+				<value>com.square.adherent.noyau.model.dimension.prestation.DecompteActe</value>
+				<value>com.square.adherent.noyau.model.dimension.prestation.DecompteOrigine</value>
+				<value>com.square.adherent.noyau.model.data.prestation.RelevePrestation</value>
+				<value>com.square.adherent.noyau.model.dimension.RelevePrestationMoyenPaiement</value>
+				<value>com.square.adherent.noyau.model.dimension.MotifResiliation</value>
+				<value>com.square.adherent.noyau.model.dimension.GarantieFamille</value>
+				<value>com.square.adherent.noyau.model.dimension.ContratTermePaiement</value>
+				<value>com.square.adherent.noyau.model.dimension.banque.BanqueCode</value>
+				<value>com.square.adherent.noyau.model.dimension.banque.BanqueGuichet</value>
+		</list>
+		</property>
+		<property name="hibernateProperties">
+       		<props>
+	 			<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+	 			<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+	 			<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+	 			<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+	 			<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	 			<prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+	 			<prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+       		</props>
+       	</property>
+       	 <property name="eventListeners">
+			<map>
+				<entry key="post-update">
+					<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+				</entry>
+				<entry key="post-insert">
+					<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+				</entry>
+				<entry key="post-delete">
+					<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+				</entry>
+			</map>
+		</property>
+ 	</bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory"><ref local="sessionFactory"/></property>
+    </bean>
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  Configuration Encryption * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+	<bean id="bouncyCastleProvider" class="org.bouncycastle.jce.provider.BouncyCastleProvider"/>
+	<bean id="passwordEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="provider">
+			<ref bean="bouncyCastleProvider"/>
+		</property>
+		<property name="algorithm">
+			<value>${encryptorAlgorithm}</value>
+		</property>
+		<property name="password">
+			<value>${encryptorPassword}</value>
+		</property>
+	</bean>
+
+	<bean id="hibernateStringEncryptor" class="org.jasypt.hibernate.encryptor.HibernatePBEStringEncryptor">
+		<property name="registeredName">
+			<value>strongHibernateStringEncryptor</value>
+		</property>
+		<property name="encryptor">
+			<ref bean="passwordEncryptor"/>
+		</property>
+	</bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  DAO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	* 
+	* Déclaration des DAO de l'application.
+	* ATTENTION : ne pas éditer le bean daoSupport nécéssaire au fonctionement de l'application.
+	*
+	* exemple définition d'un DAO pour l'application :
+	*
+	* <bean id="messageDao" class="org.scub.foundation.applicationblanche.noyau.dao.implementations.MessageDaoImplementation" autowire="byName"/>
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    <bean id="daoSupport" class="org.scub.foundation.framework.core.dao.implementations.HibernateDaoBaseSupportImplementation" autowire="byName"/>
+    <bean id="espaceClientInternetDao" class="com.square.adherent.noyau.dao.implementations.EspaceClientInternetDaoImpl" autowire="byName"/>
+    <bean id="espaceClientInternetNatureDao" class="com.square.adherent.noyau.dao.implementations.EspaceClientInternetNatureDaoImpl" autowire="byName"/>
+    <bean id="optionDao" class="com.square.adherent.noyau.dao.implementations.OptionDaoImpl" autowire="byName"/>
+    <bean id="optionTypeDao" class="com.square.adherent.noyau.dao.implementations.OptionTypeDaoImpl" autowire="byName"/>
+    <bean id="contratDao" class="com.square.adherent.noyau.dao.implementations.contrat.ContratDaoImpl" autowire="byName"/>
+    <bean id="garantieDao" class="com.square.adherent.noyau.dao.implementations.contrat.GarantieDaoImpl" autowire="byName"/>
+    <bean id="garantieBaremeDao" class="com.square.adherent.noyau.dao.implementations.contrat.GarantieBaremeDaoImpl" autowire="byName"/>
+    <bean id="contratMoyenPaiementDao" class="com.square.adherent.noyau.dao.implementations.contrat.ContratMoyenPaiementDaoImpl" autowire="byName"/>
+    <bean id="personneDao" class="com.square.adherent.noyau.dao.implementations.personne.PersonneDaoImpl" autowire="byName"/>
+    <bean id="reserveBancoDao" class="com.square.adherent.noyau.dao.implementations.prestation.ReserveBancoDaoImpl" autowire="byName"/>
+    <bean id="decompteDao" class="com.square.adherent.noyau.dao.implementations.prestation.DecompteDaoImpl" autowire="byName"/>
+    <bean id="decompteOrigineDao" class="com.square.adherent.noyau.dao.implementations.prestation.DecompteOrigineDaoImpl" autowire="byName"/>
+    <bean id="decompteActeDao" class="com.square.adherent.noyau.dao.implementations.prestation.DecompteActeDaoImpl" autowire="byName"/>
+    <bean id="relevePrestationDao" class="com.square.adherent.noyau.dao.implementations.prestation.RelevePrestationDaoImpl" autowire="byName"/>
+    <bean id="magazineDao" class="com.square.adherent.noyau.dao.implementations.magazine.MagazineDaoImpl" autowire="byName"/>
+    <bean id="banqueDao" class="com.square.adherent.noyau.dao.implementations.banque.BanqueDaoImpl" autowire="byName"/>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	*
+	* Déclaration des Services de l'application.
+	*
+	* exemple définition d'un DAO pour l'application :
+	*
+	*	<bean id="messageServiceTarget" class="org.scub.foundation.applicationblanche.noyau.service.implementations.MessageServiceImplementation" autowire="byName"/>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<bean id="adherentMappingService" class="com.square.adherent.noyau.service.implementations.AdherentMappingServiceImpl" autowire="byName" parent="mappingConfiguration"/>
+	<bean id="prestationService" class="com.square.adherent.noyau.service.implementations.PrestationServiceImpl" autowire="byName"/>	
+	<bean id="adherentService" class="com.square.adherent.noyau.service.implementations.AdherentServiceImpl" autowire="byName"/>
+	<bean id="espaceClientInternetService" class="com.square.adherent.noyau.service.implementations.EspaceClientInternetServiceImpl" autowire="byName"/>
+	<bean id="magazineService" class="com.square.adherent.noyau.service.implementations.MagazineServiceImpl" autowire="byName"/>
+	<bean id="contratService" class="com.square.adherent.noyau.service.implementations.ContratServiceImpl" autowire="byName">
+		<property name="delaiMoisInactiviteGarantieSante" value="${delaiMoisInactiviteGarantieSante}"/>
+	</bean>
+	<bean id="relevePrestationService" class="com.square.adherent.noyau.service.implementations.RelevePrestationServiceImpl" autowire="byName">
+		<property name="serveurEmcRepReleve" value="${template.serveur.emc.rep.releve}" />
+		<property name="emailSurveillance" value="${sysveille.email}"/>
+	</bean>
+	<bean id="userDetailAdherentSmatisService" class="com.square.adherent.noyau.service.implementations.UserDetailAdherentSmatisServiceImpl" autowire="byName">
+		<property name="roleAdherent" value="${role.adherent}"/>	
+	</bean>
+	<bean id="cotisationService" class="com.square.adherent.noyau.service.implementations.CotisationServiceImpl" autowire="byName"/>
+	<bean id="banqueService" class="com.square.adherent.noyau.service.implementations.BanqueServiceImpl" autowire="byName"/>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CLASSES UTILITAIRES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<bean id="personneUtil" class="com.square.adherent.noyau.util.PersonneUtil" autowire="byName"/>
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    	   
+	<!-- Système de monitoring -->
+	<bean id="monitor" class="org.scub.foundation.framework.core.aop.monitoring.MonitoringAdvice">
+		<property name="enableMonitoring" value="${monitoring.enable}"/>
+	</bean>
+
+	<!-- Système de transaction -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.square.adherent.noyau.service.interfaces..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut"/>
+		
+		<aop:aspect id="monitorAspect" ref="monitor">
+			 <aop:pointcut id="monitorPointCut" expression="execution(${monitoring.patterns})"/>
+	         <aop:before pointcut-ref="monitorPointCut" method="before"/>
+	         <aop:after-returning pointcut-ref="monitorPointCut" method="afterReturning"/>
+        </aop:aspect>
+		
+	</aop:config>
+		
+</beans>

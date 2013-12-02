@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    *	- Vous devez dans ce fichier definir les droits des utilisateurs sur chacun des services dans le bean global-method-security dans la propriété protect-pointcut.
+    *     Pour cela, rajouter la ligne suivante :
+    *                <sec:protect-pointcut expression="execution(* org.scub.foundation.example.core.service.interfaces.MessageService.*(..))" access="${pom.artifactId}_user"/>      
+    *   - L'authentification se fait par le rôle de l'utilisateur.
+    *   - Vous pouvez dans ce fichier définir le préfixe du rôle autorisé.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref bean="authenticationProvider"/>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="authenticationDao" class="org.springframework.security.userdetails.memory.InMemoryDaoImpl">	
+		<property name="userMap">
+			<value>
+				login_synchro=mdp_synchro,${rolePrefix}user
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="authenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService"><ref bean="authenticationDao"/></property>
+	</bean>
+
+    <!-- Gestionnaire de changement de rôle pour les appels aux applications distantes -->
+    <bean id="squareRemoteInvocationFactory" class="org.scub.foundation.framework.base.securite.RunAsCustomAuthRemoteInvocationFactory">
+		<property name="runAsManager" ref="squareRunAsManager"/>
+		<property name="runAsRole" value="${runAs.role}"/>
+		<property name="login" value="login_synchro"/>
+		<property name="motDePasse" value="mdp_synchro"/>
+		<property name="authenticationManager" ref="authenticationManager"/>
+	</bean>
+	<bean id="squareRunAsManager" class="org.springframework.security.runas.RunAsManagerImpl">
+     	<property name="key" value="${runAsKey.square}"/>
+     	<property name="rolePrefix" value="${rolePrefix.square}"/>
+ 	</bean>
+ 	
+ 	<!-- Gestionnaire de changement de rôle pour les appels aux applications distantes -->
+    <bean id="gestcomRemoteInvocationFactory" class="org.scub.foundation.framework.base.securite.RunAsCustomAuthRemoteInvocationFactory">
+		<property name="runAsManager" ref="gestcomRunAsManager"/>
+		<property name="runAsRole" value="${runAs.role}"/>
+		<property name="login" value="login_synchro"/>
+		<property name="motDePasse" value="mdp_synchro"/>
+		<property name="authenticationManager" ref="authenticationManager"/>
+	</bean>
+	<bean id="gestcomRunAsManager" class="org.springframework.security.runas.RunAsManagerImpl">
+     	<property name="key" value="${runAsKey.gestcom}"/>
+     	<property name="rolePrefix" value="${rolePrefix.gestcom}"/>
+ 	</bean>
+ 	
+ 	<!-- Gestionnaire de changement de rôle pour les appels aux applications distantes -->
+    <bean id="tarificateurSquareRemoteInvocationFactory" class="org.scub.foundation.framework.base.securite.RunAsCustomAuthRemoteInvocationFactory">
+		<property name="runAsManager" ref="tarificateurSquareRunAsManager"/>
+		<property name="runAsRole" value="${runAs.role}"/>
+		<property name="login" value="login_synchro"/>
+		<property name="motDePasse" value="mdp_synchro"/>
+		<property name="authenticationManager" ref="authenticationManager"/>
+	</bean>
+	<bean id="tarificateurSquareRunAsManager" class="org.springframework.security.runas.RunAsManagerImpl">
+     	<property name="key" value="${runAsKey.tarificateurSquare}"/>
+     	<property name="rolePrefix" value="${rolePrefix.tarificateurSquare}"/>
+ 	</bean>
+
+</beans>

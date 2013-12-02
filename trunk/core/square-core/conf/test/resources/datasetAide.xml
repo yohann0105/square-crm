@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<DATA_AIDE ID="1"  VERSION="0" IDCOMPOSANT="1" TEXTE="champ de saisie pour nom"/>
+<DATA_AIDE ID="2" VERSION="0" IDCOMPOSANT="2" TEXTE="information à propos de champ date"/>
+<DATA_AIDE ID="3" VERSION="0" IDCOMPOSANT="3" TEXTE="information à propos de champ libbelé"/>
+</dataset>

@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<!-- Mapping Adhesion -> InfosPaiement -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.Adhesion</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.InfosPaiementDto</class-b>
+		<field type="one-way">
+			<a>moyenPaiementPremierReglement.id</a>
+			<b>idMoyenPaiementPremierReglement</b>
+		</field>
+		<field type="one-way">
+			<a>moyenPaiement.id</a>
+			<b>idMoyenPaiement</b>
+		</field>
+		<field type="one-way">
+			<a>periodicitePaiement.id</a>
+			<b>idPeriodicitePaiement</b>
+		</field>
+		<field type="one-way">
+			<a>jourPaiement.id</a>
+			<b>idJourPaiement</b>
+		</field>
+	</mapping>
+
+	<!-- Mapping Personne -> PersonneDto (Attention mapping à compléter dans le code suite à la famille figée)-->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Personne</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.PersonneDto</class-b>
+		<field type="one-way">
+			<a>id</a>
+			<b>id</b>
+		</field>
+	</mapping>
+	
+	<!-- Mapping PersonneDto Square -> PersonneDto -->
+	<mapping>
+		<class-a>com.square.core.model.dto.PersonneDto</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.PersonneDto</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>eidPersonne</b>
+		</field>
+		<field>
+			<a>civilite.identifiant</a>
+			<b>eidCivilite</b>
+		</field>
+		<field>
+			<a>csp.identifiant</a>
+			<b>eidCategorieSocioProf</b>
+		</field>
+		<field>
+			<a>sitFam.identifiant</a>
+			<b>eidSituationFamiliale</b>
+		</field>
+		<field>
+			<a>statut.identifiant</a>
+			<b>eidStatut</b>
+		</field>
+		<field>
+			<a>naturePersonne.identifiant</a>
+			<b>eidNature</b>
+		</field>
+		<field-exclude>
+			<a>infoSante</a>
+			<b>infoSante</b>
+		</field-exclude>
+		<field>
+			<a>infoSante.caisse.id</a>
+			<b>infoSante.eidCaisse</b>
+		</field>
+		<field>
+			<a>infoSante.idReferent</a>
+			<b>infoSante.eidReferent</b>
+		</field>
+		<field>
+			<a>infoSante.caisseRegime.identifiant</a>
+			<b>infoSante.eidRegime</b>
+		</field>
+	</mapping>
+	
+	<!-- Mapping Personne -> PersonneTarificateurDto -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Personne</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.PersonneTarificateurDto</class-b>
+		<field type="one-way">
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field-exclude>
+			<a>listeBeneficiaires</a>
+			<b>listeBeneficiaires</b>
+		</field-exclude>
+		<!-- <field-exclude>
+			<a>infoSante</a>
+			<b>infoSante</b>
+		</field-exclude> -->
+	</mapping>
+
+	<!-- Mapping Personne -> InfosPersonne -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Personne</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.InfosPersonneDto</class-b>
+		<field type="one-way">
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field type="one-way">
+			<a>eidPersonne</a>
+			<b>eidPersonne</b>
+		</field>
+		<field type="one-way">
+			<a>infoSante</a>
+			<b>infoSante</b>
+		</field>
+	</mapping>
+
+	<!-- Mapping LienFamilial -> IdentifiantLibelle -->
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.personne.LienFamilial</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.dto.selecteur.produit.CritereSelecteurDto</class-a>
+		<class-b>com.square.price.core.dto.CritereDto</class-b>
+		<field>
+			<a>listeValeursCriteres</a>
+			<b>valeursPossibles</b>
+		</field>
+		<field>
+			<a>modifiable</a>
+			<b>infosCritereApplication.modifiable</b>
+		</field>
+		<field>
+			<a>visible</a>
+			<b>infosCritereApplication.visible</b>
+		</field>
+		<field>
+			<a>obligatoire</a>
+			<b>infosCritereApplication.obligatoire</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.dto.selecteur.produit.AssureSelecteurDto</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.PersonneDto</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>id</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.core.model.dto.PersonneDto</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.selecteur.produit.AssureSelecteurDto</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>eidPersonne</b>
+		</field>
+	</mapping>
+
+    <!--  (Attention mapping à compléter dans le code suite à la famille figée) -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.dto.devis.LigneDevisDto</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.LigneDevis</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>identifiantProduit</a>
+			<b>eidProduit</b>
+		</field>
+		<field>
+			<a>identifiantBeneficiaire</a>
+			<b>beneficiaire.id</b>
+		</field>
+		<field>
+			<a>identifiantDevis</a>
+			<b>devis.id</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.LigneDevisLiee</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.devis.LigneDevisDto</class-b>
+		<field>
+			<a>ligneDevisLiee</a>
+			<b>this</b>
+		</field>
+	</mapping>
+
+    <!--  (Attention mapping à compléter dans le code suite à la famille figée) -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Beneficiaire</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.BeneficiaireDto</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+		<field>
+			<a>personneCible</a>
+			<b>this</b>
+		</field>
+		<field>
+			<a>lienFamilial.id</a>
+			<b>idLienFamilial</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Beneficiaire</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.BeneficiaireTarificateurDto</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+		<field>
+			<a>personneCible</a>
+			<b>this</b>
+		</field>
+		<field>
+			<a>lienFamilial.id</a>
+			<b>idLienFamilial</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.paiement.JourPaiement</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.paiement.MoyenPaiement</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.opportunite.MotifDevis</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.paiement.PeriodicitePaiement</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.opportunite.Finalite</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.opportunite.SourceLigneDevis</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.dto.devis.DevisDto</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.Devis</class-b>
+		<field-exclude>
+			<a>personnePrincipale</a>
+			<b>personnePrincipale</b>
+		</field-exclude>
+		<field-exclude>
+			<a>listeLigneDevis</a>
+			<b>listeLigneDevis</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.core.model.dto.PersonneSimpleDto</class-a>
+		<class-b>com.square.print.core.dto.adhesion.ProspectBADto</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+		<field>
+			<a>numeroClient</a>
+			<b>numeroAdherent</b>
+		</field>
+		<field>
+			<a>civilite.libelle</a>
+			<b>civilite</b>
+		</field>
+	</mapping>
+
+    <!--  (Attention mapping à compléter dans le code suite à la famille figée) -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Personne</class-a>
+		<class-b>com.square.print.core.dto.adhesion.ProspectBADto</class-b>
+		<field>
+			<a>infoSante.numSecuriteSocial</a>
+			<b>numeroSecuriteSociale</b>
+		</field>
+		<field>
+			<a>infoSante.cleSecuriteSocial</a>
+			<b>cleNumeroSecuriteSociale</b>
+		</field>
+		<field>
+			<a>loiMadelin</a>
+			<b>souhaiteBeneficierLoiMadelin</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Personne</class-a>
+		<class-b>com.square.print.core.dto.adhesion.BeneficiaireBADto</class-b>
+		<field>
+			<a>dateNaissance</a>
+			<b>dateDeNaissance</b>
+		</field>
+		<field>
+			<a>infoSante.numSecuriteSocial</a>
+			<b>numeroSecuriteSociale</b>
+		</field>
+		<field>
+			<a>infoSante.cleSecuriteSocial</a>
+			<b>cleNumeroSecuriteSociale</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.core.model.dto.PersonneSimpleDto</class-a>
+		<class-b>com.square.print.core.dto.adhesion.BeneficiaireBADto</class-b>
+		<field>
+			<a>civilite.libelle</a>
+			<b>civilite</b>
+		</field>
+		<field>
+			<a>dateNaissance</a>
+			<b>dateDeNaissance</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.user.core.dto.AgenceReelleDto</class-a>
+		<class-b>com.square.print.core.dto.AdresseDto</class-b>
+		<field>
+			<a>localite</a>
+			<b>ville</b>
+		</field>
+	</mapping>
+	
+	<!--  (Attention mapping à compléter dans le code suite à la famille figée) -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Adresse</class-a>	
+		<class-b>com.square.tarificateur.noyau.dto.personne.AdresseDto</class-b>
+		<field type="one-way">
+			<a>id</a>
+			<b>id</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Adresse</class-a>	
+		<class-b>com.square.tarificateur.noyau.dto.personne.AdresseTarificateurDto</class-b>
+		<field type="one-way">
+			<a>id</a>
+			<b>id</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.core.model.dto.AdresseDto</class-a>
+		<class-b>com.square.print.core.dto.AdresseDto</class-b>
+		<field>
+			<a>numVoie</a>
+			<b>numeroVoie</b>
+		</field>
+		<field>
+			<a>complementNom</a>
+			<b>codeBis</b>
+		</field>
+		<field>
+			<a>typeVoie.libelle</a>
+			<b>natureVoie</b>
+		</field>
+		<field>
+			<a>nomVoie</a>
+			<b>libelleVoie</b>
+		</field>
+		<field>
+			<a>boitePostal</a>
+			<b>complementAdresse2</b>
+		</field>
+		<field-exclude>
+			<a>codePostal</a>
+			<b>codePostal</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Beneficiaire</class-a>
+		<class-b>com.square.print.core.dto.adhesion.BeneficiaireBADto</class-b>
+		<field>
+			<a>personneCible</a>
+			<b>this</b>
+		</field>
+		<field>
+			<a>personneSource.id</a>
+			<b>idProspect</b>
+		</field>
+		<field>
+			<a>personneCible.id</a>
+			<b>idBeneficiaire</b>
+		</field>
+		<field>
+			<a>lienFamilial.libelle</a>
+			<b>lienFamilial</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.dto.devis.ValeurCritereLigneDevisDto</class-a>
+		<class-b>com.square.price.core.dto.TarifCritereDto</class-b>
+		<field>
+			<a>identifiantCritere</a>
+			<b>identifiant</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>com.square.tarificateur.noyau.model.opportunite.Opportunite</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.devis.OpportuniteDto</class-b>
+		<field>
+			<a>adhesion.dateSignature</a>
+			<b>dateSignature</b>
+		</field>
+		<field>
+			<a>adhesion.dateEditionBA</a>
+			<b>dateEditionBA</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.ValeurCritereLigneDevis</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.devis.ValeurCritereLigneDevisDto</class-b>
+		<field>
+			<a>eidCritere</a>
+			<b>identifiantCritere</b>
+		</field>
+	</mapping>
+	
+	
+	<!-- Copie de lignes de devis -->
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.LigneDevis</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.LigneDevis</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+    </mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.ValeurCritereLigneDevis</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.ValeurCritereLigneDevis</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+		<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.LigneDevisLiee</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.LigneDevisLiee</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.Devis</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.Devis</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+    </mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.RegleValeur</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.RegleValeur</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.Opportunite</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.Opportunite</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.opportunite.Adhesion</class-a>
+		<class-b>com.square.tarificateur.noyau.model.opportunite.Adhesion</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Personne</class-a>
+		<class-b>com.square.tarificateur.noyau.model.personne.Personne</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Beneficiaire</class-a>
+		<class-b>com.square.tarificateur.noyau.model.personne.Beneficiaire</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+    </mapping>
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.Adresse</class-a>
+		<class-b>com.square.tarificateur.noyau.model.personne.Adresse</class-b>
+		<field-exclude>
+			<a>id</a>
+			<b>id</b>
+		</field-exclude>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.core.model.dto.AdresseDto</class-a>	
+		<class-b>com.square.tarificateur.noyau.dto.personne.AdresseDto</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>eidAdresse</b>
+		</field>
+		<field>
+			<a>numVoie</a>
+			<b>numeroVoie</b>
+		</field>
+		<field>
+			<a>complementAdresse</a>
+			<b>residenceBatiment</b>
+		</field>
+		<field>
+			<a>typeVoie.identifiant</a>
+			<b>eidTypeVoie</b>
+		</field>
+		<field>
+            <a>codePostalCommune.identifiant</a>
+            <b>eidCodePostalCommune</b>
+        </field>
+		<field>
+			<a>codePostalCommune.codePostal.identifiant</a>
+			<b>eidCodePostal</b>
+		</field>
+		<field>
+			<a>codePostalCommune.commune.identifiant</a>
+			<b>eidCommune</b>
+		</field>
+		<field>
+			<a>pays.identifiant</a>
+			<b>eidPays</b>
+		</field>
+		<field>
+			<a>departement.identifiant</a>
+			<b>eidDepartement</b>
+		</field>
+		<field>
+			<a>npai</a>
+			<b>topNpai</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.core.model.dto.EmailDto</class-a>	
+		<class-b>com.square.tarificateur.noyau.dto.personne.EmailDto</class-b>
+		<field>
+			<a>identifiant</a>
+			<b>eidEmail</b>
+		</field>
+		<field>
+			<a>idext</a>
+			<b>codeAia</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.core.model.dto.TelephoneDto</class-a>	
+		<class-b>com.square.tarificateur.noyau.dto.personne.TelephoneDto</class-b>
+		<field>
+			<a>id</a>
+			<b>eidTelephone</b>
+		</field>
+		<field>
+			<a>numero</a>
+			<b>numTelephone</b>
+		</field>
+		<field>
+			<a>idext</a>
+			<b>codeAia</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.InfoSante</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.InfoSanteDto</class-b>	
+		<field type="one-way">
+			<a>referent.id</a>
+			<b>idReferent</b>
+		</field>
+		<field type="one-way">
+			<a>referent.eidPersonne</a>
+			<b>eidReferent</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.tarificateur.noyau.model.personne.InfoSante</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.InfoSanteCreationDto</class-b>	
+		<field type="one-way">
+			<a>referent.eidPersonne</a>
+			<b>eidReferent</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.square.core.model.dto.PersonneCreationAssureSocialDto</class-a>
+		<class-b>com.square.tarificateur.noyau.dto.personne.PersonneDto</class-b>
+		<field>
+			<a>civilite.identifiant</a>
+			<b>eidCivilite</b>
+		</field>
+		<field-exclude>
+			<a>infoSante</a>
+			<b>infoSante</b>
+		</field-exclude>
+	</mapping>
+</mappings>

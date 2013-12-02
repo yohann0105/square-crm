@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- Définition des services de l'API. -->
+	<bean id="fusionPersonneService" class="com.square.fusion.api.service.implementations.FusionPersonneServiceImpl" autowire="byName"/>
+	
+	<!-- Définition des mocks. -->
+	<bean id="adherentService" class="com.square.fusion.api.service.test.mock.AdherentServiceImpl" autowire="byName"/>
+	<bean id="personnePhysiqueService" class="com.square.fusion.api.service.test.mock.PersonnePhysiqueServiceImpl" autowire="byName"/>
+	<bean id="personneService" class="com.square.fusion.api.service.test.mock.PersonneServiceImpl" autowire="byName"/>
+	<bean id="squareMappingService" class="com.square.fusion.api.service.test.mock.SquareMappingServiceImpl" autowire="byName"/>
+	<bean id="opportuniteService" class="com.square.fusion.api.service.test.mock.OpportuniteServiceImpl" autowire="byName"/>
+	<bean id="actionService" class="com.square.fusion.api.service.test.mock.ActionServiceImpl" autowire="byName"/>
+	<bean id="tarificateurPersonneService" class="com.square.fusion.api.service.test.mock.TarificateurPersonneServiceImpl" autowire="byName"/>
+	<bean id="gedService" class="com.square.fusion.api.service.test.mock.GedServiceImpl" autowire="byName"/>
+	<bean id="tarificateurService" class="com.square.fusion.api.service.test.mock.TarificateurServiceImpl" autowire="byName"/>
+</beans>

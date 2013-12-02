@@ -1,0 +1,98 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>square</groupId>
+	<artifactId>square-composant-emails</artifactId>
+	<packaging>war</packaging>
+	<version>1.1</version>
+
+	<parent>
+		<groupId>scub-foundation.base.superpom</groupId>
+		<artifactId>scub-foundation-superpom-client-gwt</artifactId>
+		<version>3.5.1</version>
+	</parent>
+
+	<build>
+		<directory>target</directory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<outputDirectory>target/classes</outputDirectory>
+
+		<plugins>
+			<!-- PLUGIN SPEEDUP GWT -->
+			<plugin>
+				<groupId>scub-foundation.base.plugins</groupId>
+				<artifactId>maven-scub-foundation-gwt-speedup-plugin</artifactId>
+				<configuration>
+					<pathModuleConfigFile>${project.build.sourceDirectory}/com.square.composant.emails.square</pathModuleConfigFile>
+					<pathFilePropertiesSpeedUp>conf/${env}/filters/filters.properties</pathFilePropertiesSpeedUp>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- PLUGIN GWT -->
+			<plugin>
+				<groupId>scub-foundation.base.plugins</groupId>
+				<artifactId>maven-scub-foundation-gwt-plugin</artifactId>
+				<configuration>
+					<logLevel>DEBUG</logLevel>
+					<url>${project.build.finalName}/index.html</url>
+					<module>com.square.composant.emails.square.GwtModule</module>
+					<modules><param>com.square.composant.emails.square.GwtModule</param></modules>
+					<warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+					<noserver>true</noserver>
+					<port>9000</port>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- PLUGIN WAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>${project.build.directory}/${project.build.finalName}/gwtClient</webappDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>scub-foundation.base.framework</groupId>
+			<artifactId>scub-foundation-framework-client-gwt-module</artifactId>
+		</dependency>	
+
+		<dependency>
+			<groupId>square</groupId>
+			<artifactId>square-composants-graphiques-lib</artifactId>
+			<version>3.1</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>smatis</groupId>
+			<artifactId>smatis-gestion-mail-noyau-model</artifactId>
+			<version>1.3</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+    	<dependency>
+			<groupId>smatis</groupId>
+			<artifactId>smatis-utilisateurs-noyau-model</artifactId>
+			<version>2.6</version>
+   		</dependency>
+	</dependencies>
+</project>

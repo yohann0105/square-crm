@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MESSAGE SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+	* Gestion des messages de l'application.
+	* - le bean staticInfoDetails peut être configuré voir javadoc ou vous pouvez utilisez
+	*    une autre classe pour gérer vous même la récupération des informations du Locale de l'application.
+	* - Vous pouvez rajouter d'autres fichiers à la liste des bundles du bean messageSource selon les besoins de votre applications. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+
+    <bean id="messageSourceUtil" class="org.scub.foundation.framework.core.messagesource.MessageSourceUtil">
+    	<property name="messageSource" ref="messageSource"/>
+    	<property name="messageSourceDetails" ref="messageSourceDetails"/>
+    </bean>
+    
+    <bean id="messageSourceDetails" class="org.scub.foundation.framework.core.messagesource.StaticMessageSourceDetails">
+    	<property name="language" value="${LANGUAGE}"></property>
+    </bean>
+       
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+	          <!-- Vous pouvez ajouter autant de fichier en fonction des besoins de votre application -->
+			  <value>classpath:message</value>
+			  <value>classpath:messageError</value>
+			</list>
+		</property>
+	</bean>	
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CONFIGURATION DOZER * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas éditer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+   
+   	<!-- Configuration Dozer ne pas editer la structure du bean -->	
+	<bean id="mapperDozerBean" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		  <property name="mappingFiles">
+		    <list>		  
+		      <value>dozer-bean-mappings.xml</value>
+		    </list>
+		  </property>
+	</bean>
+
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * DATA-SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas éditer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName"	value="${database.connection.driver_class}"/>
+        <property name="url"				value="${database.connection.url}"/>
+        <property name="username"			value="${database.connection.username}"/>
+        <property name="password" 			value="${database.connection.password}"/>
+    </bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *SESSION-FACTORY * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	*  - Vous devez dans cette partie ajouter l'ensemble des classes persistantes.
+	*  - Ne pas éditer la structure du bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+  		<property name="dataSource"><ref bean="dataSource"/></property>
+		<property name="annotatedClasses">
+		<list>
+				<!-- Déclarez ici toutes les classes persistantes annotées de la couche modèle -->
+				<value>com.square.tarificateur.noyau.model.opportunite.Adhesion</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.Devis</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.Finalite</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.InfosRib</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.LigneDevis</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.LigneDevisLiee</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.ModeleDevis</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.MotifDevis</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.Opportunite</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.RegleValeur</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.SourceLigneDevis</value>
+				<value>com.square.tarificateur.noyau.model.opportunite.ValeurCritereLigneDevis</value>
+				<value>com.square.tarificateur.noyau.model.paiement.JourPaiement</value>
+				<value>com.square.tarificateur.noyau.model.paiement.MoyenPaiement</value>
+				<value>com.square.tarificateur.noyau.model.paiement.PeriodicitePaiement</value>
+				<value>com.square.tarificateur.noyau.model.personne.Adresse</value>
+				<value>com.square.tarificateur.noyau.model.personne.Beneficiaire</value>
+				<value>com.square.tarificateur.noyau.model.personne.LienFamilial</value>
+				<value>com.square.tarificateur.noyau.model.personne.InfoSante</value>
+				<value>com.square.tarificateur.noyau.model.personne.Personne</value>
+				<value>com.square.tarificateur.noyau.model.personne.RelationAssureSocial</value>
+		</list>
+		</property>
+		<property name="hibernateProperties">
+       		<props>
+	 			<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+	 			<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+	 			<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+	 			<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+	 			<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	 			<prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+	 			<prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+       		</props>
+       	</property>
+       	 <property name="eventListeners">
+			<map>
+				<entry key="post-update">
+					<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+				</entry>
+				<entry key="post-insert">
+					<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+				</entry>
+				<entry key="post-delete">
+					<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+				</entry>
+			</map>
+		</property>
+ 	</bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory"><ref local="sessionFactory"/></property>
+    </bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  DAO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	* 
+	* Déclaration des DAO de l'application.
+	* ATTENTION : ne pas éditer le bean daoSupport nécéssaire au fonctionement de l'application.
+	*
+	* exemple définition d'un DAO pour l'application :
+	*
+	* <bean id="messageDao" class="org.scub.foundation.applicationblanche.noyau.dao.implementations.MessageDaoImplementation" autowire="byName"/>
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    <bean id="daoSupport" class="org.scub.foundation.framework.core.dao.implementations.HibernateDaoBaseSupportImplementation" autowire="byName"/>
+    
+    <bean id="beneficiaireDao" class="com.square.tarificateur.noyau.dao.implementations.BeneficiaireDaoImpl" autowire="byName"/>
+    <bean id="relationAssureSocialDao" class="com.square.tarificateur.noyau.dao.implementations.RelationAssureSocialDaoImpl" autowire="byName"/>
+    <bean id="devisDao" class="com.square.tarificateur.noyau.dao.implementations.DevisDaoImpl" autowire="byName"/>
+    <bean id="finaliteDao" class="com.square.tarificateur.noyau.dao.implementations.FinaliteDaoImpl" autowire="byName"/>
+    <bean id="jourPaiementDao" class="com.square.tarificateur.noyau.dao.implementations.JourPaiementDaoImpl" autowire="byName"/>
+    <bean id="lienFamilialDao" class="com.square.tarificateur.noyau.dao.implementations.LienFamilialDaoImpl" autowire="byName"/>
+    <bean id="ligneDevisDao" class="com.square.tarificateur.noyau.dao.implementations.LigneDevisDaoImpl" autowire="byName"/>
+    <bean id="motifDevisDao" class="com.square.tarificateur.noyau.dao.implementations.MotifDevisDaoImpl" autowire="byName"/>
+    <bean id="moyenPaiementDao" class="com.square.tarificateur.noyau.dao.implementations.MoyenPaiementDaoImpl" autowire="byName"/>
+    <bean id="opportuniteDao" class="com.square.tarificateur.noyau.dao.implementations.OpportuniteDaoImpl" autowire="byName"/>
+    <bean id="periodicitePaiementDao" class="com.square.tarificateur.noyau.dao.implementations.PeriodicitePaiementDaoImpl" autowire="byName"/>
+    <bean id="personneDao" class="com.square.tarificateur.noyau.dao.implementations.PersonneDaoImpl" autowire="byName"/>
+    <bean id="sourceLigneDevisDao" class="com.square.tarificateur.noyau.dao.implementations.SourceLigneDevisDaoImpl" autowire="byName"/>
+    <bean id="infoSanteDao" class="com.square.tarificateur.noyau.dao.implementations.InfoSanteDaoImpl" autowire="byName"/>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	*
+	* Déclaration des Services de l'application.
+	*
+	* exemple définition d'un DAO pour l'application :
+	*
+	*	<bean id="messageServiceTarget" class="org.scub.foundation.applicationblanche.noyau.service.implementations.MessageServiceImplementation" autowire="byName"/>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<bean id="tarificateurEditiqueService" class="com.square.tarificateur.noyau.service.implementations.TarificateurEditiqueServiceImpl" autowire="byName"/>
+	<bean id="tarificateurService" class="com.square.tarificateur.noyau.service.implementations.TarificateurServiceImpl" autowire="byName">
+		<property name="customConverter">
+			<map>
+				<!-- Ces deux Classes permettent de gerer finement le Calendar chacune propose un SimpleDateFormat parametrable -->
+				<entry>
+					<key><value>java.util.Calendar</value></key>
+					<ref bean="calendarConverter" />
+				</entry>
+				<entry>
+					<key><value>java.lang.String</value></key>
+					<ref bean="stringConverter" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="tarificateurSquareMappingService" class="com.square.tarificateur.noyau.service.implementations.TarificateurSquareMappingServiceImpl" autowire="byName" parent="mappingConfiguration"/>
+    <bean id="tarificateurPersonneService" class="com.square.tarificateur.noyau.service.implementations.TarificateurPersonneServiceImpl" autowire="byName"/>
+    
+    <bean id="calendarConverter" class="com.square.tarificateur.noyau.util.converter.CalendarConverter">
+    	<property name="messageSourceUtil" ref="messageSourceUtil"/> 	
+    </bean>
+
+      <bean id="stringConverter" class="com.square.tarificateur.noyau.util.converter.StringXConverter">
+    	<property name="messageSourceUtil" ref="messageSourceUtil"/>
+    </bean>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    	   
+	<!-- Système de monitoring -->
+	<bean id="monitor" class="org.scub.foundation.framework.core.aop.monitoring.MonitoringAdvice">
+		<property name="enableMonitoring" value="${monitoring.enable}"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" order="10"/>	
+
+	<aop:config>
+		
+		<aop:aspect id="monitorAspect" ref="monitor">
+			 <aop:pointcut id="monitorPointCut" expression="execution(${monitoring.patterns})"/>
+	         <aop:before pointcut-ref="monitorPointCut" method="before"/>
+	         <aop:after-returning pointcut-ref="monitorPointCut" method="afterReturning"/>
+        </aop:aspect>
+		
+	</aop:config>
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES AU CONTEXTE SPRING * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Permet d'avoir accès au contexte Spring depuis un composant non géré par spring.
+	* ex d'utilisation : final ApplicationContext context = ApplicationContextHolder.getContext();
+    *                    Bean nomBean = (Bean) context.getBean("nom_bean");
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	<bean id="applicationContextHolder"	class="org.scub.foundation.framework.core.spring.ApplicationContextHolder" />
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CLASSES UTILITAIRES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<bean id="validationExpressionUtil" class="com.square.tarificateur.noyau.util.validation.ValidationExpressionUtil" autowire="byName"/>
+	<bean id="validationInfosAdhesionUtil" class="com.square.tarificateur.noyau.util.validation.ValidationInfosAdhesionUtil" autowire="byName"/>
+	<bean id="devisUtil" class="com.square.tarificateur.noyau.util.devis.DevisUtil" autowire="byName"/>
+    <bean id="personneUtil" class="com.square.tarificateur.noyau.util.personne.PersonneUtil" autowire="byName"/>
+    <bean id="opportuniteUtil" class="com.square.tarificateur.noyau.util.opportunite.OpportuniteUtil" autowire="byName"/>
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MESSAGE SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+	* Gestion des messages de l'application.
+	* - API Externe. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+
+</beans>

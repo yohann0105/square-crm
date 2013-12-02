@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="mappingConfiguration" abstract="true">
+		<property name="cheminRepertoire" value="${base.stockage.fichiers}" />
+		
+		<property name="nodeRefCategorieDocumentsAvenant" value="1"></property>
+		<property name="nodeRefCategorieDocumentsBulletinAdhesion" value="2"></property>
+		<property name="nodeRefCategorieDocumentsLettreAnnulation" value="3"></property>
+		<property name="sensEntrant" value="entrant"></property>
+		<property name="sensSortant" value="sortant"></property>
+	</bean>
+</beans>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE SPECIFIQUE ENV DEV & TEST * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    *	- Vous pouvez definir ici les provider spécifique à l'environement de dev, par defaut le systéme utilise une authentification en memoire.
+    *
+    *   - Pour l'authentification locale et le changement de role pour appel de service externe en Run_As vous pouvez 
+    *	  ajouter AutoAuthentificationRemoteInvocationFactory spécifique à l'environement de dev.
+    *	  Preconisez l'utilisation de variable que vous pouvez definir dans le fichier conf/dev/filters/filters.properties.
+    *
+    *	<bean id="gestcomRemoteInvocationFactory" class="org.scub.foundation.base.noyau.securite.AutoAuthenticatedRemoteInvocationFactory">
+	*		<property name="authenticationProvider" ref="authenticationProvider"/>
+	*		<property name="runAsManager" ref="gestcomRunAsManager"/>
+	*		<property name="login" value="${statistiques.login}"/>
+	*		<property name="motDePasse" value="${statistiques.motDePasse}"/>
+	*		<property name="runAsRole" value="${runAs.role}"/>
+	*	</bean>
+	*
+	*	<bean id="gestcomRunAsManager" class="org.acegisecurity.runas.RunAsManagerImpl">
+    * 		<property name="key"><value>${runAs.key.gestcom}</value></property>
+    * 		<property name="rolePrefix" value="${rolePrefix.gestcom}"/>
+ 	*	</bean>
+    *
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	
+	<bean id="authenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+	  <property name="userDetailsService"><ref bean="userDetailsService"/></property>
+	</bean>
+	
+	<!-- datasource pour la vérification des autorisations de l'utilisateur courant -->
+	<bean id="userDetailsService" class="org.springframework.security.userdetails.memory.InMemoryDaoImpl">	
+		<property name="userMap">
+			<value>
+				user=user,ROLE_SQUARE,ROLE_SQUARE_CAMPAGNE
+			</value>
+		</property>
+	</bean>
+
+</beans>

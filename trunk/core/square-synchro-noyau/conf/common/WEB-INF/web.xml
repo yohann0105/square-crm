@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+ 
+ <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+       		/WEB-INF/classes/applicationContext.xml
+       		/WEB-INF/classes/rmiServiceExporterContext.xml
+       		/WEB-INF/classes/rmiServiceImporterContext.xml
+       		/WEB-INF/classes/rmiServiceImporterSpecContext.xml
+       		/WEB-INF/classes/securiteServiceContext.xml
+       		/WEB-INF/classes/securiteServiceSpecContext.xml
+       		/WEB-INF/classes/jmsContext.xml
+       		/WEB-INF/classes/pluginContext.xml
+       		/WEB-INF/classes/squareLoggingContext.xml
+    </param-value>
+</context-param>
+
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+
+<servlet>
+	<servlet-name>axis</servlet-name>
+	<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+	<init-param>
+   	  	<param-name>axis.ServerConfigFile</param-name>
+     		<param-value>server-config.wsdd</param-value>
+    </init-param>
+	<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+	<servlet-name>axis</servlet-name>
+	<url-pattern>/*</url-pattern>
+</servlet-mapping>
+
+</web-app>

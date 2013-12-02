@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="gwtClient">
+
+	<!-- Inherit the core Scub Foundation Web Toolkit stuff. -->
+		<inherits name="org.scub.foundation.framework.gwt.module.ScubFoundationModule"/>
+	<inherits name="com.square.composants.graphiques.lib.ComposantsGraphiquesModule"/>
+	<inherits name="com.google.gwt.i18n.I18N"/>
+	<inherits name="gwtupload.GWTUpload"/>
+
+	<!-- Specify the app entry point class. -->
+	<entry-point class="com.square.composant.ged.square.client.ClientEntryPointGwt"/>
+
+	<stylesheet src="styles/style.css"/>
+	<stylesheet src="Upload.css"/>
+	<stylesheet src="themes/default/styles/composantGed.css"/>
+
+	<!-- Internationalization support. -->
+	
+	
+	
+<extend-property name="locale" values="fr"/><set-property name="user.agent" value="gecko1_8"/></module>

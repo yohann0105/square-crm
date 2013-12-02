@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES DISTANT AUX SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+    *   - EXEMPLE : EXPORT VIA RMI -
+    *
+	*	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	*		<property name="serviceName" value="${pom.artifactId}/MessageService"/>
+	*		<property name="service" ref="messageService"/>
+	*		<property name="serviceInterface" value="org.scub.foundation.applicationblanche.noyau.service.interfaces.MessageService"/>
+	*		<property name="registryPort" value="1099"/>
+	*	</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/tarificateurService"/>
+		<property name="service" ref="tarificateurService"/>
+		<property name="serviceInterface" value="com.square.tarificateur.noyau.service.interfaces.TarificateurService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/tarificateurSquareMappingService"/>
+		<property name="service" ref="tarificateurSquareMappingService"/>
+		<property name="serviceInterface" value="com.square.tarificateur.noyau.service.interfaces.TarificateurSquareMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/tarificateurEditiqueService"/>
+		<property name="service" ref="tarificateurEditiqueService"/>
+		<property name="serviceInterface" value="com.square.tarificateur.noyau.service.interfaces.TarificateurEditiqueService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/tarificateurPersonneService"/>
+		<property name="service" ref="tarificateurPersonneService"/>
+		<property name="serviceInterface" value="com.square.tarificateur.noyau.service.interfaces.TarificateurPersonneService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+</beans>

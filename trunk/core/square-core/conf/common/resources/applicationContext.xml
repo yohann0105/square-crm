@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MESSAGE SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+	* Gestion des messages de l'application.
+	* - le bean staticInfoDetails peut être configuré voir javadoc ou vous pouvez utilisez
+	*    une autre classe pour gérer vous même la récupération des informations du Locale de l'application.
+	* - Vous pouvez rajouter d'autres fichiers à la liste des bundles du bean messageSource selon les besoins de votre applications. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  --> 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+
+    <bean id="messageSourceUtil" class="org.scub.foundation.framework.core.messagesource.MessageSourceUtil">
+    	<property name="messageSource" ref="messageSource"/>
+    	<property name="messageSourceDetails" ref="messageSourceDetails"/>
+    </bean>
+    
+    <bean id="messageSourceDetails" class="org.scub.foundation.framework.core.messagesource.StaticMessageSourceDetails">
+    	<property name="language" value="${LANGUAGE}"></property>
+    </bean>
+       
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+	          <!-- Vous pouvez ajouter autant de fichier en fonction des besoins de votre application -->
+			  <value>classpath:message</value>
+			  <value>classpath:messageError</value>
+			</list>
+		</property>
+	</bean>	
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CONFIGURATION DOZER * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas éditer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+   
+   	<!-- Configuration Dozer ne pas editer la structure du bean -->
+	<bean id="mapperDozerBean" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		<property name="mappingFiles">
+			<list>
+				<value>dozer-bean-mappings.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * DATA-SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas éditer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName"	value="${database.connection.driver_class}"/>
+        <property name="url"				value="${database.connection.url}"/>
+        <property name="username"			value="${database.connection.username}"/>
+        <property name="password" 			value="${database.connection.password}"/>
+        <property name="maxActive" 			value="25"/>
+    </bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *SESSION-FACTORY * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	*  - Vous devez dans cette partie ajouter l'ensemble des classes persistantes.
+	*  - Ne pas éditer la structure du bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+  		<property name="dataSource"><ref bean="dataSource"/></property>
+		<property name="annotatedClasses">
+		<list>
+				<!-- Déclarez ici toutes les classes persistantes annotées de la couche modèle -->
+				<!-- exemple : <value>org.scub.foundation.example.core.model.Message</value> -->	
+				<value>com.square.core.model.Action</value>
+				<value>com.square.core.model.ActionAffectation</value>
+				<value>com.square.core.model.ActionAttribution</value>								
+				<value>com.square.core.model.ActionDuree</value>
+				<value>com.square.core.model.ActionNature</value>	
+				<value>com.square.core.model.ActionNatureResultat</value>	
+				<value>com.square.core.model.ActionObjet</value>
+				<value>com.square.core.model.ActionPriorite</value>
+				<value>com.square.core.model.ActionResultat</value>
+				<value>com.square.core.model.ActionSousObjet</value>
+				<value>com.square.core.model.ActionStatut</value>
+				<value>com.square.core.model.ActionType</value>
+				<value>com.square.core.model.Adresse</value>
+				<value>com.square.core.model.AdresseNature</value>
+				<value>com.square.core.model.Caisse</value>
+				<value>com.square.core.model.CaisseRegime</value>
+				<value>com.square.core.model.Campagne</value>
+				<value>com.square.core.model.CampagneStatut</value>
+				<value>com.square.core.model.CampagneType</value>
+				<value>com.square.core.model.CodePostal</value>
+				<value>com.square.core.model.Commentaire</value>
+				<value>com.square.core.model.Commune</value>
+				<value>com.square.core.model.Departement</value>
+				<value>com.square.core.model.Email</value>
+				<value>com.square.core.model.EmailNature</value>
+				<value>com.square.core.model.InfoSante</value>
+				<value>com.square.core.model.NatureTelephone</value>
+				<value>com.square.core.model.Opportunite</value>
+				<value>com.square.core.model.OpportuniteAttribution</value>
+				<value>com.square.core.model.OpportuniteStatut</value>
+				<value>com.square.core.model.Pays</value>
+				<value>com.square.core.model.Personne</value>
+				<value>com.square.core.model.PersonneAttribution</value>
+				<value>com.square.core.model.PersonneCivilite</value>
+				<value>com.square.core.model.PersonneCSP</value>
+				<value>com.square.core.model.PersonnePhysique</value>
+				<value>com.square.core.model.PersonnePhysiqueNature</value>
+				<value>com.square.core.model.PersonneProfession</value>
+				<value>com.square.core.model.PersonneReseau</value>
+				<value>com.square.core.model.PersonneSegment</value>
+				<value>com.square.core.model.PersonneSituationFamiliale</value>
+				<value>com.square.core.model.PersonneStatut</value>
+				<value>com.square.core.model.Region</value>
+				<value>com.square.core.model.Relation</value>
+				<value>com.square.core.model.RelationGroupement</value>
+				<value>com.square.core.model.RelationType</value>
+				<value>com.square.core.model.Telephone</value>
+				<value>com.square.core.model.TypeVoie</value>
+				<value>com.square.core.model.RegionCommerciale</value>
+				<value>com.square.core.model.Ressources.Agence</value>
+				<value>com.square.core.model.Ressources.Ressource</value>
+				<value>com.square.core.model.Ressources.RessourceEtat</value>
+				<value>com.square.core.model.Ressources.RessourceFonction</value>
+				<value>com.square.core.model.Ressources.RessourceService</value>
+				<value>com.square.core.model.PersonneMoraleNature</value>
+				<value>com.square.core.model.FormeJuridique</value>
+				<value>com.square.core.model.PersonneMorale</value>
+				<value>com.square.core.model.ActionNature</value>
+				<value>com.square.core.model.ActionType</value>
+				<value>com.square.core.model.ActionNatureResultat</value>
+				<value>com.square.core.model.ActionPriorite</value>
+				<value>com.square.core.model.ActionStatut</value>
+				<value>com.square.core.model.ActionResultat</value>
+				<value>com.square.core.model.ActionSousObjet</value>
+				<value>com.square.core.model.Action</value>
+				<value>com.square.core.model.CodePostalCommune</value>
+				<value>com.square.core.model.Document</value>
+				<value>com.square.core.model.Aide</value>
+				<value>com.square.core.model.ModeleEmail</value>
+		</list>
+		</property>
+		<property name="hibernateProperties">
+       		<props>
+	 			<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+	 			<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+	 			<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+	 			<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+	 			<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	 			<prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+	 			<prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+       			<prop key="hibernate.search.analyzer">com.square.core.util.lucene.SquareDefaultLuceneAnalyser</prop>
+       		</props>
+       	</property>
+       	<property name="eventListeners">
+			<map>
+				<entry key="pre-insert">
+					<list>
+						<bean class="com.square.core.model.util.FormatObjectHibernateListener" parent="formatObjectHibernateListener"/>
+					</list>					
+				</entry>
+				<entry key="pre-update">
+					<list>
+						<bean class="com.square.core.model.util.FormatObjectHibernateListener" parent="formatObjectHibernateListener"/>
+					</list>					
+				</entry>				
+			</map>
+		</property>
+ 	</bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory"><ref local="sessionFactory"/></property>
+    </bean>
+    <bean id="formatObjectHibernateListener" abstract="true">
+    	<property name="champsAExclure">
+			<list>	
+				<value>identifiantExterieur</value>
+			</list>
+    	</property>
+    	<property name="classesConcernees">
+			<list>
+				<value>com.square.core.model.PersonnePhysique</value>
+				<value>com.square.core.model.Adresse</value>
+				<value>com.square.core.model.Email</value>
+			</list>
+    	</property>
+    </bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CLASSES UTILITAIRES  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    <bean id="validationExpressionUtil" class="com.square.core.util.validation.ValidationExpressionUtil" autowire="byName"/>
+    <bean id="formatUtil" class="com.square.core.util.FormatUtil" autowire="byName"/>
+ 
+    <bean id="ressourceHabilitationUtil" class="com.square.core.util.RessourceHabilitationUtilImpl">
+     	<property name="ressourceDao" ref="ressourceDao"/>
+     	<property name="pluginHabilitation" ref="habilitationSquarePlugin"/>
+    </bean>
+
+    <bean id="agenceHabilitationUtil" class="com.square.core.util.AgenceHabilitationUtilImpl">
+     	<property name="agenceDao" ref="agenceDao"/>
+     	<property name="pluginHabilitation" ref="habilitationSquarePlugin"/>
+    </bean>
+    
+    <bean id="validationPersonneUtil" class="com.square.core.util.validation.ValidationPersonneUtil" autowire="byName"/>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  DAO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	* 
+	* Déclaration des DAO de l'application.
+	* ATTENTION : ne pas éditer le bean daoSupport nécéssaire au fonctionement de l'application.
+	*
+	* exemple définition d'un DAO pour l'application :
+	*
+	* <bean id="messageDao" class="org.scub.foundation.applicationblanche.noyau.dao.implementations.MessageDaoImplementation" autowire="byName"/>
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    <bean id="daoSupport" class="org.scub.foundation.framework.core.dao.implementations.HibernateDaoBaseSupportImplementation" autowire="byName"/>
+
+    <bean id="personnePhysiqueDao" class="com.square.core.dao.implementations.PersonnePhysiqueDaoImplementation" autowire="byName"/>  
+    <bean id="personneCiviliteDao" class="com.square.core.dao.implementations.PersonneCiviliteDaoImplementation" autowire="byName"/>
+    <bean id="personneProfessionDao" class="com.square.core.dao.implementations.PersonneProfessionDaoImplementation" autowire="byName"/>
+    <bean id="natureTelephoneDao" class="com.square.core.dao.implementations.NatureTelephoneDaoImplementation" autowire="byName"/>
+    <bean id="codePostalDao" class="com.square.core.dao.implementations.CodePostalDaoImplementation" autowire="byName"/>
+    <bean id="communeDao" class="com.square.core.dao.implementations.CommuneDaoImplementation" autowire="byName"/>
+    <bean id="paysDao" class="com.square.core.dao.implementations.PaysDaoImplementation" autowire="byName"/>
+    <bean id="personnePhysiqueNatureDao" class="com.square.core.dao.implementations.PersonnePhysiqueNatureDaoImplementation" autowire="byName"/>
+    <bean id="personneMoraleNatureDao" class="com.square.core.dao.implementations.PersonneMoraleNatureDaoImplementation" autowire="byName"/>   
+    <bean id="typeVoieDao" class="com.square.core.dao.implementations.TypeVoieDaoImplementation" autowire="byName"/>
+    <bean id="relationDao" class="com.square.core.dao.implementations.RelationDaoImplementation" autowire="byName"/>
+    <bean id="relationTypeDao" class="com.square.core.dao.implementations.RelationTypeDaoImplementation" autowire="byName"/>
+    <bean id="emailNatureDao" class="com.square.core.dao.implementations.EmailNatureDaoImplementation" autowire="byName"/>
+    <bean id="caisseDao" class="com.square.core.dao.implementations.CaisseDaoImplementation" autowire="byName"/>
+    <bean id="caisseRegimeDao" class="com.square.core.dao.implementations.CaisseRegimeDaoImplementation" autowire="byName"/>
+    <bean id="cspDao" class="com.square.core.dao.implementations.CspDaoImplementation" autowire="byName"/>
+    <bean id="segmentDao" class="com.square.core.dao.implementations.SegmentDaoImplementation" autowire="byName"/>
+    <bean id="situationFamilialeDao" class="com.square.core.dao.implementations.SituationFamilialeDaoImplementation" autowire="byName"/>
+    <bean id="adresseNatureDao" class="com.square.core.dao.implementations.AdresseNatureDaoImplementation" autowire="byName"/>
+    <bean id="agenceDao" class="com.square.core.dao.implementations.AgenceDaoImplementation" autowire="byName"/>
+    <bean id="ressourceFonctionDao" class="com.square.core.dao.implementations.RessourceFonctionDaoImplementation" autowire="byName"/> 
+    <bean id="ressourceServiceDao" class="com.square.core.dao.implementations.RessourceServiceDaoImplementation" autowire="byName"/> 
+    <bean id="ressourceEtatDao" class="com.square.core.dao.implementations.RessourceEtatDaoImplementation" autowire="byName"/>  
+    <bean id="ressourceDao" class="com.square.core.dao.implementations.RessourceDaoImplementation" autowire="byName"/>
+    <bean id="personneStatutDao" class="com.square.core.dao.implementations.PersonneStatutDaoImplementation" autowire="byName"/>
+    <bean id="personneReseauDao" class="com.square.core.dao.implementations.PersonneReseauDaoImplementation" autowire="byName"/>
+    <bean id="departementDao" class="com.square.core.dao.implementations.DepartementDaoImplementation" autowire="byName"/>
+    <bean id="formeJuridiqueDao" class="com.square.core.dao.implementations.FormeJuridiqueDaoImplemention" autowire="byName"/>
+    <bean id="personneMoraleDao" class="com.square.core.dao.implementations.PersonneMoraleDaoImplementation" autowire="byName"/>
+    <bean id="personneDao" class="com.square.core.dao.implementations.PersonneDaoImplementation" autowire="byName"/>
+    <bean id="telephoneDao" class="com.square.core.dao.implementations.TelephoneDaoImplementation" autowire="byName"/>
+    <bean id="emailDao" class="com.square.core.dao.implementations.EmailDaoImplementation" autowire="byName"/>
+    <bean id="adresseDao" class="com.square.core.dao.implementations.AdresseDaoImplementation" autowire="byName"/>
+    <bean id="actionNatureDao" class="com.square.core.dao.implementations.ActionNatureDaoImplementation" autowire="byName"/>
+    <bean id="actionTypeDao" class="com.square.core.dao.implementations.ActionTypeDaoImplementation" autowire="byName"/>
+    <bean id="actionNatureResultatDao" class="com.square.core.dao.implementations.ActionNatureResultatDaoImplementation" autowire="byName"/>
+    <bean id="campagneTypeDao" class="com.square.core.dao.implementations.CampagneTypeDaoImplementation" autowire="byName"/>
+    <bean id="campagneStatutDao" class="com.square.core.dao.implementations.CampagneStatutDaoImplementation" autowire="byName"/>
+    <bean id="campagneDao" class="com.square.core.dao.implementations.CampagneDaoImplementation" autowire="byName"/>   
+    <bean id="actionPrioriteDao" class="com.square.core.dao.implementations.ActionPrioriteDaoImplementation" autowire="byName"/>
+    <bean id="actionStatutDao" class="com.square.core.dao.implementations.ActionStatutDaoImplementation" autowire="byName"/>
+    <bean id="actionResultatDao" class="com.square.core.dao.implementations.ActionResultatDaoImplementation" autowire="byName"/>
+    <bean id="actionObjetDao" class="com.square.core.dao.implementations.ActionObjetDaoImplementation" autowire="byName"/>
+    <bean id="actionSousObjetDao" class="com.square.core.dao.implementations.ActionSousObjetDaoImplementation" autowire="byName"/>
+    <bean id="actionDao" class="com.square.core.dao.implementations.ActionDaoImplementation" autowire="byName"/>
+    <bean id="actionAffectationDao" class="com.square.core.dao.implementations.ActionAffectationDaoImplementation" autowire="byName"/>
+    <bean id="opportuniteDao" class="com.square.core.dao.implementations.OpportuniteDaoImplementation" autowire="byName"/>
+    <bean id="opportuniteStatutDao" class="com.square.core.dao.implementations.OpportuniteStatutDaoImplementation" autowire="byName"/>
+    <bean id="regionCommercialeDao" class="com.square.core.dao.implementations.RegionCommercialeDaoImplementation" autowire="byName"/>
+    <bean id="codePostalCommuneDao" class="com.square.core.dao.implementations.CodePostalCommuneDaoImplementation" autowire="byName"/>
+    <bean id="infoSanteDao" class="com.square.core.dao.implementations.InfoSanteDaoImpl" autowire="byName"/>
+	<bean id="aideDao" class="com.square.core.dao.implementations.AideDaoImplementation" autowire="byName"/>
+	<bean id="modeleEmailDao" class="com.square.core.dao.implementations.ModeleEmailDaoImplementation" autowire="byName"/>
+    <bean id="actionDureeDao" class="com.square.core.dao.implementations.ActionDureeDaoImplementation" autowire="byName"/>
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES AU CONTEXTE SPRING * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    * 
+    * Permet d'avoir accès au contexte Spring depuis un composant non géré par spring.
+    * ex d'utilisation : final ApplicationContext context = ApplicationContextHolder.getContext();
+    *                    Bean nomBean = (Bean) context.getBean("nom_bean");
+    *
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    <bean id="applicationContextHolder"    class="org.scub.foundation.framework.core.spring.ApplicationContextHolder" />
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	*
+	* Déclaration des Services de l'application.
+	*
+	* exemple définition d'un DAO pour l'application :
+	*
+	*	<bean id="messageServiceTarget" class="org.scub.foundation.applicationblanche.noyau.service.implementations.MessageServiceImplementation" autowire="byName"/>
+	*
+    * * * * * * * * * * * * * * *transactionPointcut * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	<bean id="personnePhysiqueService" class="com.square.core.service.implementations.PersonnePhysiqueServiceImplementation" autowire="byName">
+		<property name="paginationExportRecherche" value="${pagination.export.recherche}" />
+	</bean>
+	<bean id="dimensionService" class="com.square.core.service.implementations.DimensionServiceImplementation" autowire="byName"/>
+	<bean id="personneMoraleService" class="com.square.core.service.implementations.PersonneMoraleServiceImplementation" autowire="byName">
+		<property name="paginationExportRecherche" value="${pagination.export.recherche}" />
+	</bean>
+	<bean id="personneService" class="com.square.core.service.implementations.PersonneServiceImplementation" autowire="byName"/>
+	<bean id="campagneService" class="com.square.core.service.implementations.CampagneServiceImplementation" autowire="byName">
+		<property name="paginationExportRecherche" value="${pagination.export.recherche}" />
+	</bean>
+	<!-- Mettre ici la définition des services  --> 
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames"><value>campagneService</value></property>
+		<property name="interceptorNames">
+			<list>
+				<value>securityInterceptor</value>
+			</list>
+		</property>
+	</bean>  
+	<bean id="squareMappingService" class="com.square.core.service.implementations.SquareMappingServiceImplementation" autowire="byName" parent="mappingConfiguration"/>
+	<bean id="actionService" class="com.square.core.service.implementations.ActionServiceImplementation" autowire="byName">
+		<property name="paginationExportRecherche" value="${pagination.export.recherche}" />
+		<property name="expediteurNoReply" value="${expediteur.no.reply}" />
+	</bean>
+	<bean id="opportuniteService" class="com.square.core.service.implementations.OpportuniteServiceImplementation" autowire="byName"/>
+	<bean id="ressourceService" class="com.square.core.service.implementations.RessourceServiceImplementation" autowire="byName">
+		<property name="paginationExportRecherche" value="${pagination.export.recherche}" />
+	</bean>
+	<bean id="agenceService" class="com.square.core.service.implementations.AgenceServiceImplementation" autowire="byName"/>
+    <bean id="aideService" class="com.square.core.service.implementations.AideServiceImplementation" autowire="byName" />
+	<bean id="agendaService" class="com.square.core.service.implementations.AgendaServiceImplementation" autowire="byName" />
+	
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * 
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    	   
+	<!-- Système de monitoring -->
+	<bean id="monitor" class="org.scub.foundation.framework.core.aop.monitoring.MonitoringAdvice">
+		<property name="enableMonitoring" value="${monitoring.enable}"/>
+	</bean>
+
+	<!-- Système de transaction 
+	<tx:advice id="txAdvice" transaction-manager="transactionManager" order="0">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>-->
+	<tx:annotation-driven transaction-manager="transactionManager" order="10"/>	<!-- Permet de positionner des AOPs moins prioritaires -->
+
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.square.core.service.interfaces..*.*(..))"/>
+		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut" order="0"/>-->
+		
+		<aop:aspect id="monitorAspect" ref="monitor">
+			 <aop:pointcut id="monitorPointCut" expression="execution(${monitoring.patterns})"/>
+	         <aop:before pointcut-ref="monitorPointCut" method="before"/>
+	         <aop:after-returning pointcut-ref="monitorPointCut" method="afterReturning"/>
+        </aop:aspect>
+		
+	</aop:config>
+	
+	
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   CONFIG-JMX  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<bean id="rebuildingIndexAgentJmx" class="com.square.core.agent.RebuildingIndexAgentJmx" autowire="byName">
+		<property name="procMasIndexerCandidate">
+			<list>
+				<value>com.square.core.model.Ressources.Ressource</value>
+				<value>com.square.core.model.PersonneMorale</value>
+			</list>
+		</property>
+		<property name="procPpNowAddIntervalHour" value="20"/>
+		<property name="procPpNowSubIntervaleDay" value="1"/>
+		<property name="threadsForSubsequentFetching" value="6"/>
+		<property name="threadsToLoad" value="8"/>	
+		<property name="batchSizeToLoad" value="30"/>
+    </bean>
+    
+	<bean id="desactivationRelationsAgentJmx" class="com.square.core.agent.desactivation.relation.DesactivationRelationsAgentJmx" autowire="byName">
+		<property name="pagination" value="${desactivation.relations.pagination}"/>
+    </bean>
+
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="locateExistingServerIfPossible" value="true"/>
+	</bean>
+	
+	<bean id="exporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="square:agent=rebuildingIndex" value-ref="rebuildingIndexAgentJmx"/>
+				<entry key="square:agent=desactivationRelations" value-ref="desactivationRelationsAgentJmx"/>
+			</map>
+		</property>
+		<property name="server" ref="mbeanServer"/>
+	</bean>
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   CONFIG-QUARTZ  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	
+	<bean id="rebuildingIndexAgentJmxJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.square.core.agent.AgentJmxQuartzJobBean"/>
+		<property name="jobDataAsMap">
+			<map>
+    			<entry key="agentJmx" value-ref="rebuildingIndexAgentJmx"/>
+			</map>
+		</property>
+	</bean>
+	<bean id="agentMessagePublisherJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.square.core.agent.AgentMessagePublisher"/>
+		<property name="jobDataAsMap">
+			<map>
+	    		<entry key="notificateurSquarePlugin" value-ref="notificateurSquarePlugin" />
+	    		<entry key="actionService" value-ref="actionService" />
+	    		<entry key="messageSourceUtil" value-ref="messageSourceUtil" />
+	    		<entry key="url" value="${messagePublisher.url}"/>
+			</map>
+		</property>
+	</bean>
+	<bean id="desactivationRelationsJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.square.core.agent.AgentJmxQuartzJobBean"/>
+		<property name="jobDataAsMap">
+			<map>
+    			<entry key="agentJmx" value-ref="desactivationRelationsAgentJmx"/>
+			</map>
+		</property>
+	</bean>
+	<bean id="rebuildingIndexAgentJmxCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"><ref bean="rebuildingIndexAgentJmxJobDetail"/></property>
+		<!-- Tâche lancée tous les jours à une certaine heure -->
+		<property name="cronExpression"><value>${rebuildingIndexAgentJmx.cron.expression}</value></property>
+	</bean>	
+	<bean id="agentMessagePublisherCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"><ref bean="agentMessagePublisherJobDetail"/></property>
+		<!-- Tâche lancée tous les jours à une certaine heure -->
+		<property name="cronExpression"><value>${agentMessagePublisher.cron.expression}</value></property>
+	</bean>	
+	<bean id="desactivationRelationsAgentJmxCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"><ref bean="desactivationRelationsJobDetail"/></property>
+		<!-- Tâche lancée tous les jours à une certaine heure -->
+		<property name="cronExpression"><value>${desactivationRelationsAgentJmx.cron.expression}</value></property>
+	</bean>	
+	<!-- Tâche qui lance les différents tâches -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="rebuildingIndexAgentJmxCronTrigger"/>
+				<ref bean="agentMessagePublisherCronTrigger"/>
+				<ref bean="desactivationRelationsAgentJmxCronTrigger"/>
+			</list>
+		</property>
+	</bean>
+
+
+</beans>

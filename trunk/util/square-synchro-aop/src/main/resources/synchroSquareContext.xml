@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+    
+      <bean id="messageSourceUtil" class="org.scub.foundation.framework.core.messagesource.MessageSourceUtil">
+    	<property name="messageSource" ref="messageSource"/>
+    	<property name="messageSourceDetails" ref="messageSourceDetails"/>
+    </bean>
+ 
+	<!--<bean id="synchroAiaAdvice" class="com.square.synchro.aop.SynchroAiaAdvice" autowire="byName"/>
+	<bean id="creerEspaceClientAdvice" class="com.square.synchro.aop.CreerEspaceClientAdvice" autowire="byName"/>
+	--><aop:config><!--
+		<aop:pointcut id="synchroCoordsAiaAdvicePointcut" expression="execution(* com.square.core.service.interfaces.PersonneService.creerOuMettreAJourCoordonnees(..))" />
+		<aop:pointcut id="synchroAjoutAdresseAiaAdvicePointcut" expression="execution(* com.square.core.service.interfaces.PersonneService.ajouterNouvelleAdresse(..))" />
+		<aop:pointcut id="synchroPersonneAiaAdvicePointcut" expression="execution(* com.square.core.service.interfaces.PersonnePhysiqueService.modifierPersonnePhysique(..))" />
+		<aop:pointcut id="creerEspaceClientCreerPersonnePointcut" expression="execution(* com.square.core.service.interfaces.PersonnePhysiqueService.creerPersonnePhysique(..))" />
+		<aop:pointcut id="creerEspaceClientCreerPersonnePointcut2" expression="execution(* com.square.core.service.interfaces.PersonnePhysiqueService.creerPersonnePhysiqueGestionVivier(..))" />
+		<aop:pointcut id="creerEspaceClientModifierPersonnePointcut" expression="execution(* com.square.core.service.interfaces.PersonnePhysiqueService.modifierPersonnePhysique(..))" />
+		<aop:pointcut id="creerEspaceClientTransfoVivierPointcut" expression="execution(* com.square.core.service.interfaces.PersonnePhysiqueService.transformerVivierEnProspect(..))" />
+
+		<aop:aspect ref="synchroAiaAdvice" order="0">
+			<aop:around pointcut-ref="synchroCoordsAiaAdvicePointcut" method="synchroniserCoordonnees"/>
+			<aop:around pointcut-ref="synchroPersonneAiaAdvicePointcut" method="synchroniserPersonne"/>
+			<aop:around pointcut-ref="synchroAjoutAdresseAiaAdvicePointcut" method="synchroniserAjoutAdresse"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="creerEspaceClientAdvice" order="0">
+			<aop:after-returning pointcut-ref="creerEspaceClientCreerPersonnePointcut" method="creationPersonne" returning="returnValue"/>
+			<aop:after-returning pointcut-ref="creerEspaceClientCreerPersonnePointcut2" method="creationPersonne" returning="returnValue"/>
+			<aop:after-returning pointcut-ref="creerEspaceClientModifierPersonnePointcut" method="modificationPersonne" returning="returnValue"/>
+			<aop:around pointcut-ref="creerEspaceClientTransfoVivierPointcut" method="transformationVivier"/>
+		</aop:aspect>
+	--></aop:config>
+	
+</beans>	

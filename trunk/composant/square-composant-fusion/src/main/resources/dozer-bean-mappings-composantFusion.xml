@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+    <configuration>
+        <date-format>dd/MM/yyyy</date-format>
+    </configuration>
+
+    <mapping>
+        <class-a>com.square.core.model.dto.PersonneSimpleDto</class-a>
+        <class-b>com.square.composant.fusion.square.client.model.RechercheDoublonResultatModel</class-b>
+        <field>
+            <a>codePostalCommune.codePostal.libelle</a>
+            <b>codePostal</b>
+        </field>
+        <field>
+            <a>codePostalCommune.libelleAcheminement</a>
+            <b>commune</b>
+        </field>
+        <field>
+            <a>nature.libelle</a>
+            <b>nature</b>
+        </field>
+    </mapping>
+</mappings>

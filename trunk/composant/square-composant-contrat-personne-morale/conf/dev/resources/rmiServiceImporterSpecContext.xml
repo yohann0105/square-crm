@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  ACCES SERVICE EXTERNE COMMUN * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+	*<bean id="messageService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+	*		<property name="serviceUrl" value="rmi://localhost:1099/scub-foundation-example-core/messageService"/>
+	*		<property name="serviceInterface" value="org.scub.foundation.example.core.service.interfaces.MessageService"/>
+	*		<property name="refreshStubOnConnectFailure" value="true"/>
+	*	    <property name="lookupStubOnStartup" value="false"/>			
+	*		<property name="remoteInvocationFactory" ref="exampleCoreRemoteInvocationFactory"/>
+	*</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+	<bean id="contratService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/contratService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.ContratService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="adherentMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/square-adherent-core/adherentMappingService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentMappingService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+	    <property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="grillePrestationMappingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/smatis-grilles-prestation-noyau/grillePrestationMappingService"/>
+		<property name="serviceInterface" value="com.smatis.grilles.prestation.noyau.service.interfaces.GrillePrestationMappingService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+	<bean id="grillePrestationEditiqueService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1099/smatis-grilles-prestation-noyau/grillePrestationEditiqueService"/>
+		<property name="serviceInterface" value="com.smatis.grilles.prestation.noyau.service.interfaces.GrillePrestationEditiqueService"/>
+		<property name="refreshStubOnConnectFailure" value="true"/>
+		<property name="lookupStubOnStartup" value="false"/>
+		<property name="cacheStub" value="false"/>
+	</bean>
+
+</beans>

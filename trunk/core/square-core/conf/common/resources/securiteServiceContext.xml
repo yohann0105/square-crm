@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.xsd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    *	- Vous devez dans ce fichier definir les droits des utilisateurs sur chacun des services dans le bean global-method-security dans la propriété protect-pointcut.
+    *     Pour cela, rajouter la ligne suivante :
+    *                <sec:protect-pointcut expression="execution(* org.scub.foundation.example.core.service.interfaces.MessageService.*(..))" access="${pom.artifactId}_user"/>      
+    *   - L'authentification se fait par le rôle de l'utilisateur.
+    *   - Vous pouvez dans ce fichier définir le préfixe du rôle autorisé.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref bean="authenticationProvider"/>
+				<ref bean="runAsAuthenticationProvider"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>	<!-- le vote se fait via le rôle de l'utilisateur -->
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.vote.RoleVoter">
+		<property name="rolePrefix" value="ROLE_"/>
+	</bean>
+	
+	<bean id="runAsAuthenticationProvider" class="org.springframework.security.runas.RunAsImplAuthenticationProvider">
+        <property name="key"><value>${runAsKey.local}</value></property>
+    </bean>
+	
+	
+	<bean id="securityInterceptor" class="org.springframework.security.intercept.method.aopalliance.MethodSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="objectDefinitionSource">			
+			<value>				
+				com.square.core.service.interfaces.ActionService.*=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.CampagneService.creerCampagne*=ROLE_SQUARE_CAMPAGNE, ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.CampagneService.modifierCampagne*=ROLE_SQUARE_CAMPAGNE, ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.OpportuniteService.*=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonneMoraleService.*=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonnePhysiqueService.creerPersonnePhysique=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonnePhysiqueService.creerUneCopiePersonne=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.DimensionService.getRessourceConnectee=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonneService.rechercherAdresseSimpleParIdPersonne=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonneService.creerRelation=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonneService.modifierRelation=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonneService.modifierRelations=ROLE_SQUARE,  ROLE_RUN_AS_server
+		  		com.square.core.service.interfaces.PersonneService.creerOuMettreAJourCoordonnees=ROLE_SQUARE,  ROLE_RUN_AS_server			
+			</value>		
+		</property>
+	</bean>
+
+</beans>

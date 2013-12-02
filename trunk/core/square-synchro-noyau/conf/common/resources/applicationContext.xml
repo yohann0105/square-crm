@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP MONITORING * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas editer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle.
+	* - vous pouvez paramétrer le monitoring via le ficheir monitoringContext.xml de chaque environement.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * AOP AFTER THROWING ADVICE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    * 
+    * Cette Aop intercepte les exceptions du noyau (StaleObjectStateException) affin de transtyper l'exception.
+	* - vous pouvez editer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+	<bean id="afterThrowingAdvice" class="org.scub.foundation.framework.core.aop.afterthrowing.AfterThrowingAdvice"/>
+	<bean id="afterThrowingPointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+		<property name="pattern" value=".*service.interfaces.*Service*.*"/>
+	</bean>
+	<bean id="afterThrowingAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="afterThrowingAdvice"/>
+		<property name="pointcut" ref="afterThrowingPointCut"/>
+	</bean>
+	
+	    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES AU CONTEXTE SPRING * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Permet d'avoir accès au contexte Spring depuis un composant non géré par spring.
+	* ex d'utilisation : final ApplicationContext context = ApplicationContextHolder.getContext();
+    *                    Bean nomBean = (Bean) context.getBean("nom_bean");
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	<bean id="applicationContextHolder"	class="org.scub.foundation.framework.core.spring.ApplicationContextHolder" />
+
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MESSAGE SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+	* Gestion des messages de l'applications.
+	* - le bean messageSourceDetails peut être configuré voir javadoc ou vous pouvez utilisez
+	*    votre propre implémentation pour gérer vous même la récupération des informations du Locale de l'application.
+	* - Vous pouvez rajouter d'autres fichiers à la liste des budles du bean messageSource selon les besoins de votre applications. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="messageSourceUtil" class="org.scub.foundation.framework.core.messagesource.MessageSourceUtil">
+    	<property name="messageSource" ref="messageSource"/>
+    	<property name="messageSourceDetails" ref="messageSourceDetails"/>
+    </bean>
+    
+    <bean id="messageSourceDetails" class="org.scub.foundation.framework.core.messagesource.StaticMessageSourceDetails"/>
+       
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+	          <!-- Vous pouvez ajouter autant de fichier en fonction des besoins de votre application -->
+			  <value>classpath:message</value>
+			  <value>classpath:messageError</value>
+			</list>
+		</property>
+	</bean>	
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * CONFIGURATION DOZER * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas editer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+   
+   	<!-- Configuration Dozer ne pas editer la structure du bean -->	
+	<bean id="mapperDozerBean" class="org.scub.foundation.framework.base.mapping.util.MapperDozerFactoryBean">
+		  <property name="mappingFiles">
+		    <list>		  
+		      <value>dozer-bean-mappings.xml</value>
+		    </list>
+		  </property>
+	</bean>
+   
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * DATA-SOURCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	* Ne pas editer le bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean"/>
+	
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="userTransaction"><ref local="jotm"/></property>
+	</bean>
+    
+    <bean id="dataSource" class="org.enhydra.jdbc.pool.StandardXAPoolDataSource">
+	   <property name="dataSource">
+	      <bean class="org.enhydra.jdbc.standard.StandardXADataSource">
+	      	 <property name="transactionManager"><ref local="jotm"/></property>
+	         <property name="driverName" value="${database.connection.driver_class}" />
+	         <property name="url" value="${database.connection.url}" />
+	      </bean>
+	   </property>
+	   <property name="user" value="${database.connection.username}"/>
+	   <property name="password" value="${database.connection.password}"/>
+	</bean>
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *SESSION-FACTORY * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+	*  - Vous devez dans cette partie ajouter l'ensemble des classes persistentes.
+	*  - Ne pas editer la structure du bean si vous avez besoin d'une propriété supplémentaire il faut revoir la conception du socle. 
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+   			<property name="dataSource"><ref bean="dataSource"/></property>
+   			<property name="jtaTransactionManager" ref="jotm"/>
+ 			<property name="useTransactionAwareDataSource" value="true"/>
+			<property name="annotatedClasses">
+				<list>
+					<value>com.square.synchro.app.noyau.modele.SynchroAppTableCrsp</value>
+				</list>
+			</property>
+			<property name="hibernateProperties">
+        		<props>
+		 			<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+		 			<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+		 			<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+		 			<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+		 			<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	 				<prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+	 				<prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+       		</props>
+	       	</property>
+	       	 <property name="eventListeners">
+				<map>
+					<entry key="post-update">
+						<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+					</entry>
+					<entry key="post-insert">
+						<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+					</entry>
+					<entry key="post-delete">
+						<bean class="org.hibernate.search.event.FullTextIndexEventListener"/>
+					</entry>
+				</map>
+			</property>
+ 	</bean>
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  DAO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	* 
+	* Déclaration des DAO de l'application.
+	* ATTENTION :  ne pas editer le bean daoSupport nécéssaire au fonctionement de l'application.
+	*
+	* exemple définition d'un dao pour l'application :
+	*
+	* <bean id="messageDao" class="org.scub.foundation.applicationblanche.noyau.dao.implementations.MessageDaoImplementation" autowire="byName"/>
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    <bean id="daoSupport" class="org.scub.foundation.framework.core.dao.implementations.HibernateDaoBaseSupportImplementation">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	<bean id="synchroAppTableCrspDao" class="com.square.synchro.app.noyau.dao.implementations.SynchroAppTableCrspDaoImpl" autowire="byName"/>
+
+    <!-- Mettre ici la définition des daos -->
+    
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	*      
+	*	<bean id="messageServiceTarget" class="org.scub.foundation.applicationblanche.noyau.service.implementations.MessageServiceImplementation" autowire="byName"/>
+	*		<bean id="messageService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+	*	    	<property name="transactionManager" ref="transactionManager"/>
+	*	    	<property name="target" ref="messageServiceTarget"/>
+	*			<property name="transactionAttributes">
+	*				<props>
+	*					<prop key="*">PROPAGATION_SUPPORTS, readOnly</prop>
+	*				</props>
+	*			</property>
+	*			<property name="preInterceptors">
+	*				<list>
+	*					<ref bean="securityInterceptor"/>
+	*				</list>
+	*			</property>
+	*	</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+    
+    <bean id="synchroAppJmsSenderTarget" class="com.square.synchro.app.noyau.services.implementations.SynchroAppJmsSenderImpl" autowire="byName"/>
+	<bean id="synchroAppJmsSender" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    	<property name="transactionManager" ref="transactionManager"/>
+    	<property name="target" ref="synchroAppJmsSenderTarget"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

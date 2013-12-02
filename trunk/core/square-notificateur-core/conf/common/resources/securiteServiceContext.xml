@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.xsd">
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * SECURITE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    *
+    *	- Vous devez dans ce fichier definir les droits des utilisateurs sur chacun des services dans le bean global-method-security dans la propriété protect-pointcut.
+    *     Pour cela, rajouter la ligne suivante :
+    *                <sec:protect-pointcut expression="execution(* org.scub.foundation.example.core.service.interfaces.MessageService.*(..))" access="${pom.artifactId}_user"/>      
+    *   - L'authentification se fait par le rôle de l'utilisateur.
+    *   - Vous pouvez dans ce fichier définir le préfixe du rôle autorisé.
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	
+	<sec:authentication-manager alias="authenticationManager"/>
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>	<!-- le vote se fait via le rôle de l'utilisateur -->
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.vote.RoleVoter">
+		<property name="rolePrefix" value="${pom.artifactId}_"/>
+	</bean>
+	
+	<bean id="runAsAuthenticationProvider" class="org.springframework.security.runas.RunAsImplAuthenticationProvider">
+		<sec:custom-authentication-provider />
+        <property name="key"><value>${runAsKey.local}</value></property>
+    </bean>
+	
+	<sec:global-method-security access-decision-manager-ref="accessDecisionManager">
+  		<!-- Exemple de configuration
+  		<sec:protect-pointcut expression="execution(* com.square.notificateur.*.service.interfaces..*.*(..))" access="${pom.artifactId}_user, ${pom.artifactId}_${runAs.role}"/> -->
+	</sec:global-method-security>
+
+</beans>

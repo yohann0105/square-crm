@@ -1,0 +1,108 @@
+/************** General **************/
+/* Permet de ne pas encadrer le texte de pointillé au clic sur un lien */
+*{outline: none;}
+
+@if user.agent ie6 ie8 ie9 {
+	body {text-align: center}
+	.panelPrincipal {width: 950px; margin: 0 auto; text-align: left}
+}
+@if user.agent gecko1_8 gecko safari opera {
+	.panelPrincipal {margin: 0 auto;}
+}
+.remotePagingTable-pagination {padding-top: 8px}
+.libelleMoteurRecherche {font-weight: bold}
+.heureDate .gwt-TextBox {width: 55px !important}
+.labelExportExcel {color: #7fbd38; cursor: pointer; font-weight: bold; font-size: 1.2em}
+.imageExportExcel {cursor: pointer}
+.suggestListBoxRaye {text-decoration: line-through}
+
+/************** SuggestBoxPopup **************/
+.gwt-SuggestBoxPopup {margin-top: 3px}
+@if user.agent ie6 ie8 ie9 {
+	.gwt-SuggestBoxPopup .suggestPopupContent {line-height: 1px; height: literal("expression( Math.min(parseInt(this.offsetHeight), 320)"); overflow-y: auto; overflow-x: hidden; padding-right: 18px;}
+	.gwt-SuggestBoxPopup .suggestPopupTopCenter {border: 2px solid green; background: url(images/hborder.png) repeat-x 0px -12px;}
+	.gwt-SuggestBoxPopup .suggestPopupBottomCenter {background: url(images/hborder_ie6.png) repeat-x 0px -13px;}
+} @else {
+	.gwt-SuggestBoxPopup .suggestPopupContent {height: auto !important; max-height: 320px; overflow-y: auto; overflow-x: hidden; padding-right: 18px;}
+	.gwt-SuggestBoxPopup .suggestPopupTopCenter {background: url(images/hborder.png) repeat-x 0px -24px;}
+	.gwt-SuggestBoxPopup .suggestPopupBottomCenter {background: url(images/hborder.png) repeat-x 0px -13px;}
+}
+.gwt-SuggestBoxPopup .suggestPopupMiddleLeft {background: url(images/vborder.png) repeat-y -12px 0px}
+.gwt-SuggestBoxPopup .suggestPopupMiddleRight {background: url(images/vborder.png) repeat-y -13px 0px; -background: url(images/vborder_ie6.png) repeat-y -13px 0px}
+.gwt-SuggestBoxPopup .suggestPopupTopLeft {background: url(images/corner.png) no-repeat 0px -36px; -background: url(images/corner_ie6.png) no-repeat 0px -36px}
+.gwt-SuggestBoxPopup .suggestPopupTopRight {background: url(images/corner.png) no-repeat -5px -36px; -background: url(images/corner_ie6.png) no-repeat -5px -36px}
+.gwt-SuggestBoxPopup .suggestPopupBottomLeft {background: url(images/corner.png) no-repeat 0px -41px; -background: url(images/corner_ie6.png) no-repeat 0px -41px}
+.gwt-SuggestBoxPopup .suggestPopupBottomRight {background: url(images/corner.png) no-repeat -5px -41px; -background: url(images/corner_ie6.png) no-repeat -5px -41px}
+
+/************** DecoratedTabBar **************/
+.gwt-DecoratedTabBar .gwt-TabBarFirst {display: none; width: 0}
+.gwt-DecoratedTabBar .gwt-TabBarRest {background: url(themes/default/images/onglets/onglet_unselect.gif) repeat-x}
+.gwt-DecoratedTabBar .gwt-TabBarItem {padding: 0 8px; text-decoration: none; cursor: pointer; background: url(themes/default/images/onglets/onglet_unselect.gif) repeat-x; border: 1px outset #ccc; height: 24px}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected {background: url(themes/default/images/onglets/onglet_select.gif) repeat-x}
+
+/************** Button **************/
+.gwt-ButtonTab {cursor: pointer; background: url('themes/default/images/onglets/onglet_close_button.gif') 0 1px no-repeat ; border: 0; padding: 0; margin: 0 0 0 5px; height: 12px; width: 12px}
+
+/************** ListGrid **************/
+.gwt-ListGrid .gwt-ListGridField-selected {background: #c9d200}
+.gwt-ListGrid .gwt-ListGridField-hover {background: #c9d200}
+
+/************** SuggestListBoxSinglePopup **************/
+@if user.agent ie6 ie8 ie9 {
+	.gwt-SuggestListBoxSinglePopup .popupTopCenter {line-height: 1px; background: url(images/hborder_ie6.png) repeat-x 0px -11px;}
+	.gwt-SuggestListBoxSinglePopup .popupBottomCenter {background: url(images/hborder_ie6.png) repeat-x 0px -13px;}
+	.gwt-SuggestListBoxSinglePopup .popupMiddleLeft {background: url(images/vborder_ie6.png) repeat-y -12px 0px;}
+	.gwt-SuggestListBoxSinglePopup .popupMiddleRight {background: url(images/vborder_ie6.png) repeat-y -13px 0px;}
+	.gwt-SuggestListBoxSinglePopup .popupTopLeft {line-height: 1px; background: url(images/corner_ie6.png) no-repeat 0px -36px;}
+	.gwt-SuggestListBoxSinglePopup .popupTopRight {line-height: 1px; background: url(images/corner_ie6.png) no-repeat -5px -36px;}
+	.gwt-SuggestListBoxSinglePopup .popupBottomLeft {background: url(images/corner_ie6.png) no-repeat 0px -41px;}
+	.gwt-SuggestListBoxSinglePopup .popupBottomRight {background: url(images/corner_ie6.png) no-repeat -5px -41px;}
+} @else {
+	.gwt-SuggestListBoxSinglePopup .popupTopCenter {background: url(images/hborder.png) repeat-x 0px -12px;}
+	.gwt-SuggestListBoxSinglePopup .popupBottomCenter {background: url(images/hborder.png) repeat-x 0px -13px;}
+	.gwt-SuggestListBoxSinglePopup .popupMiddleLeft {background: url(images/vborder.png) repeat-y -12px 0px;}
+	.gwt-SuggestListBoxSinglePopup .popupMiddleRight {background: url(images/vborder.png) repeat-y -13px 0px;}
+	.gwt-SuggestListBoxSinglePopup .popupTopLeft {background: url(images/corner.png) no-repeat 0px -36px;}
+	.gwt-SuggestListBoxSinglePopup .popupTopRight {background: url(images/corner.png) no-repeat -5px -36px;}
+	.gwt-SuggestListBoxSinglePopup .popupBottomLeft {background: url(images/corner.png) no-repeat 0px -41px;}
+	.gwt-SuggestListBoxSinglePopup .popupBottomRight {background: url(images/corner.png) no-repeat -5px -41px;}
+}
+
+/************** Pages **************/
+.panelActions{}
+.personneCoordonnees {}
+.blocCreationEnfant {}
+.personnePhysiqueGestion {}
+.personnePhysiqueGestionSynthese {}
+.personnePhysiqueGestionTabPanel {}
+.personneMoraleGestionTabPanel {}
+.personnePhysiqueMoteurRecherche {}
+.personneMoraleMoteurRecherche {}
+.campagneMoteurRecherche {}
+.actionsMoteurRecherche {}
+.campagneGestion {}
+.personneMoraleGestion {}
+
+/************** Barre d'onglets **************/
+.barreOnglets {margin: 0px; padding: 0px}
+.barreOnglets .ongletsStatiques {margin: 0px}
+.barreOnglets .ongletsDynamiques {margin: 0px}
+.barreOnglets .ongletsDynamiques .scrollPanel {margin: 0px; float: left}
+.descriptifReadOnly {background-color: white; border: solid 1px black; padding: 10px}
+
+/******************* Popup de sélection de doublon lors de la création d'une personne ****************************/
+.popupTableDoublons {border: 1px solid #AAA; background-color: #fff; border-collapse: separate; margin-top: 5px; overflow-y: scroll}
+.titreColonneTableDoublon {background: url(images/hborder.png) repeat-x 0px -30px; color: #444; font-weight: bold; text-align: center; white-space: nowrap; border: 1px solid #AAA}
+.celluleClaireTableDoublon {background-color: #ffffff}
+.celluleSombreTableDoublon {background-color: #eeeeee}
+
+/************** Fiche Action **************/
+.headerEnteteAction {font-size: 16px}
+.labelReclamation {color: red; font-weight: bold}
+
+/***************** Panel Erreurs Integrite *********/
+.panelErreursIntegrite {color: red}
+
+/***************** Onglet relation *********/
+.blocRelationTerminee {background-color: lightgrey !important}
+.lienActivationRelation {cursor: pointer}
