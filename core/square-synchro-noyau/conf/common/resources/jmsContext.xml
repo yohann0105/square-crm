@@ -1,0 +1,147 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">    
+    
+    <bean id="jmsConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="${jms.server.queue.connection.factory.jndi.name}"/>
+    	<property name="jndiEnvironment">
+    		<props>
+    			<prop key="java.naming.factory.initial">fr.dyade.aaa.jndi2.client.NamingContextFactory</prop>
+    			<prop key="java.naming.factory.host">${java.naming.factory.host}</prop>
+    			<prop key="java.naming.factory.port">${java.naming.factory.port}</prop>
+    		</props>
+    	</property>	
+    </bean>
+    
+    <bean id="queueSmatisDmq" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="${jms.destination.dmq.name}"/>
+        <property name="jndiEnvironment">
+            <props>
+                <prop key="java.naming.factory.initial">fr.dyade.aaa.jndi2.client.NamingContextFactory</prop>
+                <prop key="java.naming.factory.host">${java.naming.factory.host}</prop>
+                <prop key="java.naming.factory.port">${java.naming.factory.port}</prop>
+            </props>
+        </property>
+    </bean>
+
+	<bean id="jmsSmatisDmqSender" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+        <property name="defaultDestination" ref="queueSmatisDmq"/>
+        <property name="sessionTransacted" value="true"/>
+	</bean>
+
+   	<bean id="topicSynchroApp" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="${jms.destination.topic.name.synchro_app}"/>
+    	<property name="jndiEnvironment">
+    		<props>
+    			<prop key="java.naming.factory.initial">fr.dyade.aaa.jndi2.client.NamingContextFactory</prop>
+    			<prop key="java.naming.factory.host">${java.naming.factory.host}</prop>
+    			<prop key="java.naming.factory.port">${java.naming.factory.port}</prop>
+    		</props>
+    	</property>	
+    </bean>
+    
+    <bean id="topicSynchroAppSender" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory"/>
+		<property name="defaultDestination" ref="topicSynchroApp"/>
+		<property name="sessionTransacted" value="true"/>
+	</bean>
+
+	<bean id="synchroAppSquareMdp" class="com.square.synchro.app.noyau.jms.mdp.SynchroAppSquareMdp">
+		<property name="personnePhysiqueService" ref="personnePhysiqueServiceSquare"/>
+		<property name="squareMappingService" ref="squareMappingService"/>
+		<property name="synchroAppTableCrspDao" ref="synchroAppTableCrspDao"/>
+		<property name="actionServiceSquare" ref="actionServiceSquare"/>
+		<property name="jmsSmatisDmqSender" ref="jmsSmatisDmqSender"/>
+		<property name="ressourceService" ref="ressourceService"/>
+		<property name="emailService" ref="emailService"/>
+		<property name="emailMappingService" ref="emailMappingService"/>
+		<property name="utilisateurService" ref="utilisateurService"/>
+		<property name="utilisateurMappingService" ref="utilisateurMappingService"/>
+		<property name="agenceService" ref="agenceService"/>
+		<property name="dimensionService" ref="dimensionService"/>
+		<property name="agenceSquareService" ref="agenceSquareService"/>
+		<property name="mapperDozerBean" ref="mapperDozerBean"/>
+		<property name="lienConsultationMail" value="${url.lien.email}"/>
+	</bean>
+	
+	<bean id="synchroAppSquareMdpAgentJmx" class="org.scub.foundation.framework.core.jms.JmsAgentJmxMessageListenerContainer">
+	    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+	    <property name="destination" ref="topicSynchroApp"/>
+	    <property name="messageListener" ref="synchroAppSquareMdp"/>
+	    <property name="messageSelector" value="MSG_HEADER_SYNCHRO_ORIGINE= 'GESTIONMAILS_SEND_MAIL'
+	    	OR MSG_HEADER_SYNCHRO_ORIGINE= 'HABILITATIONS_UPDATE_UTILISATEUR'
+	    	OR MSG_HEADER_SYNCHRO_ORIGINE= 'HABILITATIONS_ACTIVER_UTILISATEUR'
+	    	OR MSG_HEADER_SYNCHRO_ORIGINE= 'HABILITATIONS_CREATEORUPDATE_AGENCE'
+	    	OR MSG_HEADER_SYNCHRO_ORIGINE= 'HABILITATIONS_SUPPRIMER_AGENCE'"></property>
+	    <property name="transactionManager" ref="transactionManager"/>
+	    <property name="sessionTransacted" value="true"/>
+	    <property name="subscriptionDurable" value="true"/>
+	</bean><!--
+
+	<bean id="synchroAppAiaMdp" class="com.square.synchro.app.noyau.jms.mdp.SynchroAppAiaMdp">
+		<property name="jmsSmatisDmqSender" ref="jmsSmatisDmqSender"/>
+		<property name="aiaService" ref="aiaService"/>
+		<property name="tarificateurService" ref="tarificateurService"/>
+		<property name="tarificateurPersonneService" ref="tarificateurPersonneService"/>
+		<property name="tarificateurSquareMappingService" ref="tarificateurSquareMappingService"/>
+		<property name="squareMappingService" ref="squareMappingService"/>
+		<property name="tarificateurMappingService" ref="tarificateurMappingService"/>
+		<property name="produitService" ref="produitService"/>
+		<property name="personnePhysiqueService" ref="personnePhysiqueServiceSquare"/>
+		<property name="personneService" ref="personneServiceSquare"/>
+		<property name="utilisateurService" ref="utilisateurService"/>
+		<property name="ressourceService" ref="ressourceService"/>
+		<property name="dimensionService" ref="dimensionService"/>
+		<property name="contratService" ref="contratService"/>
+		<property name="actionServiceSquare" ref="actionServiceSquare"/>
+		<property name="constantesAiaUtil" ref="constantesAiaUtil"/>
+	</bean>
+	<bean id="synchroAppAiaMdpAgentJmx" class="org.scub.foundation.framework.core.jms.JmsAgentJmxMessageListenerContainer">
+	    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+	    <property name="destination" ref="topicSynchroApp"/>
+	    <property name="messageListener" ref="synchroAppAiaMdp"/>
+	    <property name="messageSelector" value="MSG_HEADER_SYNCHRO_ORIGINE= 'SQUARE_TRANSFO_AIA'"></property>
+	    <property name="transactionManager" ref="transactionManager"/>
+	    <property name="sessionTransacted" value="true"/>
+	    <property name="subscriptionDurable" value="true"/>
+	</bean>
+	-->
+	<bean id="synchroAppSquareGedMdp" class="com.square.synchro.app.noyau.jms.mdp.SynchroAppSquareGedMdp" autowire="byName">
+		<property name="lienConsultationMail" value="${url.lien.email}"/>
+	</bean>
+	
+	<bean id="synchroAppSquareGedMdpAgentJmx" class="org.scub.foundation.framework.core.jms.JmsAgentJmxMessageListenerContainer">
+	    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+	    <property name="destination" ref="topicSynchroApp"/>
+	    <property name="messageListener" ref="synchroAppSquareGedMdp"/>
+	    <property name="messageSelector" value="MSG_HEADER_SYNCHRO_ORIGINE= 'MSOH_SQUARE_GED_IMPMAIL_DEVIS'
+	    	OR MSG_HEADER_SYNCHRO_ORIGINE= 'MSOH_SQUARE_GED_FUSION_DOCUMENT'"></property>
+	    <property name="transactionManager" ref="transactionManager"/>
+	    <property name="sessionTransacted" value="true"/>
+	    <property name="subscriptionDurable" value="true"/>
+	</bean>
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   JMX * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   *      
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="locateExistingServerIfPossible" value="true"/>
+	</bean>
+	<bean id="exporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="smatis:jms-mdp=synchroAppSquareMdpAgentJmx" value-ref="synchroAppSquareMdpAgentJmx"/>
+				<!--<entry key="smatis:jms-mdp=synchroAppAiaMdpAgentJmx" value-ref="synchroAppAiaMdpAgentJmx"/>-->
+				<entry key="smatis:jms-mdp=synchroAppSquareGedMdpAgentJmx" value-ref="synchroAppSquareGedMdpAgentJmx"/>
+			</map>
+		</property>
+		<property name="server" ref="mbeanServer"/>
+	</bean>
+
+</beans>

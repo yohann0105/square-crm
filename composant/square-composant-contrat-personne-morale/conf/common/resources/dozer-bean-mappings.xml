@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<mapping>
+		<class-a>com.square.adherent.noyau.dto.adherent.contrat.InfosPaiementDto</class-a>
+		<class-b>com.square.composant.contrat.personne.morale.square.client.model.InfosPaiementModel</class-b>
+		<field>
+			<a>moyenPaiement</a>
+			<b>moyenPaiementCotis</b>
+		</field>
+		<field>
+			<a>frequencePaiement</a>
+			<b>frequencePaiementCotis</b>
+		</field>
+	</mapping>
+                   
+</mappings>

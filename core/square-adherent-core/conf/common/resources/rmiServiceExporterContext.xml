@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ACCES DISTANT AUX SERVICES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *  
+    *   - EXEMPLE : EXPORT VIA RMI -
+    *
+	*	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	*		<property name="serviceName" value="${pom.artifactId}/MessageService"/>
+	*		<property name="service" ref="messageService"/>
+	*		<property name="serviceInterface" value="org.scub.foundation.applicationblanche.noyau.service.interfaces.MessageService"/>
+	*		<property name="registryPort" value="1099"/>
+	*	</bean>
+	*
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   -->
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/adherentMappingService"/>
+		<property name="service" ref="adherentMappingService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentMappingService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/adherentService"/>
+		<property name="service" ref="adherentService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.AdherentService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/prestationService"/>
+		<property name="service" ref="prestationService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.PrestationService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/espaceClientInternetService"/>
+		<property name="service" ref="espaceClientInternetService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.EspaceClientInternetService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/relevePrestationService"/>
+		<property name="service" ref="relevePrestationService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.RelevePrestationService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/contratService"/>
+		<property name="service" ref="contratService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.ContratService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/userDetailAdherentSmatisService"/>
+		<property name="service" ref="userDetailAdherentSmatisService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.UserDetailAdherentSmatisService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/magazineService"/>
+		<property name="service" ref="magazineService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.MagazineService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/cotisationService"/>
+		<property name="service" ref="cotisationService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.CotisationService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="${pom.artifactId}/banqueService"/>
+		<property name="service" ref="banqueService"/>
+		<property name="serviceInterface" value="com.square.adherent.noyau.service.interfaces.BanqueService"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+
+</beans>

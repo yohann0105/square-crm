@@ -1,0 +1,77 @@
+/***************** GLOBAL *****************/
+.composantTarificateur {background-color: #9ed3f5;}
+.composantTarificateur .aucunDevis {font-weight: bold; font-style: italic;}
+.composantTarificateur fieldset {border: 1px solid grey; background-color: #E3F3FC;}
+.composantTarificateur .labelReclamation {color: red; font-weight: bold;}
+
+/***************** FICHE DEVIS *****************/
+.ficheDevis {border: 1px solid #666; margin: 5px 0; background-color: #fff; background-color: #E3F3FC;}
+.ficheDevis .blocEnteteDevis .finaliteAcceptee, .ficheDevis .blocEnteteDevis .finaliteRefusee,
+.ficheDevis .blocEnteteDevis .finaliteCorbeille, .ficheDevis .blocEnteteDevis .finaliteNonRenseignee {border: 1px solid #999; padding: 5px; font-weight: bold;}
+
+/***************** FINALITES *****************/
+.ligneDevis .enteteLignePrincipale .finaliteAcceptee, .ficheDevis .blocEnteteDevis .finaliteAcceptee {background-color: #47D147;}
+.ligneDevis .enteteLignePrincipale .finaliteRefusee, .ficheDevis .blocEnteteDevis .finaliteRefusee {background-color: #FF7070;}
+.ligneDevis .enteteLignePrincipale .finaliteCorbeille, .ficheDevis .blocEnteteDevis .finaliteCorbeille {background-color: #B3B3B3;}
+.ligneDevis .enteteLignePrincipale .finaliteNonRenseignee, .ficheDevis .blocEnteteDevis .finaliteNonRenseignee {background-color: #668CFF;}
+
+/***************** FICHE LIGNE DEVIS *****************/
+.ligneDevis  {margin: 5px 0;}
+.ligneDevis .legendeNonVendu {margin: 5px 0;}
+.ligneDevis .legendeNonVendu .caseCouleurNonVendu {width: 18px; height: 4px; background-color: red;}
+.ligneDevis .enteteLignePrincipale .important {font-weight: bold;}
+.ligneDevis .enteteLignePrincipale {border-collapse: collapse; border: 1px solid #999; border-bottom: none;}
+.ligneDevis .tableauLignesDevis {border-collapse: collapse;}
+.ligneDevis .tableauLignesDevis td {border: 1px solid #999; padding: 4px 5px; background-color: #fff;}
+.ligneDevis .tableauLignesDevis .tableauLignesDevisEntete {padding: 5px; background: url(images/hborder.png) repeat-x 0px -27px; color: #444; font-weight: bold; text-align: center; white-space: nowrap;}
+.ligneDevis .tableauLignesDevis .produitSansTarif {color:  red;}
+.ligneDevis .tableauLignesDevis .total {background-color: #E6E6E6; font-weight: bold;}
+.ligneDevis .tableauLignesDevis .totalApresRemise {background-color: #F7ABAB; font-weight: bold;}
+.ligneDevis .tableauLignesDevis .sansBordure {border: none; background-color: transparent;}
+
+/***************** CHOIX PRODUIT *****************/
+.choixProduit {}
+.choixProduit .choixProduitBloc {margin: 6px 0px; padding: 0px;}
+
+/***************** SELECTION PRODUIT *****************/
+.selectionProduits {}
+.selectionProduits .contenu {padding: 5px 3px;}
+.selectionProduits .panelBoutons {margin-bottom: 5px;}
+.selectionProduits .panelProduits {padding: 0 5px;}
+.selectionProduits .panelFamillePrincipale, .selectionProduits .panelFamilleLiee {margin: 3px 0;}
+.selectionProduits .panelTitreFamille {}
+.selectionProduits .libelleGras {font-weight: bold;}
+.selectionProduits .panelCriteres, .selectionProduits .panelCriteresBeneficiaires, .selectionProduits .panelInfosBeneficiaires {}
+.selectionProduits .panelInfosPersonne {background-color: #eee;}
+.selectionProduits .panelErreursContraintes {background-color: #f9c3c3;}
+.selectionProduits .produitInactif {background-color: #f9c3c3;}
+
+/************** Produit principal **************/
+.selectionProduits .panelFamillePrincipale {margin: 5px 0; border: 1px solid #87b3ff; background-color: #FFFFE0;}
+.selectionProduits .panelFamillePrincipale .panelTitreFamille {background-color: #87b3ff; border-bottom: 1px solid #87b3ff;}
+
+/************** Produit lie **************/
+.selectionProduits .panelFamilleLiee .panelTitreFamille {background-color: #d3e4ff; border: 1px solid #87b3ff;}
+.selectionProduits .panelFamilleLiee .conteneurFamille {border: 1px solid #87b3ff; border-top: none; background-color: #FFFFE0;}
+.selectionProduits .panelFamilleLiee .panelListeProduits {}
+
+/************** Produit lie **************/
+.popupInfosAdhesion .dialogMiddleCenter, .popupChoixModele .dialogMiddleCenter,
+.choixProduit .dialogMiddleCenter, .selectionProduits .dialogMiddleCenter,
+.popupAjoutAssure .dialogMiddleCenter {background-color: #e8ec95;}
+.popupInfosAdhesion fieldset, .popupChoixModele fieldset,
+.choixProduit fieldset, .selectionProduits fieldset,
+.popupAjoutAssure fieldset {border: 1px solid grey; background-color: #FFFFE0;}
+
+/************** POPUP TITLE **************/
+.popupTitle {border: 1px solid red; background-color: #fff;}
+.popupTitle .messagePopupTitle {color: red; font-weight: bolder; font-size: 12px; padding: 10px;}
+
+/************** Popup d'envoi d'email **************/
+.popupEnvoiEmail .dialogMiddleCenter {background-color: #e8ec95;}
+
+/*************** Popup de recherche d'opportunité par numéro transaction **************/
+.popupRechercheOppTransaction .dialogMiddleCenter {background-color: #E8EC95;}
+
+/*************** Popup de doublon **************/
+.popupCreationPersonneDoublon .dialogMiddleCenter {background-color: #E8EC95;}

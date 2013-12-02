@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="mappingConfiguration" abstract="true">
+
+		<property name="idStatutContratEnCours" value="4714269" />
+		<property name="idStatutContratResilie" value="4714252" />
+		<property name="idStatutContratFutur" value="4714268" />
+		<property name="idNatureContratSante" value="4714394" />
+		<property name="idNatureContratPrevoyance" value="4714395" />
+		<property name="idNatureContratAutre" value="4714396" />
+		<property name="idStatutGarantieEnCours" value="4714239" />
+		<property name="idStatutGarantieResiliee" value="4714240" />
+		<property name="idStatutGarantieFutur" value="4714251" />
+		<property name="idStatutGarantieSansEffet" value="4714248" />
+		<property name="idFamilleGarantieSante" value="4714307" />
+		<property name="idFamilleGarantieBonus" value="4714274" />
+		<property name="idFamilleGarantieAssistance" value="4714282" />
+		<property name="idFamilleGarantieExoneration" value="4714332" />
+		<property name="idRoleGarantieAssure" value="4714236" />
+		<property name="idRoleGarantieConjoint" value="4714238" />
+		<property name="idRoleGarantieConcubin" value="4714237" />
+		<property name="idSegmentCollectifIndividualise" value="2" />
+		<property name="idSegmentCollectif" value="3" />
+		<property name="idTypePayeurSouscripteur" value="4714128" />
+		<property name="idTypePayeurMultipart" value="4714129" />
+		<property name="idTypePayeurAssure" value="4714130" />
+		<property name="idTypeOptionEnvoiRelevesPrestationEmail" value="1" />
+		<property name="idTypeOptionEnvoiMutuellementEmail" value="2" />
+		<property name="idTypeOptionEnvoiSms" value="5" />
+		<property name="idNatureConnexionEspaceClient" value="1" />
+		<property name="idOrigineDecompteAlmerys" value="7149103" />
+		<property name="idOrigineDecompteIndu" value="7149136" />
+		<property name="idMotifResiliationSansEffet" value="58757628" />
+		<property name="idMotifResiliationErreurDeSaisie" value="4714217" />
+		<property name="idMoyenPaiementCheque" value="4714369" />
+		<property name="idMoyenPaiementVirement" value="4714377" />
+		<property name="idMoyenPaiementVirementEncaissement" value="4714378" />
+		<property name="idMoyenPaiementEspece" value="4714358" />
+		<property name="idMoyenPaiementMandat" value="4714384" />
+		<property name="nombreJoursDifferesEnvoiMail" value="3" />
+		<property name="idNatureReglementTiersSante" value="TS" />
+		<property name="idTypeRelationConjoint" value="1" />
+		<property name="idTypeRelationEnfant" value="2" />
+		<property name="idMoyenPaiementPrelevement" value="3"/>
+		<property name="jourPaiementPrelevementCinq" value="5"/>
+		<property name="idFrequencePrelevementMensuelle" value="1"/>
+		<property name="idContratSante" value="4714394"/>
+		
+
+		<property name="listeOriginesDecomptesExcluesEnvoiSms">
+			<list>
+				<value>7149103</value> <!-- almerys -->
+				<value>7149138</value> <!-- undungtv -->
+				<value>7149111</value> <!-- noe_a_c -->
+				<value>7149112</value> <!-- noe_a_mnl -->
+				<value>7149115</value> <!-- noe_a_ref -->
+			</list>
+		</property>
+
+		<property name="idActeNonRemboursable" value="7148867" />
+
+		<!-- Order Decompte By... -->
+		<property name="orderDecompteByDateReglement" value="d.decompte_date_reglement" />
+		<property name="orderDecompteByNomDestinataireReglement" value="d.decompte_benef_reglement_nom" />
+		<property name="orderDecompteById" value="d.decompte_uid" />
+		<property name="orderDecompteByNumero" value="d.decompte_numero" />
+		<property name="orderDecompteByNumeroCouplage" value="d.decompte_lig_c_num" />
+		<property name="orderDecompteByDateSoin" value="d.decompte_lig_date_debut_soin" />
+		<property name="orderDecompteByDateFinSoin" value="d.decompte_lig_date_fin_soin" />
+		<property name="orderDecompteByBeneficiaire" value="d.decompte_lig_patient_uid" />
+		<property name="orderDecompteByActe" value="acte.decompte_acte_lib" />
+		<property name="orderDecompteByDepense" value="d.decompte_lig_montant" />
+		<property name="orderDecompteByBase" value="d.decompte_lig_mt_baseremb_ro" />
+		<property name="orderDecompteByTaux" value="d.decompte_lig_tx_remb_ro" />
+		<property name="orderDecompteByRbtRO" value="d.decompte_lig_remb_secu" />
+		<property name="orderDecompteByRbtSmatis" value="d.decompte_lig_remb_compl" />
+		<property name="orderDecompteByRbtProf" value="d.decompte_lig_remb_compl" />
+		<property name="orderDecompteByRaC" value="abs(d.decompte_lig_montant - (d.decompte_lig_remb_secu + d.decompte_lig_remb_compl))" />
+
+		<!-- Order Decomptes regroupés By... -->
+		<property name="orderDecomptesByDateDebutSoin" value="min(d.decompte_lig_date_debut_soin)" />
+		<property name="orderDecomptesByDateFinSoin" value="max(d.decompte_lig_date_fin_soin)" />
+		<property name="orderDecomptesByNomBeneficiaireSoins" value="bs.personne_nom||' '||bs.personne_prenom" />
+		<property name="orderDecomptesByRbtSmatis" value="sum(d.decompte_lig_remb_compl)" />
+
+		<property name="orderCotisationDateDebut" value="orderCotisationDateDebut" />
+		<property name="orderCotisationMontant" value="orderCotisationMontant" />
+		<property name="orderCotisationMontantRegle" value="orderCotisationMontantRegle" />
+		<property name="orderCotisationSituation" value="orderCotisationSituation" />
+
+		<property name="idStatutPaiementDecomptePaye" value="paid" />
+		<property name="idStatutPaiementDecompteNonPaye" value="unpaid" />
+
+		<property name="mapOrdrePopulation">
+			<map>
+				<entry key="ACTIFS"  value="10"/>
+				<entry key="ANI"  value="20"/>
+				<entry key="MEMBRES (SSL)" value="30"/>
+				<entry key="LICENCIE LOI EVIN"  value="40"/>
+				<entry key="LICENCIES DEMISSIONNAIRES"  value="50"/>
+				<entry key="RETRAITE LOI EVIN" value="60"/>
+				<entry key="RETRAITES"  value="70"/>
+				<entry key="MAINTIEN LOI EVIN"  value="80"/>
+				<entry key="SORTIE DE GROUPE" value="90"/>
+				<entry key="Toute Population"  value="100"/>
+				<entry key="toute population" value="100"/>
+			</map>	
+		</property>
+		
+		<property name="mapImportanceStatutsGaranties">
+			<map>
+				<!-- Statut "en cours" -->
+				<entry key="4714239"  value="13"/>
+				<!-- Statut "Résiliée" -->
+				<entry key="4714240"  value="11"/>
+				<!-- Statut "Ajourné" -->
+				<entry key="4714241"  value="0"/>
+				<!-- Statut "Renoncée" -->
+				<entry key="4714242"  value="0"/>
+				<!-- Statut "Sinistre à terme" -->
+				<entry key="4714243"  value="0"/>
+				<!-- Statut "Réduite" -->
+				<entry key="4714244"  value="0"/>
+				<!-- Statut "Remplacée" -->
+				<entry key="4714245"  value="0"/>
+				<!-- Statut "Refusée" -->
+				<entry key="4714246"  value="0"/>
+				<!-- Statut "Terme" -->
+				<entry key="4714247"  value="0"/>
+				<!-- Statut "Sans effet" -->
+				<entry key="4714248"  value="10"/>
+				<!-- Statut "Rachetée" -->
+				<entry key="4714249"  value="0"/>
+				<!-- Statut "Suspendue" -->
+				<entry key="4714250"  value="0"/>
+				<!-- Statut "Future" -->
+				<entry key="4714251"  value="12"/>
+			</map>
+		</property>
+	</bean>
+
+</beans>

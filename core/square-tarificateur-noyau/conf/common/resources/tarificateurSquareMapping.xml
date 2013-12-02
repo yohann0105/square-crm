@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="mappingConfiguration" abstract="true">
+		<!-- Constantes finalité -->
+		<property name="idFinaliteNonRenseignee" value="1" />
+		<property name="idFinaliteRefusee" value="2" />
+		<property name="idFinaliteAcceptee" value="3" />
+		<property name="idFinaliteCorbeille" value="4" />
+		<property name="idFinaliteTransformee" value="5" />
+		<property name="idFinaliteEnCours" value="7" />
+
+		<!-- Constantes moyens de paiement -->
+		<property name="idMoyenPaiementCarteBancaire" value="1" />
+		<property name="idMoyenPaiementCheque" value="2" />
+		<property name="idMoyenPaiementPrelevement" value="3" />
+		<property name="idMoyenPaiementEspeces" value="4" />
+		<property name="idMoyenPaiementMandat" value="5" />
+		<property name="idMoyenPaiementVirement" value="6" />
+		<property name="idMoyenPaiementVirementEncaissement" value="7" />
+
+		<!-- Constantes des périodicités de paiement -->
+		<property name="idPeriodicitePaiementMensuelle" value="1"/>
+		<property name="idPeriodicitePaiementTrimestrielle" value="2"/>
+		<property name="idPeriodicitePaiementSemestrielle" value="3"/>
+		<property name="idPeriodicitePaiementAnnuelle" value="4"/>
+		
+		<!-- Constantes des jours de paiement -->
+		<property name="idJourPaiement5DuMois" value="1"/>
+		<property name="idJourPaiement10DuMois" value="2"/>
+		<property name="idJourPaiement15DuMois" value="3"/>
+
+		<!-- Constantes Devis CNP - SANTE/PREVOYANCE - SANS TYPE -->
+		<property name="typeCnp" value="CNP" />
+		<property name="typeSantePrevoyance" value="SANTE/PREVOYANCE" />
+		<property name="typeNeutre" value="SANS TYPE" />
+		<property name="typeSanteNouvelleOffre" value="SANTE/NOUVELLE OFFRE"/>
+		<property name="typeSanteAncienneOffre" value="SANTE/ANCIENNE OFFRE"/>
+
+		<!-- Constantes produits critères simulacres-->
+		<property name="idSimulacreProduitGo" value="964137528" />
+		<property name="idCritereSimulacreTypeGo" value="825731469" />
+
+		<!-- Constantes date effet produit bonus -->
+		<property name="nbAnneesBonus1" value="2" />
+		<property name="nbAnneesBonus2" value="4" />
+
+		<!-- Constantes motif devis -->
+		<property name="idMotifDevisStandard" value="1" />
+		<property name="idMotifDevisParrainage" value="2" />
+		<property name="idMotifDevisParrainageBeneficiaire" value="3" />
+		<property name="idMotifDevisParrainageEntreprise" value="4" />
+		<property name="idMotifDevisMoisResponsable" value="5" />
+		<property name="idMotifDevisPremierMoisGratuit" value="6" />
+		<property name="idMotifDevisTroisMoisGratuits" value="7" />
+		<property name="idMotifDevisRentreeRecompense2011" value="8" />
+		<property name="idMotifDevisCampagneTv2012" value="9" />
+		
+<!--		<property name="constanteCodeCampagneRentreeRecompense2011" value="10000000032" />-->
+<!--		<property name="constanteCodeCampagneTvAvril2012" value="10000000062" />-->
+		
+		<!-- Mapping entre composition famille prospect/beneficiaire gestion et cod_compo tarificateur -->	
+		<property name="mapCompoFamTCodCompoTarif">
+			<map>
+				<entry key="1"  value="id"/>
+				<entry key="2"  value="spos"/>
+				<entry key="3" value="chld"/>
+			</map>	
+		</property>
+
+		<!-- Mapping entre composition famille prospect gestcom et cod_role tarificateur -->
+		<property name="mapCompoFamToCodRoleTarif">
+			<map>
+				<entry key="I"  value="1A"/>
+				<entry key="C"  value="2A"/>
+				<entry key="I1" value="1A1E"/>
+				<entry key="I2" value="1A2E"/>
+				<entry key="I3" value="1A3E"/>
+				<entry key="I4" value="1A4E"/>
+				<entry key="IX" value="1A5E"/>
+				<entry key="C1" value="C1E"/>
+				<entry key="C2" value="C2E"/>
+				<entry key="C3" value="C3E"/>
+				<entry key="C4" value="C4E"/>
+				<entry key="CX" value="C5E"/>
+			</map>	
+		</property>
+	
+		<!-- Constante LiensFamiliaux -->
+		<property name="idLienFamilialAssurePrincipal" value="1"/>
+		<property name="idLienFamilialConjoint" value="2"/>
+		<property name="idLienFamilialEnfant" value="3"/>
+		
+		<!-- Liste des propriétés de personne à comparer -->
+		<property name="listeProprietesInfoSanteAComparer">
+			<list>
+				<value>numSecuriteSocial</value>
+				<value>cleSecuriteSocial</value>
+				<value>eidCaisse</value>
+			</list>
+		</property>
+		
+		<!-- Liste des propriétés de personne à comparer -->
+		<property name="listeProprietesPersonneAComparer">
+			<list>
+				<value>eidPersonne</value>
+				<value>dateNaissance</value>
+			</list>
+		</property>
+		
+		<!-- Liste des propriétés d'adresses à comparer -->
+		<property name="listeProprietesAdresseAComparer">
+			<list>
+				<value>eidAdresse</value>
+				<value>eidCodePostalCommune</value>
+			</list>
+		</property>
+		
+		<!-- Modèles de devis -->
+		<property name="idModeleDevisBulletinAdhesion" value="1"/>
+		<property name="idModeleDevisFicheTransfert" value="5"/>
+		<property name="idModeleLettreAnnulation" value="4"/>
+		<property name="idModeleLettreRadiation" value="2"/>
+		<property name="idModeleLettreRadiationLoiChatel" value="3"/>
+
+		<!-- Constantes des sources de ligne de devis -->
+		<property name="idSourceLigneDevisNonRenseignee" value="1"/>
+		<property name="idSourceLigneDevisDemandeDossier" value="3"/>
+		<property name="idSourceLigneDevisAdhesion" value="4"/>
+		<property name="idSourceLigneDevisConsultationTarifs" value="5"/>
+
+		<property name="constanteIdMotifNonRenseigne" value="14"/>
+	    <property name="constanteIdMotifSpontanee" value="1"/>
+		<property name="constanteIdMotifVide" value="0"/>
+		
+		<!-- Mapping Régimes AIA -->
+<!--		<property name="mapRegimesAia">-->
+<!--			<map>-->
+<!--				<entry key="00" value="othr"/>-->
+<!--				<entry key="01" value="slrY"/>-->
+<!--				<entry key="02" value="agrcltrl"/>-->
+<!--				<entry key="03" value="agrcltrl"/>-->
+<!--				<entry key="04" value="sncf"/>-->
+<!--				<entry key="05" value="ratp"/>-->
+<!--				<entry key="06" value="enim"/>-->
+<!--				<entry key="07" value="mines"/>-->
+<!--				<entry key="08" value="mltry"/>-->
+<!--				<entry key="09" value="bdf"/>-->
+<!--				<entry key="10" value="clerk"/>-->
+<!--				<entry key="12" value="comm"/>-->
+<!--				<entry key="14" value="assnat"/>-->
+<!--				<entry key="15" value="senat"/>-->
+<!--				<entry key="16" value="bordeaux"/>-->
+<!--				<entry key="17" value="expatrie"/>-->
+<!--				<entry key="90" value="camac"/>-->
+<!--				<entry key="91" value="mgen"/>-->
+<!--				<entry key="92" value="mgen"/>-->
+<!--				<entry key="93" value="mgp"/>-->
+<!--				<entry key="94" value="fsli"/>-->
+<!--				<entry key="95" value="mnh"/>-->
+<!--				<entry key="96" value="mmar"/>-->
+<!--				<entry key="99" value="fsli"/>-->
+<!--				<entry key="" value="rtrdmltry"/>-->
+<!--				<entry key="" value="camac"/>-->
+<!--				<entry key="" value="fsli"/>-->
+<!--				<entry key="" value="tns"/>-->
+<!--				<entry key="" value="alsamsll"/>-->
+<!--				<entry key="" value="mptt"/>-->
+<!--				<entry key="" value="monaco"/>-->
+<!--				<entry key="" value="unesco"/>-->
+<!--			</map>-->
+<!--		</property>-->
+		
+		<property name="constanteAdhesionAgeMiniDelaiStage" value="65"/>
+	</bean>
+</beans>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+    <bean id="validerUtilisateurAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="validerUtilisateurAdvice"/>
+		<property name="pointcut" ref="validerUtilisateurPointCut"/>
+	</bean>
+	<bean id="validerUtilisateurAdvice" class="com.square.synchro.aop.ValiderUtilisateurAdvice" autowire="byName"/>
+	<bean id="validerUtilisateurPointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	    <property name="patterns">
+	        <list>
+	            <value>.*validerCompteUtilisateur</value>
+	        </list>
+	    </property>
+	</bean>
+
+    <bean id="updateUtilisateurAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="updateUtilisateurAdvice"/>
+		<property name="pointcut" ref="updateUtilisateurPointCut"/>
+	</bean>
+	<bean id="updateUtilisateurAdvice" class="com.square.synchro.aop.UpdateUtilisateurAdvice" autowire="byName"/>
+	<bean id="updateUtilisateurPointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	    <property name="patterns">
+	        <list>
+	            <value>.*updateUtilisateur</value>
+	        </list>
+	    </property>
+	</bean>
+
+	<bean id="activerUtilisateurAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="activerUtilisateurAdvice"/>
+		<property name="pointcut" ref="activerUtilisateurPointCut"/>
+	</bean>
+	<bean id="activerUtilisateurAdvice" class="com.square.synchro.aop.ActiverUtilisateurAdvice" autowire="byName"/>
+	<bean id="activerUtilisateurPointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	    <property name="patterns">
+	        <list>
+	            <value>.*activerCompteUtilisateur</value>
+	        </list>
+	    </property>
+	</bean>
+	
+	<bean id="updateRolesByUtilisateurAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice">
+			<bean class="com.square.synchro.aop.UpdateRolesAdvice" autowire="byName"/>
+		</property>
+		<property name="pointcut" >
+			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+			    <property name="patterns">
+			        <list>
+			            <value>.*updateRolesByUtilisateur</value>
+			        </list>
+			    </property>
+			 </bean>
+		</property>
+	</bean>
+	
+	<bean id="enregistrerAgenceAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="enregistrerAgenceAdvice"/>
+		<property name="pointcut" ref="enregistrerAgencePointCut"/>
+	</bean>
+	<bean id="enregistrerAgenceAdvice" class="com.square.synchro.aop.EnregistrerAgenceAdvice" autowire="byName"/>
+	<bean id="enregistrerAgencePointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	    <property name="patterns">
+	        <list>
+	            <value>.*enregistrerAgenceReelle</value>
+	        </list>
+	    </property>
+	</bean>
+	
+	<bean id="supprimerAgenceAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="supprimerAgenceAdvice"/>
+		<property name="pointcut" ref="supprimerAgencePointCut"/>
+	</bean>
+	<bean id="supprimerAgenceAdvice" class="com.square.synchro.aop.SupprimerAgenceAdvice" autowire="byName"/>
+	<bean id="supprimerAgencePointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	    <property name="patterns">
+	        <list>
+	            <value>.*supprimerAgenceReelle</value>
+	            <value>.*supprimerListeAgences</value>
+	        </list>
+	    </property>
+	</bean>
+
+	<bean id="modifierPasswordAdvice" class="com.square.synchro.aop.ModifierPasswordAdvice" autowire="byName"/>
+	<aop:config >
+		<!-- Les pointcut sont placés exceptionnellement sur les implementations de service, car sinon il y avait deux interceptions du au proxy de transaction sur UtilisateurService -->
+		<aop:pointcut id="modifierPasswordModifyPasswordPointcut" expression="execution(* com.smatis.utilisateurs.noyau.service.implementations.UtilisateurServiceImpl.modifyPassword(..))" />
+		<aop:pointcut id="modifierPasswordReinitialiserMotDePasseUtilisateurPointcut" expression="execution(* com.smatis.utilisateurs.noyau.service.implementations.UtilisateurServiceImpl.reinitialiserMotDePasseUtilisateur(..))" />
+
+		<aop:aspect ref="modifierPasswordAdvice" order="0">
+			<aop:around pointcut-ref="modifierPasswordModifyPasswordPointcut" method="modifierMotDePasse"/>
+			<aop:around pointcut-ref="modifierPasswordReinitialiserMotDePasseUtilisateurPointcut" method="reinitialiserMotDePasseUtilisateur"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>

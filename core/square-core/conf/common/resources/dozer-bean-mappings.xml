@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+
+<mappings>
+	<configuration>
+		<date-format>dd/MM/yyyy</date-format>
+	</configuration>
+
+	<!-- Mapping Adresse -> AdresseDto -->
+	 <mapping>
+	    <class-a>com.square.core.model.Adresse</class-a>
+		 <class-b>com.square.core.model.dto.AdresseDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field type="one-way">
+		     <a>identifiantExterieur</a>
+		     <b>idext</b>
+		 </field>
+		 <field>
+		     <a>numeroVoie</a>
+		     <b>numVoie</b>
+		 </field>
+		 <field>
+		     <a>residenceBatiment</a>
+		     <b>complementAdresse</b>
+		 </field>
+		 <field>
+		     <a>boitePostal</a>
+		     <b>autresComplements</b>
+		 </field>
+		 <field >
+		     <a>topNpai</a>
+		     <b>npai</b>
+		 </field>
+		 <field type="one-way">
+		     <a>nature</a>
+		     <b>nature</b>
+		 </field>
+		 <field type="one-way">
+		     <a>pays</a>
+		     <b>pays</b>
+		 </field>
+		 <field type="one-way">
+		     <a>typeVoie</a>
+		     <b>typeVoie</b>
+		 </field>
+		 <field type="one-way">
+		     <a>codePostalCommune</a>
+		     <b>codePostalCommune</b>
+		 </field>
+		 <field type="one-way">
+		     <a>codePostalCommune.commune.departement</a>
+		     <b>departement</b>
+		 </field>
+	</mapping>	
+
+	<!-- Mapping Telephone -> TelephoneDto -->
+	<mapping>
+	    <class-a>com.square.core.model.Telephone</class-a>
+		 <class-b>com.square.core.model.dto.TelephoneDto</class-b>
+		 <field>
+		     <a>numTelephone</a>
+		     <b>numero</b>
+		 </field>
+		 <field type="one-way">
+		     <a>identifiantExterieur</a>
+		     <b>idext</b>
+		 </field>
+		 <field type="one-way">
+		     <a>natureTelephone</a>
+		     <b>nature</b>
+		 </field>
+		<field type="one-way"> 
+		  <a>pays</a> 
+		  <b>pays</b> 
+		</field>		 
+	</mapping>
+
+	<!-- Mapping PersonnePhysique -> PersonneDto -->
+	<mapping>
+	    <class-a>com.square.core.model.PersonnePhysique</class-a>
+		 <class-b>com.square.core.model.dto.PersonneDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field type="one-way">
+		     <a>identifiantExterieur</a>
+		     <b>idext</b>
+		 </field>
+		 <field type="one-way">
+		     <a>num</a>
+		     <b>numClient</b>
+		 </field>
+		 <field type="one-way">
+		     <a>civilite</a>
+		     <b>civilite</b>
+		 </field>
+		 <field type="one-way">
+		     <a>dateCreation</a>
+		     <b>dateCreation</b>
+		 </field>
+		 <field type="one-way">
+		     <a>nature</a>
+		     <b>naturePersonne</b>
+		 </field>
+		 <field type="one-way">
+		     <a>segment</a>
+		     <b>segment</b>
+		 </field>
+		 <field type="one-way">
+		     <a>statut</a>
+		     <b>statut</b>
+		 </field>
+		 <field type="one-way">
+		     <a>csp</a>
+		     <b>csp</b>
+		 </field>
+		 <field type="one-way">
+		     <a>situationFamiliale</a>
+		     <b>sitFam</b>
+		 </field>
+		 <field type="one-way">
+		     <a>profession</a>
+		     <b>profession</b>
+		 </field>
+		 <field type="one-way">
+		     <a>reseau</a>
+		     <b>reseauVente</b>
+		 </field>	
+		 <field type="one-way">
+		     <a>deces</a>
+		     <b>decede</b>
+		 </field>
+		 <field type="one-way">
+		     <a>ressource</a>
+		     <b>createur</b>
+		 </field>	
+		 <field type="one-way">
+		     <a>attribution.ressource</a>
+		     <b>commercial</b>
+		 </field>	
+		 <field type="one-way">
+		     <a>attribution.agence</a>
+		     <b>agence</b>
+		 </field>
+		 <field type="one-way">
+		     <a>infoSante</a>
+		     <b>infoSante</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping InfoSante -> InfoSanteDto -->
+	<mapping>
+	     <class-a>com.square.core.model.InfoSante</class-a>
+		 <class-b>com.square.core.model.dto.InfoSanteDto</class-b>
+		 <field type="one-way">
+		     <a>caisse</a>
+		     <b>caisse</b>
+		 </field>
+		 <field type="one-way">
+		     <a>caisse.regime</a>
+		     <b>caisseRegime</b>
+		 </field>
+		 <field type="one-way">
+		     <a>referent.id</a>
+		     <b>idReferent</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonnePhysique -> PersonneSimpleDto -->
+	<mapping>
+	    <class-a>com.square.core.model.PersonnePhysique</class-a>
+		 <class-b>com.square.core.model.dto.PersonneSimpleDto</class-b>
+		 <field>
+		     <a>num</a>
+		     <b>numeroClient</b>
+		 </field>
+		 <field type="one-way">
+		     <a>attribution.ressource</a>
+		     <b>commercial</b>
+		 </field>	
+		 <field type="one-way">
+		     <a>attribution.agence</a>
+		     <b>agence</b>
+		 </field>
+		 <field type="one-way">
+		     <a>ressource</a>
+		     <b>createur</b>
+		 </field>	
+	</mapping>
+	
+	<!-- Mapping PersonnePhysique -> CoordonneesDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonnePhysique</class-a>
+		 <class-b>com.square.core.model.dto.CoordonneesDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>idPersonne</b>
+		 </field>
+	</mapping>
+	
+	<mapping>
+	    <class-a>com.square.core.model.PersonnePhysique</class-a>
+		<class-b>com.square.core.model.dto.BeneficiaireDto</class-b>
+		 <field type="one-way">
+		 	<a>civilite</a>
+		 	<b>civilite</b>
+		 </field>
+		 <field type="one-way">
+		     <a>profession</a>
+		     <b>profession</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping Email -> EmailDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Email</class-a>
+		 <class-b>com.square.core.model.dto.EmailDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field>
+		     <a>identifiantExterieur</a>
+		     <b>idext</b>
+		 </field>
+		 <field>
+		     <a>nature</a>
+		     <b>natureEmail</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping PersonneMorale -> PersonneMoraleRecherche -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneMorale</class-a>
+		 <class-b>com.square.core.model.dto.PersonneMoraleRechercheDto</class-b>
+		 <field>
+		     <a>naturePersonneMorale</a>
+		     <b>nature</b>
+		 </field>
+		 <field type="one-way">
+		     <a>attribution.agence</a>
+		     <b>agence</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonneMoraleNature -> IdentifiantLibelleDto -->
+		<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneMoraleNature</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping RessourceFonction -> IdentifiantLibelleDto -->
+		<mapping type="one-way">
+	    <class-a>com.square.core.model.Ressources.RessourceFonction</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping RessourceService -> IdentifiantLibelleDto -->
+		<mapping type="one-way">
+	    <class-a>com.square.core.model.Ressources.RessourceService</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping RessourceEtat -> IdentifiantLibelleDto -->
+		<mapping type="one-way">
+	    <class-a>com.square.core.model.Ressources.RessourceEtat</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping EmailNature -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.EmailNature</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonnePhysiqueNature -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonnePhysiqueNature</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping TypeVoie -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.TypeVoie</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping CodePostal -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.CodePostal</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field>
+		     <a>codePostal</a>
+		     <b>libelle</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Commune -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Commune</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonneCivilite -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneCivilite</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping NatureTelephone -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.NatureTelephone</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonneProfession -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneProfession</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonneProfession -> IdentifiantLibelleBooleanDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneProfession</class-a>
+		 <class-b>com.square.core.model.dto.IdentifiantLibelleBooleanDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Pays -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Pays</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Pays -> IdentifiantLibelleBooleanDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Pays</class-a>
+		 <class-b>com.square.core.model.dto.IdentifiantLibelleBooleanDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Pays -> PaysSimpleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Pays</class-a>
+		 <class-b>com.square.core.model.dto.PaysSimpleDto</class-b>
+		 <field>
+		     <a>identifiantExterieur</a>
+		     <b>codeISO</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping Caisse -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Caisse</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field>
+		 	<a>nom</a>
+		 	<b>libelle</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping CaisseRegime -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.CaisseRegime</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonneCSP -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneCSP</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping PersonneSegment -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneSegment</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+
+	</mapping>
+
+		<!-- Mapping PersonneSituationFamiliale -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneSituationFamiliale</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping AdresseNature -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.AdresseNature</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Ressource -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Ressources.Ressource</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping Departement -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Departement</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping PersonneReseau -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneReseau</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping PersonneStatut -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneStatut</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping CampagneStatut -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.CampagneStatut</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+
+	<mapping>
+		<class-a>com.square.core.model.dto.CampagneDto</class-a>
+	    <class-b>com.square.core.model.Campagne</class-b>
+		<field-exclude type="one-way"> 
+		  <a>statut</a> 
+		  <b>statut</b> 
+		</field-exclude>
+		<field-exclude type="one-way"> 
+		  <a>type</a> 
+		  <b>type</b> 
+		</field-exclude>
+		<field-exclude type="one-way"> 
+		  <a>dateCreation</a> 
+		  <b>dateCreation</b> 
+		</field-exclude>
+	</mapping>
+
+	<!-- Mapping CampagneType -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.CampagneType</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Campagne -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Campagne</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionSousObjet -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionSousObjet</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping FormeJuridique -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.FormeJuridique</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<mapping>
+	    <class-a>com.square.core.model.Relation</class-a>
+		 <class-b>com.square.core.model.dto.RelationDto</class-b>
+		 <field type="one-way">
+		     <a>type</a>
+		     <b>type</b>
+		 </field>
+		 <field type="one-way">
+		     <a>type.relationGroupement</a>
+		     <b>groupement</b>
+		 </field>
+		 <field type="one-way">
+		     <a>personneSource.id</a>
+		     <b>idPersonnePrincipale</b>
+		 </field>
+		 <field type="one-way">
+		     <a>personneCible.id</a>
+		     <b>idPersonne</b>
+		 </field>	 	 
+	</mapping>
+	
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.RelationGroupement</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping RelationType -> IdentifiantLibelleDto -->
+		<mapping type="one-way">
+	    <class-a>com.square.core.model.RelationType</class-a>
+		 <class-b>com.square.core.model.dto.IdentifiantLibelleTypeRelationDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field>
+		     <a>inverse</a>
+		     <b>libelleInverse</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionNature -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionNature</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionType -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionType</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionNatureResultat -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionNatureResultat</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionPriorite -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionPriorite</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionStatut -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionStatut</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionResultat -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionResultat</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping ActionObjet -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionObjet</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping PersonneMorale -> PersonneMoraleDto -->
+		<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneMorale</class-a>
+		 <class-b>com.square.core.model.dto.PersonneMoraleDto</class-b>
+		 <field>
+		     <a>num</a>
+		     <b>numEntreprise</b>
+		 </field>
+		 <field>
+		     <a>naturePersonneMorale</a>
+		     <b>nature</b>
+		 </field>
+ 		 <field>
+		     <a>codeApe</a>
+		     <b>naf</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping Personne -> PersonneMoraleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Personne</class-a>
+		 <class-b>com.square.core.model.dto.PersonneMoraleDto</class-b>
+		 <field type="one-way">
+		     <a>ressource</a>
+		     <b>createur</b>
+		 </field>	
+		 <field type="one-way">
+		     <a>attribution.ressource</a>
+		     <b>commercial</b>
+		 </field>	
+		 <field type="one-way">
+		     <a>attribution.agence</a>
+		     <b>agence</b>
+		 </field>		 
+	</mapping>
+
+	<!-- Mapping PersonneMorale -> PersonneMoraleRelationDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.PersonneMorale</class-a>
+		 <class-b>com.square.core.model.dto.PersonneMoraleRelationDto</class-b>
+		 <field>
+		     <a>num</a>
+		     <b>numEntreprise</b>
+		 </field>
+		 <field>
+		     <a>naturePersonneMorale</a>
+		     <b>naturePersonne</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping PersonnePhysiqueCopieDto -> PersonneDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.dto.PersonnePhysiqueCopieDto</class-a>
+		 <class-b>com.square.core.model.dto.PersonneDto</class-b>
+		<field-exclude> 
+		     <a>civilite</a>
+		     <b>civilite</b>
+		 </field-exclude> 
+	</mapping>
+	
+	<!-- Mapping Action -> ActionRechercheDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Action</class-a>
+		 <class-b>com.square.core.model.dto.ActionRechercheDto</class-b>
+		 <field>
+		     <a>type.libelle</a>
+		     <b>type</b>
+		 </field>
+		 <field>
+		     <a>statut.libelle</a>
+		     <b>statut</b>
+		 </field>
+		 <field>
+		     <a>objet.libelle</a>
+		     <b>objet</b>
+		 </field>
+		 <field>
+		     <a>sousObjet.libelle</a>
+		     <b>sousObjet</b>
+		 </field>
+		 <field>
+		     <a>priorite.libelle</a>
+		     <b>priorite</b>
+		 </field>
+		  <field>
+		     <a>date</a>
+		     <b>dateAction</b>
+		 </field>
+		 <field>
+		     <a>actionAttribution.ressource</a>
+		     <b>commercial</b>
+		 </field>	
+		 <field>
+		     <a>actionAttribution.agence</a>
+		     <b>agence</b>
+		 </field>	
+	</mapping>
+
+	<!-- Mapping Action -> ActionCreationDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Action</class-a>
+		 <class-b>com.square.core.model.dto.ActionCreationDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+		 <field>
+		     <a>priorite.id</a>
+		     <b>idPriorite</b>
+		 </field>
+		 <field>
+		     <a>mailNotification</a>
+		     <b>mePrevenirParMail</b>
+		 </field>
+		 <field>
+		     <a>date</a>
+		     <b>dateAction</b>
+		 </field>
+		 <field>
+		     <a>nature.id</a>
+		     <b>idNatureAction</b>
+		 </field>
+		 <field>
+		     <a>type.id</a>
+		     <b>idType</b>
+		 </field>
+		 <field>
+		     <a>objet.id</a>
+		     <b>idObjet</b>
+		 </field>
+		 <field>
+		     <a>sousObjet.id</a>
+		     <b>idSousObjet</b>
+		 </field>
+		 <field>
+		     <a>campagne.id</a>
+		     <b>idCampagne</b>
+		 </field>
+		 <field>
+		     <a>actionAffectation.personne.id</a>
+		     <b>idPersonne</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping Agence -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Ressources.Agence</class-a>
+		<class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		<field> 
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field> 
+	</mapping>
+	
+	<!-- Mapping Agence -> IdentifiantEidLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.Ressources.Agence</class-a>
+		<class-b>com.square.core.model.dto.IdentifiantEidLibelleDto</class-b>
+		<field> 
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field> 
+	</mapping>
+
+	<!-- Mapping Action -> ActionSyntheseDto -->
+	<mapping type="one-way">
+		<class-a>com.square.core.model.Action</class-a>
+		<class-b>com.square.core.model.dto.ActionSyntheseDto</class-b>
+		<field>
+			<a>type.id</a>
+			<b>type.identifiant</b>
+		</field>
+		<field>
+			<a>objet.libelle</a>
+			<b>objet</b>
+		</field>
+		<field>
+			<a>sousObjet.libelle</a>
+			<b>sousObjet</b>
+		</field>
+		<field>
+			<a>statut.id</a>
+			<b>statut.identifiant</b>
+		</field>
+		<field>
+			<a>date</a>
+			<b>dateAction</b>
+		</field>
+		<field>
+			<a>dateTerminee</a>
+			<b>dateActionTerminee</b>
+		</field>
+		<field>
+			<a>priorite.id</a>
+			<b>priorite.identifiant</b>
+		</field>
+		<field>
+			<a>actionSource.id</a>
+			<b>idActionSource</b>
+		</field>
+		<field>
+			<a>nature.libelle</a>
+			<b>natureContact</b>
+		</field>
+		<field>
+			<a>campagne.libelle</a>
+			<b>campagne</b>
+		</field>
+	</mapping>
+
+	<!-- Mapping Action -> ActionDto -->
+	<mapping type="one-way">
+		<class-a>com.square.core.model.Action</class-a>
+		<class-b>com.square.core.model.dto.ActionDto</class-b>
+		<field>
+			<a>id</a>
+			<b>identifiant</b>
+		</field>
+		<field>
+			<a>date</a>
+			<b>dateAction</b>
+		</field>
+		<field>
+			<a>actionAffectation.personne.id</a>
+			<b>idPersonne</b>
+		</field>
+		<field>
+			<a>actionAffectation.opportunite.id</a>
+			<b>idOpportunite</b>
+		</field>
+		<field>
+			<a>actionAffectation.opportunite.identifiantExterieur</a>
+			<b>eidOpportunite</b>
+		</field>
+		<field>
+			<a>nature</a>
+			<b>natureAction</b>
+		</field>
+		<field>
+			<a>mailNotification</a>
+			<b>mePrevenirParMail</b>
+		</field>
+		<field>
+			<a>actionAttribution.agence</a>
+			<b>agence</b>
+		</field>
+		<field-exclude>
+			<a>ressource</a>
+			<b>ressource</b>
+		</field-exclude>
+	</mapping>
+	<mapping type="one-way">
+		<class-a>com.square.core.model.dto.ActionDto</class-a>
+		<class-b>com.square.core.model.Action</class-b>
+		<field>
+			<a>dateAction</a>
+			<b>date</b>
+		</field>
+		<field>
+			<a>mePrevenirParMail</a>
+			<b>mailNotification</b>
+		</field>
+		<field-exclude>
+			<a>ressource</a>
+			<b>ressource</b>
+		</field-exclude>
+		<field-exclude>
+			<a>statut</a>
+			<b>statut</b>
+		</field-exclude>
+		<field-exclude>
+			<a>resultat</a>
+			<b>resultat</b>
+		</field-exclude>
+		<field-exclude>
+			<a>natureResultat</a>
+			<b>natureResultat</b>
+		</field-exclude>
+		<field-exclude>
+			<a>type</a>
+			<b>type</b>
+		</field-exclude>
+		<field-exclude>
+			<a>objet</a>
+			<b>objet</b>
+		</field-exclude>
+		<field-exclude>
+			<a>sousObjet</a>
+			<b>sousObjet</b>
+		</field-exclude>
+		<field-exclude>
+			<a>priorite</a>
+			<b>priorite</b>
+		</field-exclude>
+		<field-exclude>
+			<a>campagne</a>
+			<b>campagne</b>
+		</field-exclude>
+		<field-exclude>
+			<a>ressource</a>
+			<b>ressource</b>
+		</field-exclude>
+	</mapping>
+
+	<!-- Mapping Opportunite -> OpportuniteSimpleDto -->
+	<mapping type="one-way">
+		<class-a>com.square.core.model.Opportunite</class-a>
+		<class-b>com.square.core.model.dto.OpportuniteSimpleDto</class-b>
+		<field>
+			<a>id</a>
+			<b>idOpportunite</b>
+		</field>
+		<field>
+			<a>personnePhysique.id</a>
+			<b>idPersonnePhysique</b>
+		</field>
+		<field>
+			<a>identifiantExterieur</a>
+			<b>eidOpportunite</b>
+		</field>
+		<field>
+			<a>statut.id</a>
+			<b>statut.identifiant</b>
+		</field>
+		<field-exclude>
+			<a>ressource</a>
+			<b>ressource</b>
+		</field-exclude>
+	</mapping>
+
+	<!-- Mapping Action -> OpportuniteSimpleDto -->
+	<mapping type="one-way">
+		<class-a>com.square.core.model.Action</class-a>
+		<class-b>com.square.core.model.dto.OpportuniteSimpleDto</class-b>
+		<field>
+			<a>type.libelle</a>
+			<b>type</b>
+		</field>
+		<field>
+			<a>objet.libelle</a>
+			<b>objet</b>
+		</field>
+		<field>
+			<a>sousObjet.libelle</a>
+			<b>sousObjet</b>
+		</field>
+		<field-exclude>
+			<a>dateCreation</a>
+			<b>dateCreation</b>
+		</field-exclude>
+		<field-exclude>
+			<a>ressource</a>
+			<b>ressource</b>
+		</field-exclude>
+		<field-exclude>
+			<a>statut</a>
+			<b>statut</b>
+		</field-exclude>
+	</mapping>
+
+	<!-- Mapping Ressource -> DimensionRessourceDto -->
+	<mapping>
+	    <class-a>com.square.core.model.Ressources.Ressource</class-a>
+		<class-b>com.square.core.model.dto.DimensionRessourceDto</class-b>
+		<field> 
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+	
+	<!-- Mapping Ressource <-> RessourceDto -->
+	<mapping>
+		<class-a>com.square.core.model.dto.RessourceDto</class-a>
+	    <class-b>com.square.core.model.Ressources.Ressource</class-b>
+		 <field> 
+		     <a>idExt</a>
+		     <b>identifiantExterieur</b>
+		 </field>
+		 <field-exclude type="one-way">
+			<a>etat</a>
+			<b>etat</b>
+		</field-exclude>
+		<field-exclude type="one-way">
+			<a>agence</a>
+			<b>agence</b>
+		</field-exclude>
+		<field-exclude type="one-way">
+			<a>service</a>
+			<b>service</b>
+		</field-exclude>
+		<field-exclude type="one-way">
+			<a>fonction</a>
+			<b>fonction</b>
+		</field-exclude>
+	</mapping>
+	
+	<!-- Mapping CodePostalCommune -> CodePostalCommuneDto -->
+    <mapping type="one-way">
+        <class-a>com.square.core.model.CodePostalCommune</class-a>
+        <class-b>com.square.core.model.dto.CodePostalCommuneDto</class-b>
+        <field> 
+             <a>id</a>
+             <b>identifiant</b>
+         </field>
+    </mapping>
+
+	<!-- Mapping AgenceDto <-> Agence -->
+	<mapping>
+		<class-a>com.square.core.model.dto.AgenceDto</class-a>
+	    <class-b>com.square.core.model.Ressources.Agence</class-b>
+		 <field>
+		     <a>idExt</a>
+		     <b>identifiantExterieur</b>
+		 </field>
+		 <field-exclude type="one-way">
+			<a>region</a>
+			<b>region</b>
+		</field-exclude>
+	</mapping>
+
+	<!-- Mapping RegionCommerciale <-> IdentifiantEidLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.RegionCommerciale</class-a>
+		<class-b>com.square.core.model.dto.IdentifiantEidLibelleDto</class-b>
+		 <field> 
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping ModeleEmail <-> ModeleEmailDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ModeleEmail</class-a>
+		<class-b>com.square.core.model.dto.ModeleEmailDto</class-b>
+		 <field> 
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+	<!-- Mapping Action -> RendezVousDto -->
+	<mapping type="one-way">
+		<class-a>com.square.core.model.Action</class-a>
+		<class-b>com.square.core.model.dto.RendezVousDto</class-b>
+		<field>
+			<a>id</a>
+			<b>idAction</b>
+		</field>
+		<field>
+			<a>actionAffectation.personne.id</a>
+			<b>idPersonne</b>
+		</field>
+		<field>
+			<a>nature.libelle</a>
+			<b>nature</b>
+		</field>
+		<field>
+			<a>type.libelle</a>
+			<b>type</b>
+		</field>
+		<field>
+			<a>objet.libelle</a>
+			<b>objet</b>
+		</field>
+		<field>
+			<a>sousObjet.libelle</a>
+			<b>sousObjet</b>
+		</field>
+		<field>
+			<a>statut.id</a>
+			<b>idStatut</b>
+		</field>
+		<field>
+			<a>duree.libelle</a>
+			<b>libelleDuree</b>
+		</field>
+		<field>
+			<a>duree.nbMinutes</a>
+			<b>nbMinutesDuree</b>
+		</field>
+	</mapping>
+	
+	<!-- Mapping PersonneMoraleNature -> IdentifiantLibelleDto -->
+	<mapping type="one-way">
+	    <class-a>com.square.core.model.ActionDuree</class-a>
+		 <class-b>org.scub.foundation.framework.base.dto.IdentifiantLibelleDto</class-b>
+		 <field>
+		     <a>id</a>
+		     <b>identifiant</b>
+		 </field>
+	</mapping>
+
+</mappings>

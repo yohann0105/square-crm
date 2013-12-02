@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="mappingConfiguration" abstract="true">
+
+		<property name="idRessource" value="1" />
+		<property name="idPaysParDefaut" value="70" />
+		<property name="idPaysFrance" value="70" />
+		<property name="idPaysFranceMetropolitaine" value="71" />
+		<property name="idNatureEmailPersonnel" value="1" />
+		<property name="idNatureTelephoneFixe" value = "1"/>
+		<property name="idNatureTelephoneFixeTravail" value = "2"/>
+		<property name="idNatureTelephoneErrone" value = "9"/>
+		<property name="idNatureMobilePrive" value = "3"/>
+		<property name="idNatureMobileTravail" value = "4"/>
+		<property name="idNatureFaxPrive" value = "6"/>
+		<property name="idTypeRelationConjoint" value="1" />
+		<property name="idTypeRelationEnfant" value="2" />
+		<property name="idTypeRelationFilleul" value="3" />
+		<property name="idTypeRelationFilleulEnCoursCreation" value="11" />
+		<property name="idTypeRelationFilleulGarantieIncompatible" value="9" />
+		<property name="idTypeRelationFilleulDejaAdherent" value="10" />
+		<property name="idTypeRelationCorrespondant" value="5" />
+		<property name="idNatureAdressePrincipale" value="1" />
+		<property name="idNatureAdresseSecondaire" value="3"/>
+		<property name="idGroupementFamille" value = "1"/>
+		<property name="idGroupementTiers" value = "2"/>
+		<property name="idGroupementProfessionnel" value = "3"/>
+		<property name="idNaturePersonneParDefaut" value = "1"/>
+		<property name="idNaturePersonneBeneficiaire" value = "3"/>
+		<property name="idNaturePersonneBeneficiaireAdherent" value = "4"/>
+		<property name="idNaturePersonneBeneficiaireProspect" value = "5"/>
+		<property name="idNaturePersonneBeneficiaireVivier" value = "6"/>
+		<property name="idProfessionPersonneParDefaut" value = "1"/>
+		<property name="idSegmentPersonneParDefaut" value = "1"/>
+		<property name="idSegmentIndividuel" value = "1"/>
+		<property name="idSituationFamilialePersonneParDefaut" value = "3"/>
+		<property name="idReseauVentePersonneParDefaut" value = "1"/>
+		<property name="idReseauVenteCourtage" value = "2"/>
+		<property name="idCSPPersonneParDefaut" value = "9"/>
+		<property name="idStatutCampagneActive" value = "1"/>
+		<property name="idActionPrioriteParDefaut" value = "1"/>
+		<property name="idActionPrioriteHaute" value = "2"/>
+		<property name="idActionPrioriteUrgente" value = "3"/>
+		<property name="idStatutActionParDefaut" value = "1"/>
+		<property name="idStatutActionAFaire" value = "1"/>
+		<property name="idStatutActionTermine" value = "2"/>
+		<property name="idStatutActionAnnule" value = "3"/>
+		<property name="idStatutAFaire" value = "1"/>
+		<property name="idStatutTerminer" value = "2"/>
+		<property name="idStatutAnnuler" value="3"/>
+		<property name="idCiviliteMonsieur" value = "3"/>
+		<property name="idCiviliteMadame" value = "2"/>
+		<property name="idCiviliteMademoiselle" value = "1"/>
+		<property name="idCiviliteNonRenseigne" value = "4"/>
+		<property name="idResultatOpportunite" value = "1"/>
+		<property name="idResultatRelance" value = "2"/>
+		<property name="idStatutOpportuniteNonRenseigne" value = "1"/>
+		<property name="idStatutOpportuniteRefuse" value = "2"/>
+		<property name="idStatutOpportuniteAccepte" value = "3"/>
+		<property name="idStatutOpportuniteCorbeille" value = "4"/>
+		<property name="idStatutOpportuniteTransforme" value = "5"/>
+		<property name="idStatutOpportuniteEnAttente" value = "6"/>
+
+		<!-- Identifiants Natures Actions -->
+		<property name="idNatureActionTelephoneSortant" value = "2"/>
+		<property name="idNatureActionInterne" value = "5"/>
+		<property name="idNatureActionCourrierEntrant" value = "6"/>
+		<property name="idNatureActionCourrierSortant" value = "7"/>
+		<property name="idNatureActionInternet" value = "8"/>
+		<property name="idNatureActionEmailEntrant" value = "9"/>
+		<property name="idNatureActionEmailSortant" value = "10"/>
+		<property name="idNatureActionAchatFichiers" value = "13"/>
+		<property name="idNatureActionVisiteSortante" value = "4"/>
+		
+		<!-- Identifiants Types Actions -->
+		<property name="idTypeActionCotisation" value = "1"/>
+		<property name="idTypeActionDocument" value = "2"/>
+		<property name="idTypeActionEServices" value = "3"/>
+		<property name="idTypeActionModification" value = "4"/>
+		<property name="idTypeActionOpportunite" value = "5"/>
+		<property name="idTypeActionPrestationsSinistres" value = "6"/>
+		<property name="idTypeActionRadiation" value = "7"/>
+		<property name="idTypeActionRecoursGracieux" value = "8"/>
+		<property name="idTypeActionRelance" value = "9"/>
+		<property name="idTypeActionCommercial" value = "10"/>
+		<property name="idTypeActionLab" value = "11"/>
+		<!-- Libellés Types Actions -->
+		<property name="libelleTypeActionOpportunite" value = "Opportunité"/>
+
+		<!-- Identifiants Objets Actions -->
+		<property name="idObjetActionCourrier" value = "9"/>
+		<property name="idObjetActionChgtCompoFamiliale" value = "24"/>
+		<property name="idObjetActionEditique" value = "25"/>
+		<property name="idObjetActionNouvelleAdhesion" value = "26"/>
+		<property name="idObjetActionTransformationAia" value = "27"/>
+		<property name="idObjetActionDemandeDevisOuPEC" value = "35"/>
+		<property name="idObjetActionClient" value = "86"/>
+		<property name="idObjetActionRelance" value = "142"/>
+		<property name="idObjetActionJustificatifIdentite" value = "143"/>
+		<property name="idObjetActionControle" value = "144"/>
+
+		<!-- Identifiants Sous Objets Actions -->
+		<property name="idSousObjetActionAvecChangementDepartement" value = "58"/>
+		<property name="idSousObjetActionSansChangementDepartement" value = "59"/>
+		<property name="idSousObjetActionEditionBa" value = "80"/>
+		<property name="idSousObjetActionEnvoiBaParMail" value = "82"/>
+		<property name="idSousObjetActionAdhesionEnLigne" value="142"/>
+		<property name="idSousObjetActionCollectif" value = "160"/>
+		<property name="idSousObjetActionRelanceParrainage" value = "629"/>
+		<property name="idSousObjetActionRelance" value = "161"/>
+
+		<property name="idObjetModificationAdressePostale" value = "18"/>
+
+		<property name="idEtatActifRessource" value = "1"/>
+		<property name="idEtatInactifRessource" value = "2"/>
+		<property name="idTypeRelationAssureSociale" value="12" />
+		
+
+		<property name="notifications">
+			<list>
+				<bean class="com.square.core.model.util.ActionNotificationFactory">
+					<property name="id" value="1"/>
+					<property name="libelle" value="15 minutes"/>
+					<property name="date" value="1970-01-01:00:15:00"/>
+				</bean>
+				<bean class="com.square.core.model.util.ActionNotificationFactory">
+					<property name="id" value="2"/>
+					<property name="libelle" value="30 minutes"/>
+					<property name="date" value="1970-01-01:00:30:00"/>
+				</bean>	
+				<bean class="com.square.core.model.util.ActionNotificationFactory">
+					<property name="id" value="3"/>
+					<property name="libelle" value="1 Heure"/>
+					<property name="date" value="1970-01-01:01:00:00"/>
+				</bean>
+				<bean class="com.square.core.model.util.ActionNotificationFactory">
+					<property name="id" value="4"/>
+					<property name="libelle" value="5 Heures"/>
+					<property name="date" value="1970-01-01:05:00:00"/>
+				</bean>		
+			</list>
+		</property>
+		
+		<property name="listeIdsNaturesTelephoneMobile">
+			<list>
+				<value>3</value>
+				<value>4</value>
+			</list>
+		</property>
+		
+		<property name="proprietePersonneAgence" value="attribution.agence.libelle" />
+		<property name="proprietePersonneCodePostal" value="adresses.codePostalCommune.codePostal.id" />
+		<property name="proprietePersonneCommercial" value="attribution.ressource.nom" />
+		<property name="proprietePersonneCommune" value="adresses.codePostalCommune.libelleAcheminement" />
+		<property name="proprietePersonneDateNaissance" value = "dateNaissance"/>
+		<property name="proprietePersonneNature" value = "nature.libelle"/>
+		<property name="proprietePersonneNom" value = "triNom"/>
+		<property name="proprietePersonneNumeroClient" value="num" />
+		<property name="proprietePersonnePrenom" value="triPrenom" />
+		<property name="proprietePersonneSegment" value="segment.id" />
+		<property name="proprietePersonneDateCreation" value="dateCreation" />
+		
+		<property name="idNaturePersonneAdherent" value="3" />
+		<property name="idNaturePersonneProspect" value="1" />
+		<property name="idNaturePersonneVivier" value="2" />
+		<property name="idNaturePersonneDecede" value="7"/>
+		<property name="idNaturePersonneAssureSocial" value="8"/>
+		<property name="idNaturePersonneCorrespondant" value="9"/>
+
+		<property name="idNaturePersonneMoraleProspect" value="1"/>
+		<property name="idNaturePersonneMoraleAdherent" value="2"/>
+
+		<property name="roleSquareBatch" value="ROLE_SQUARE_BATCH" />
+		<property name="roleSquareCampagne" value="ROLE_SQUARE_CAMPAGNE" />
+		<property name="roleSquareAnimateur" value="ROLE_SQUARE_ANIMATEUR" />
+		<property name="roleSquareAdmin" value="ROLE_SQUARE_ADMIN" />
+
+		<property name="orderByRelationTypeOrdre" value="type.ordre"/>
+		<property name="orderByRelationDateDebut" value="dateDebut"/>
+		<property name="orderByRelationDateFin" value="dateFin"/>
+		<property name="orderByRelationActif" value="topActif"/>
+
+		<property name="idGroupementRelationTypeEnCoursParrainage" value="7" />
+		<property name="idGroupementRelationTypeEchecParrainageGarantie" value="5" />
+		<property name="idGroupementRelationTypeEchecParrainageAdherent" value="6" />
+
+		<property name="libelleNonRenseigne" value="Non renseigné(e)" />
+		
+		<property name="libelleAPourEnfant" value="A pour enfant"/>
+
+		<property name="infosTeletransmissionCaisseOui" value="O" />
+		<property name="infosTeletransmissionCaisseNon" value="N" />
+
+		<property name="proprietePrestationRefDecompte" value="d.numero" />
+		<property name="proprietePrestationDateSoins" value="d.dateDebutSoins" />
+		<property name="proprietePrestationActe" value="d.acte.libelle" />
+		<property name="proprietePrestationDepensesEngagees" value="d.montant" />
+		<property name="proprietePrestationRemboursementRO" value = "d.remboursementSecu"/>
+		<property name="proprietePrestationRemboursementSmatis" value = "d.remboursementCompl"/>
+		<property name="proprietePrestationResteACharge" value = "resteACharge"/>
+		<property name="proprietePrestationNomDestinataire" value="d.nomDestinataire" />
+
+		<property name="statutPaiementPaye" value="paid" />
+		
+		<property name="orderByActionId" value="act.id"/>
+		<property name="orderByActionDateCreation" value="act.dateCreation"/>
+		<property name="orderByActionDateAction" value="act.date"/>
+		<property name="orderByActionDateTerminee" value="act.dateTerminee"/>
+		<property name="orderByActionType" value="act.type.ordre"/>
+		<property name="orderByActionObjet" value="act.objet.ordre"/>
+		<property name="orderByActionSsObjet" value="ssObjet.ordre"/>
+		<property name="orderByActionPriorite" value="act.priorite.ordre"/>
+		<property name="orderByActionStatut" value="statutAction.ordre"/>
+		<property name="orderByActionAttributionAgence" value="attributionAgence.libelle"/>
+		<property name="orderByActionAttributionRessource" value="attributionRessource.nom"/>
+		
+		<property name="decalageDateAffichageAction" value="30"/>
+		<property name="decalageDateActionRelance" value="30"/>
+
+		<property name="listeIdsStatutsLoiMadelin">
+			<list>
+				<value>5</value>
+				<value>11</value>
+				<value>14</value>
+				<value>18</value>
+			</list>
+		</property>
+				
+		<property name="idFonctionCMP" value="60"/>
+		<property name="idFonctionCCD" value="74"/>
+		<property name="idFonctionCC" value="58"/>
+		<property name="idFonctionAnimateur" value="57"/>
+		
+		<property name="idAgencePoleFidelisation" value="20"/>
+		<property name="idAgenceInternet" value="365470201"/>
+		
+		<property name="idReseauIndividuel" value="1"/>
+	</bean>
+
+</beans>
